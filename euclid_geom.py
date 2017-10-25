@@ -60,7 +60,19 @@ def uc_point(lambda1, mu1):
     return pg_point([lambda1**2 - mu1**2, 2*lambda1*mu1, lambda1**2 + mu1**2])
 
 def A(a, b, c):
+    ''' Archimedes's function '''
     return (4*a*b) - (a + b - c)**2
+
+def cqq(a, b, c, d):
+    ''' Cyclic quadrilateral quadrea theorem '''
+    t1 = 4*a*b
+    t2 = 4*c*d
+    m = (t1 + t2) - (a + b - c - d)**2
+    p = m*m - 4*t1*t2
+    return m, p
+
+def Ptolemy(Q12, Q23, Q34, Q14, Q13, Q24):
+    return A(Q12*Q34, Q23* Q14, Q13*Q24) == 0
 
 if __name__ == "__main__":
     import sympy
@@ -130,14 +142,10 @@ if __name__ == "__main__":
     # a2 = uc_point(3, 4)
     # a3 = uc_point(-12, 5)
     # a4 = uc_point(0, 1)
-    lambda1 = sympy.Symbol("lambda1", integer=True)
-    mu1 = sympy.Symbol("mu1", integer=True)
-    lambda2 = sympy.Symbol("lambda2", integer=True)
-    mu2 = sympy.Symbol("mu2", integer=True)
-    lambda3 = sympy.Symbol("lambda3", integer=True)
-    mu3 = sympy.Symbol("mu3", integer=True)
-    lambda4 = sympy.Symbol("lambda4", integer=True)
-    mu4 = sympy.Symbol("mu4", integer=True)
+    lambda1, mu1 = sympy.symbols("lambda1 mu1", integer=True)
+    lambda2, mu2 = sympy.symbols("lambda2 mu2", integer=True)
+    lambda3, mu3 = sympy.symbols("lambda3 mu3", integer=True)
+    lambda4, mu4 = sympy.symbols("lambda4 mu4", integer=True)
     a1 = uc_point(lambda1, mu1)
     a2 = uc_point(lambda2, mu2)
     a3 = uc_point(lambda3, mu3)

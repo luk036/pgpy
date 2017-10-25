@@ -171,15 +171,24 @@ def check_desargue(A, B, C, D, E, F):
     else: assert not b2
 
 if __name__ == "__main__":
-    p = pg_point([1-2j, 3-1j, 2+1j])
+    p = pg_point([1, 3, 2])
+    q = pg_point([4, 3, 5])
+    print(join(p, q))
+
+    l = pg_line([5, 7, 8])
+    m = pg_line([-5, 1, 6])
+    print(meet(l, m))
+
+    p = pg_point([1-2j, 3-1j, 2+1j]) # complex number
     q = pg_point([-2+1j, 1-3j, -1-1j])
+    assert p.incident(p*q)
+
+    print(coI([p, q, pk_point(1, p, 1, q), pk_point(1, p, -1, q)])) # get True
+
     r = pg_point([2-1j, -2+1j, 1+1j])
     s = pg_point([2j, 2-2j, 3])
     t = pg_point([2, -2j, 2])
 
-    assert p.incident(p*q)
-
-    print(coI([p, q, pk_point(1, p, 1, q), pk_point(1, p, -1, q)])) # get True
     print(persp([p, q, p + q], [r, p + r, p])) # get False
     O = meet(join(p, s), join(q, t))
     r = join(p, q)
@@ -188,37 +197,17 @@ if __name__ == "__main__":
 
     import sympy
     sympy.init_printing()
-    px = sympy.Symbol("px", integer=True)
-    py = sympy.Symbol("py", integer=True)
-    pz = sympy.Symbol("pz", integer=True)
-    qx = sympy.Symbol("qx", integer=True)
-    qy = sympy.Symbol("qy", integer=True)
-    qz = sympy.Symbol("qz", integer=True)
-    lambda1 = sympy.Symbol("lambda1", integer=True)
-    mu1 = sympy.Symbol("mu1", integer=True)
-    p = pg_point([px, py, pz])
-    q = pg_point([qx, qy, qz])
+    pv = sympy.symbols("p:3", integer=True)
+    qv = sympy.symbols("q:3", integer=True)
+    lambda1, mu1 = sympy.symbols("lambda1 mu1", integer=True)
+    p = pg_point(pv)
+    q = pg_point(qv)
     r = pk_point(lambda1, p, mu1, q)
-    # l = join(join(p, q).aux(), r)
-    # ans1 = np.dot(l.coord, q.coord)
-    # ans2 = np.dot(l.coord, p.coord)
-    # ans = sympy.simplify(mu1*ans1 + lambda1* ans2)
-    # print(ans)
-    # c = harm_conj(p, q, r)
-    # ans = sympy.simplify(c.coord[0])
-    # print(ans)
-
-    sx = sympy.Symbol("sx", integer=True)
-    sy = sympy.Symbol("sy", integer=True)
-    sz = sympy.Symbol("sz", integer=True)
-    tx = sympy.Symbol("tx", integer=True)
-    ty = sympy.Symbol("ty", integer=True)
-    tz = sympy.Symbol("tz", integer=True)
-    lambda2 = sympy.Symbol("lambda2", integer=True)
-    mu2 = sympy.Symbol("mu2", integer=True)
-
-    s = pg_point([sx, sy, sz])
-    t = pg_point([tx, ty, tz])
+    sv = sympy.symbols("s:3", integer=True)
+    tv = sympy.symbols("t:3", integer=True)
+    lambda2, mu2 = sympy.symbols("lambda2 mu2", integer=True)
+    s = pg_point(sv)
+    t = pg_point(tv)
     u = pk_point(lambda2, s, mu2, t)
     G = meet(join(p, t), join(q, s))
     H = meet(join(p, u), join(r, s))
@@ -228,8 +217,7 @@ if __name__ == "__main__":
     print(ans) # get 0
 
     # p, q, s   t
-    lambda3 = sympy.Symbol("lambda3", integer=True)
-    mu3 = sympy.Symbol("mu3", integer=True)
+    lambda3, mu3 = sympy.symbols("lambda3 mu3", integer=True)
     p2 = pk_point(lambda1, p, mu1, t)
     q2 = pk_point(lambda2, q, mu2, t)
     s2 = pk_point(lambda3, s, mu3, t)
