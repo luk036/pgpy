@@ -8,9 +8,9 @@ from proj_geom import *
 def dual(v):
     [x, y, z] = v
     if isinstance(v, pg_point):
-        return pg_line([x, y, -z])
+        return pg_line([x, y, z])
     elif isinstance(v, pg_line):
-        return pg_point([x, y, -z])
+        return pg_point([x, y, z])
     else:
         raise NotImplementedError()
 
@@ -83,8 +83,6 @@ if __name__ == "__main__":
     ans = np.dot(t3, o)
     ans = sympy.simplify(ans)
     print(ans) # get 0
-
-
     
     a1 = pg_point([1, 3, 1])
     a2 = pg_point([4, 2, 1])

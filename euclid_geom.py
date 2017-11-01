@@ -40,7 +40,8 @@ def quad1(x1, z1, x2, z2):
         return (x1/z1 - x2/z2)**2 
 
 def quadrance(a1, a2):
-    return quad1(a1[0], a1[2], a2[0], a2[2]) + quad1(a1[1], a1[2], a2[1], a2[2])
+    return quad1(a1[0], a1[2], a2[0], a2[2]) + \
+            quad1(a1[1], a1[2], a2[1], a2[2])
 
 def spread(l1, l2):
     d = det(l1, l2)
@@ -57,9 +58,10 @@ def cross(l1, l2):
         return d * d / (omgB(l1, l1) * omgB(l2, l2))
 
 def uc_point(lambda1, mu1):
-    return pg_point([lambda1**2 - mu1**2, 2*lambda1*mu1, lambda1**2 + mu1**2])
+    return pg_point([lambda1**2 - mu1**2, 
+            2*lambda1*mu1, lambda1**2 + mu1**2])
 
-def A(a, b, c):
+def Ar(a, b, c):
     ''' Archimedes's function '''
     return (4*a*b) - (a + b - c)**2
 
@@ -72,7 +74,7 @@ def cqq(a, b, c, d):
     return m, p
 
 def Ptolemy(Q12, Q23, Q34, Q14, Q13, Q24):
-    return A(Q12*Q34, Q23* Q14, Q13*Q24) == 0
+    return Ar(Q12*Q34, Q23* Q14, Q13*Q24) == 0
 
 if __name__ == "__main__":
     import sympy
@@ -122,7 +124,7 @@ if __name__ == "__main__":
     print(coincident(t1, t2, t3)) # True
 
     tqf = ((q1 + q2 + q3)**2) - 2*(q1*q1 + q2*q2 + q3*q3)
-    print(tqf, A(q1, q2, q3)) # get the same
+    print(tqf, Ar(q1, q2, q3)) # get the same
 
     assert spread(l1, l1) == 0
     assert quadrance(a1, a1) == 0
@@ -157,6 +159,6 @@ if __name__ == "__main__":
     q24 = quadrance(a2, a4)
     q13 = quadrance(a1, a3)
     #print(q12, q23, q34, q14, q24, q13)
-    t = A(q12*q34, q23*q14, q13*q24)
+    t = Ar(q12*q34, q23*q14, q13*q24)
     t = sympy.simplify(t)
     print(t) # get 0
