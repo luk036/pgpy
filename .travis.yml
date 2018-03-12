@@ -4,3 +4,8 @@ python:
   - "3.6"
 # command to run tests
 script: pytest
+notifications:
+  slack:
+    rooms:
+      - loksu:jErzuILLSNn9qGYkkILvBwje#general
+      - loksu:jErzuILLSNn9qGYkkILvBwje#random
