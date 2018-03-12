@@ -18,7 +18,7 @@ class pg_point(np.ndarray):
     def __ne__(self, other):
         return not self.__eq__(other)
 
-    def incident(self, l):
+    def incident(self, l): 
         return not self.dot(l)
 
     def __add__(self, other):
@@ -117,7 +117,7 @@ def harm_conj(A, B, C):
     P = l.aux()
     a = P * A
     b = P * B
-    c = P * C
+    # c = P * C
     R = P + C
     Q = (A * R) * b
     S = (B * R) * a
