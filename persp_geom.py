@@ -41,7 +41,7 @@ def omegaA(p):
 
 def measure(a1, a2):
     omg = omega(a1*a2)
-    if isinstance(omg, int):
+    if isinstance(omg, (int, np.int64) ):
         return Fraction(omg, omega(a1) * omega(a2))
     else:
         return omg / (omega(a1) * omega(a2))

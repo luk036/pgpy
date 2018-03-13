@@ -131,7 +131,7 @@ def x_ratio(A, B, l, m):
     dAm = dot(A, m)
     dBl = dot(B, l)
     dBm = dot(B, m)
-    if isinstance(dAl, int):
+    if isinstance(dAl, (int, np.int64) ):
         return Fraction(dAl, dAm) / Fraction(dBl, dBm)
     else:
         return dAl*dBm/(dAm*dBl)

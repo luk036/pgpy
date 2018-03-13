@@ -29,7 +29,7 @@ def R1(A, B, C, D):
     ad = cross1(A, D)
     bc = cross1(B, C)
     bd = cross1(B, D)
-    if isinstance(ac, int):
+    if isinstance(ac, (int, np.int64) ):
         return Fraction(ac, ad) / Fraction(bc, bd)
     else:
         return ac*bd/(ad*bc)

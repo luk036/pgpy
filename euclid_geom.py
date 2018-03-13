@@ -8,7 +8,7 @@ from proj_geom import *
 def dot1(x, y):
     return x[0] * y[0] + x[1] * y[1]
 
-def cross(x, y):
+def cross1(x, y):
     return x[0] * y[1] - x[1] * y[0]
 
 def dot2(x, y):
@@ -22,7 +22,7 @@ def is_perpendicular(l, m):
     return dot1(l, m) == 0
 
 def is_parallel(l, m):
-    return cross(l, m) == 0
+    return cross1(l, m) == 0
 
 def altitude(a, l):
     return join(a, fB(l))
@@ -34,7 +34,7 @@ def det(x, y):
     return x[0] * y[1] - x[1] * y[0]
 
 def quad1(x1, z1, x2, z2):
-    if isinstance(x1, int):
+    if isinstance(x1, (int, np.int64) ):
         return (Fraction(x1,z1) - Fraction(x2,z2))**2
     else:
         return (x1/z1 - x2/z2)**2 
@@ -45,14 +45,14 @@ def quadrance(a1, a2):
 
 def spread(l1, l2):
     d = det(l1, l2)
-    if isinstance(d, int):
+    if isinstance(d, (int, np.int64) ):
         return Fraction(d, omgB(l1, l1)) * Fraction(d, omgB(l2, l2))
     else:
         return d * d / (omgB(l1, l1) * omgB(l2, l2))
 
 def cross(l1, l2):
     d = omgB(l1, l2)
-    if isinstance(d, int):
+    if isinstance(d, (int, np.int64) ):
         return Fraction(d, omgB(l1, l1)) * Fraction(d, omgB(l2, l2))
     else:
         return d * d / (omgB(l1, l1) * omgB(l2, l2))

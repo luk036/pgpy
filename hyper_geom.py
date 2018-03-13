@@ -30,7 +30,7 @@ def omega(l):
 
 def measure(a1, a2):
     omg = dot(a1, dual(a2))
-    if isinstance(omg, int):
+    if isinstance(omg, (int, np.int64) ):
         return 1 - Fraction(omg, omega(a1)) * Fraction(omg, omega(a2))
     else:
         return 1 - (omg * omg) / (omega(a1) * omega(a2))
