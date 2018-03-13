@@ -7,5 +7,4 @@ script: pytest
 notifications:
   slack:
     rooms:
-      - loksu:jErzuILLSNn9qGYkkILvBwje#general
-      - loksu:jErzuILLSNn9qGYkkILvBwje#random
+      - loksu:jErzuILLSNn9qGYkkILvBwje#pgpy
