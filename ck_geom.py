@@ -5,6 +5,16 @@ import numpy as np
 from fractions import *
 from proj_geom import * 
 
+def dual(v):
+    [x, y, z] = v
+    if isinstance(v, pg_point):
+        return pg_line([-x, y, -z])
+    elif isinstance(v, pg_line):
+        return pg_point([-x, y, -z])
+    else:
+        raise NotImplementedError()
+
+
 def is_perpendicular(l, m):
     return m.incident(dual(l))
 
@@ -43,15 +53,6 @@ class reflect:
 
 
 if __name__ == "__main__":
-    def dual(v):
-        [x, y, z] = v
-        if isinstance(v, pg_point):
-            return pg_line([x, y, -z])
-        elif isinstance(v, pg_line):
-            return pg_point([x, y, -z])
-        else:
-            raise NotImplementedError()
-
     import sympy
     sympy.init_printing()
     # i1 = sympy.Integer(1)
