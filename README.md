@@ -1,1 +1,2 @@
 [![Build Status](https://travis-ci.org/luk036/pgpy.svg?branch=master)](https://travis-ci.org/luk036/pgpy)
+[![codecov](https://codecov.io/gh/luk036/pgpy/branch/master/graph/badge.svg)](https://codecov.io/gh/luk036/pgpy)
