@@ -3,7 +3,7 @@ from __future__ import print_function
 from pprint import pprint
 import numpy as np
 from fractions import *
-from proj_plane import * 
+from .proj_plane import * 
 
 def dual(x):
     if isinstance(x, pg_point):

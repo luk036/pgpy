@@ -3,7 +3,7 @@ from __future__ import print_function
 from pprint import pprint
 import numpy as np
 from fractions import *
-from proj_plane import * 
+from .proj_plane import * 
 
 class ck:
     def __init__(self, dual):
@@ -43,16 +43,6 @@ class ck:
 
     def spread(self, l1, l2):
         return self.measure(l1, l2)
-
-class reflect:
-    def __init__(self, m, O):
-        self.m = m
-        self.O = O
-        self.c = dot(m, O)
-
-    def __call__(self, p):
-        return pk_point(self.c, p, -2 * dot(self.m, p), self.O)
-
 
 if __name__ == "__main__":
     def mydual(v):

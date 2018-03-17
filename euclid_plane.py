@@ -3,7 +3,7 @@ from __future__ import print_function
 from pprint import pprint
 import numpy as np
 from fractions import *
-from proj_plane import * 
+from .proj_plane import * 
 
 def dot1(x, y):
     return x[0] * y[0] + x[1] * y[1]

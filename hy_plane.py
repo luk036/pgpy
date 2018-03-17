@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from ck_plane import * 
+from .ck_plane import * 
 
 def hydual(v):
     [x, y, z] = v
