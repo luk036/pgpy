@@ -1,5 +1,6 @@
-from proj_geom import * 
-from euclid_geom import * 
+from __future__ import print_function
+
+from ..euclid_plane import * 
 
 def test_int():
     a1 = pg_point([1, 3, 1])

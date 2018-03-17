@@ -1,11 +1,7 @@
 # -*- coding: utf-8 -*-
-from __future__ import print_function
-from pprint import pprint
-import numpy as np
-from fractions import *
-from proj_geom import * 
+from ck_plane import * 
 
-def dual(v):
+def elldual(v):
     [x, y, z] = v
     if isinstance(v, pg_point):
         return pg_line([x, y, z])
@@ -14,41 +10,22 @@ def dual(v):
     else:
         raise NotImplementedError()
 
+__ellck = ck(elldual)
+
 def is_perpendicular(l, m):
-    return m.incident(dual(l))
+    return __ellck.is_perpendicular(l, m)
 
 def altitude(p, l):
-    return p * dual(l)
+    return __ellck.altitude(p, l)
 
 def orthocenter(a1, a2, a3):
-    t1 = altitude(a1, a2*a3)
-    t2 = altitude(a2, a1*a3)
-    return t1*t2
-
-def omega(l):
-    return dot(l, dual(l))
-
-def measure(a1, a2):
-    omg = dot(a1, dual(a2))
-    if isinstance(omg, (int, np.int64) ):
-        return 1 - Fraction(omg, omega(a1)) * Fraction(omg, omega(a2))
-    else:
-        return 1 - (omg * omg) / (omega(a1) * omega(a2))
+    return __ellck.orthocenter(a1, a2, a3)
         
 def quadrance(a1, a2):
-    return measure(a1, a2)
+    return __ellck.quadrance(a1, a2)
 
 def spread(l1, l2):
-    return measure(l1, l2)
-
-class reflect:
-    def __init__(self, m, o):
-        self.m = m
-        self.o = o
-        self.c = dot(m, o)
-
-    def __call__(self, p):
-        return pk_point(self.c, p, -2 * dot(self.m, p), self.o)
+    return __ellck.spread(l1, l2)
 
 if __name__ == "__main__":
     a1 = pg_point([1, 3, 1])
@@ -109,7 +86,7 @@ if __name__ == "__main__":
     t2 = altitude(a2, l2)
     t3 = altitude(a3, l3)
     o = t1*t2
-    ans = np.dot(t3, o)
+    ans = dot(t3, o)
     ans = sympy.simplify(ans)
     print(ans) # get 0
 

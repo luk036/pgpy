@@ -1,4 +1,6 @@
-from proj_geom import * 
+from __future__ import print_function
+
+from ..proj_plane import * 
 
 def test_complex():
     p = pg_point([1-2j, 3-1j, 2+1j]) # complex number

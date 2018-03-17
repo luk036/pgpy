@@ -3,7 +3,7 @@ from __future__ import print_function
 from pprint import pprint
 import numpy as np
 from fractions import *
-from proj_geom import * 
+from proj_plane import * 
 
 def dual(x):
     if isinstance(x, pg_point):
@@ -54,15 +54,6 @@ def quadrance(a1, a2):
 
 def spread(l1, l2):
     return measure(l1, l2)
-
-class reflect:
-    def __init__(self, m, o):
-        self.m = m
-        self.o = o
-        self.c = dot(m, o)
-
-    def __call__(self, p):
-        return pk_point(self.c, p, -2 * dot(self.m, p), self.o)
 
 def A(a, b, c):
     return (4*a*b) - (a + b - c)**2
