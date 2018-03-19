@@ -15,6 +15,9 @@ __ellck = ck(elldual)
 def is_perpendicular(l, m):
     return __ellck.is_perpendicular(l, m)
 
+def line_reflect(m):
+    return __ellck.line_reflect(m)
+
 def altitude(p, l):
     return __ellck.altitude(p, l)
 

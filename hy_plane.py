@@ -10,22 +10,25 @@ def hydual(v):
     else:
         raise NotImplementedError()
 
-__ck = ck(hydual)
+__hyck = ck(hydual)
 
 def is_perpendicular(l, m):
-    return __ck.is_perpendicular(l, m)
+    return __hyck.is_perpendicular(l, m)
+
+def line_reflect(m):
+    return __hyck.line_reflect(m)
 
 def altitude(p, l):
-    return __ck.altitude(p, l)
+    return __hyck.altitude(p, l)
 
 def orthocenter(a1, a2, a3):
-    return __ck.orthocenter(a1, a2, a3)
+    return __hyck.orthocenter(a1, a2, a3)
         
 def quadrance(a1, a2):
-    return __ck.quadrance(a1, a2)
+    return __hyck.quadrance(a1, a2)
 
 def spread(l1, l2):
-    return __ck.spread(l1, l2)
+    return __hyck.spread(l1, l2)
 
 if __name__ == "__main__":
     a1 = pg_point([1, 3, 1])

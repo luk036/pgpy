@@ -21,11 +21,11 @@ class pg_point(np.ndarray):
     def incident(self, l): 
         return not self.dot(l)
 
-    def __add__(self, other):
-        return pg_point(np.ndarray.__add__(self, other))
+    # def __add__(self, other):
+    #     return pg_point(np.ndarray.__add__(self, other))
 
-    def __sub__(self, other):
-        return pg_point(np.ndarray.__sub__(self, other))
+    # def __sub__(self, other):
+    #     return pg_point(np.ndarray.__sub__(self, other))
 
     def __mul__(self, other):
         ''' meet '''
@@ -51,11 +51,11 @@ class pg_line(np.ndarray):
     def incident(self, p):
         return not self.dot(p)
 
-    def __add__(self, other):
-        return pg_line(np.ndarray.__add__(self, other))
+    # def __add__(self, other):
+    #     return pg_line(np.ndarray.__add__(self, other))
 
-    def __sub__(self, other):
-        return pg_line(np.ndarray.__sub__(self, other))
+    # def __sub__(self, other):
+    #     return pg_line(np.ndarray.__sub__(self, other))
 
     def __mul__(self, other):
         ''' join '''
@@ -124,9 +124,10 @@ def harm_conj(A, B, C):
     return (Q * S) * l 
 
 def dot(p, l):
-    return np.dot(p, l)
+    return p.dot(l)
 
-class reflect: # ???
+class line_involution:
+    """ Definition: $\tau(\tau(a)) == a$ """
     def __init__(self, m, o):
         self.m = m
         self.o = o
@@ -203,22 +204,26 @@ if __name__ == "__main__":
     s = pg_point(sv)
     t = pg_point(tv)
     u = pk_point(lambda2, s, mu2, t)
+
+    # Prove Pappus Theorem
     G = meet(join(p, t), join(q, s))
     H = meet(join(p, u), join(r, s))
     I = meet(join(q, u), join(r, t))
-    ans = np.dot(G, join(H, I))
+    ans = G.dot(join(H, I))
     ans = sympy.simplify(ans)
     print(ans) # get 0
 
-    # p, q, s   t
+    # p, q, s, t
     lambda3, mu3 = sympy.symbols("lambda3 mu3", integer=True)
     p2 = pk_point(lambda1, p, mu1, t)
     q2 = pk_point(lambda2, q, mu2, t)
     s2 = pk_point(lambda3, s, mu3, t)
+
+    # Prove Desargue Theorem
     G = meet(join(p, q), join(p2, q2))
     H = meet(join(q, s), join(q2, s2))
     I = meet(join(s, p), join(s2, p2))
-    ans = np.dot(G, join(H, I))
+    ans = G.dot(join(H, I))
     ans = sympy.simplify(ans)
     print(ans) # get 0
 

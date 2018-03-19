@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 from pprint import pprint
-import numpy as np
-from fractions import *
 from .proj_plane import * 
 
 class ck:
@@ -31,6 +29,10 @@ class ck:
         else:
             return 1 - (omg * omg) / (self.omega(a1) * self.omega(a2))
 
+    def line_reflect(self, m):
+        return line_involution(m, self.dual(m))
+
+ 
     # def measure(self, a1, a2):
     #     omg = self.omega(a1*a2)
     #     if isinstance(omg, (int, np.int64) ):
