@@ -6,6 +6,9 @@ def test_int():
     a1 = pg_point([1, 3, 1])
     a2 = pg_point([4, 2, 1])
     a3 = pg_point([1, 1, -1])
+
+    assert(dual(dual(a1)) == a1)
+
     l1 = join(a2, a3)
     l2 = join(a1, a3)
     l3 = join(a1, a2)

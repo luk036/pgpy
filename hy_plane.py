@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from .ck_plane import * 
 
-def hydual(v):
+def dual(v):
     [x, y, z] = v
     if isinstance(v, pg_point):
         return pg_line([x, y, -z])
@@ -10,7 +10,7 @@ def hydual(v):
     else:
         raise NotImplementedError()
 
-__hyck = ck(hydual)
+__hyck = ck(dual)
 
 def is_perpendicular(l, m):
     return __hyck.is_perpendicular(l, m)

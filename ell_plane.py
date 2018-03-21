@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from .ck_plane import * 
 
-def elldual(v):
+def dual(v):
     [x, y, z] = v
     if isinstance(v, pg_point):
         return pg_line([x, y, z])
@@ -10,7 +10,7 @@ def elldual(v):
     else:
         raise NotImplementedError()
 
-__ellck = ck(elldual)
+__ellck = ck(dual)
 
 def is_perpendicular(l, m):
     return __ellck.is_perpendicular(l, m)

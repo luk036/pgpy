@@ -16,10 +16,14 @@ def test_int():
     a1 = pg_point([1, 2, 3])
     a2 = pg_point([4, -5, 6])
     a3 = pg_point([-7, 8, 9])
+
+    assert(myck.dual(myck.dual(a1)) == a1)
+    
     l1 = join(a2, a3)
     assert l1.incident(a2)
     l2 = join(a1, a3)
     l3 = join(a1, a2)
+    
 
     tau = myck.line_reflect(l1)
     assert(tau(tau(a1)) == a1)
