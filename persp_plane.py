@@ -9,7 +9,7 @@ def dual(x):
     if isinstance(x, pg_point):
         return l_infty
     elif isinstance(x, pg_line):
-        return pk_point(dot(x, B_infty), A_infty, dot(x, A_infty), B_infty)
+        return pk_point(x.dot(B_infty), A_infty, x.dot(A_infty), B_infty)
     else:
         raise NotImplementedError()
 
@@ -23,21 +23,21 @@ def altitude(p, l):
     return dual(l) * p
 
 def midpoint(a, b):
-    return pk_point(dot(b, l_infty), a, dot(a, l_infty), b)
+    return pk_point(b.dot(l_infty), a, a.dot(l_infty), b)
 
 def omega(x):
     if isinstance(x, pg_point):
-        return dot(x, l_infty)**2
+        return x.dot(l_infty)**2
     elif isinstance(x, pg_line):
-        return 2*dot(x, B_infty)*dot(x, A_infty)
+        return 2*x.dot(B_infty)*x.dot(A_infty)
     else:
         raise NotImplementedError()
 
 def omegaB(l):
-    return 2*dot(l, B_infty)*dot(l, A_infty)
+    return 2*l.dot(B_infty)*l.dot(A_infty)
 
 def omegaA(p):
-    return dot(p, l_infty)**2
+    return p.dot(l_infty)**2
 
 def measure(a1, a2):
     omg = omega(a1*a2)

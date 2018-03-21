@@ -19,11 +19,11 @@ class ck:
         return t1*t2
 
     def omega(self, l):
-        return dot(l, self.dual(l))
+        return l.dot(self.dual(l))
 
     def measure(self, a1, a2):
         """test"""
-        omg = dot(a1, self.dual(a2))
+        omg = a1.dot(self.dual(a2))
         if isinstance(omg, (int, np.int64) ):
             return 1 - Fraction(omg, self.omega(a1)) * Fraction(omg, self.omega(a2))
         else:
@@ -108,6 +108,6 @@ if __name__ == "__main__":
     t1 = myck.altitude(a1, l1)
     t2 = myck.altitude(a2, l2)
     t3 = myck.altitude(a3, l3)
-    ans = dot(t1, meet(t2, t3))
+    ans = t1.dot(meet(t2, t3))
     # ans = sympy.simplify(ans)
     print(ans) # get 0

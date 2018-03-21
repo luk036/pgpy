@@ -5,7 +5,10 @@ from ..proj_plane import *
 def test_complex():
     p = pg_point([1-2j, 3-1j, 2+1j]) # complex number
     q = pg_point([-2+1j, 1-3j, -1-1j])
-    assert p.incident(p*q)
+    l = p*q
+    assert l == q*p
+    assert l.incident(p)
+    assert l.incident(q)
 
     assert coI([p, q, pk_point(1, p, 1, q), pk_point(1, p, -1, q)])
 

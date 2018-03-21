@@ -6,12 +6,6 @@ import numpy as np
 import fractions
 import math
 
-def dot(p, q):
-    return p.x * q.x + p.y * q.y
-
-def cross(p, q):
-    return p.x * q.y - p.y * q.x
-
 class rat:
     def __init__(self, p):
         if type(p) is int:

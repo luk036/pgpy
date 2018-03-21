@@ -89,6 +89,6 @@ if __name__ == "__main__":
     t2 = altitude(a2, l2)
     t3 = altitude(a3, l3)
     o = t1*t2
-    ans = dot(t3, o)
+    ans = t3.dot(o)
     ans = sympy.simplify(ans)
     print(ans) # get 0

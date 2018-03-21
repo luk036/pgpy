@@ -38,6 +38,6 @@ def test_int():
     t1 = myck.altitude(a1, l1)
     t2 = myck.altitude(a2, l2)
     t3 = myck.altitude(a3, l3)
-    ans = dot(t1, meet(t2, t3))
+    ans = t1.dot(meet(t2, t3))
     # ans = sympy.simplify(ans)
     assert ans == 0

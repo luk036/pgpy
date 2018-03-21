@@ -123,24 +123,24 @@ def harm_conj(A, B, C):
     S = (B * R) * a
     return (Q * S) * l 
 
-def dot(p, l):
-    return p.dot(l)
+# def dot(p, l):
+#    return p.dot(l)
 
 class line_involution:
     """ Definition: $\tau(\tau(a)) == a$ """
     def __init__(self, m, o):
         self.m = m
         self.o = o
-        self.c = dot(m, o)
+        self.c = m.dot(o)
 
     def __call__(self, p):
-        return pk_point(self.c, p, -2 * dot(self.m, p), self.o)
+        return pk_point(self.c, p, -2 * p.dot(self.m), self.o)
 
 def x_ratio(A, B, l, m):
-    dAl = dot(A, l)
-    dAm = dot(A, m)
-    dBl = dot(B, l)
-    dBm = dot(B, m)
+    dAl = A.dot(l)
+    dAm = A.dot(m)
+    dBl = B.dot(l)
+    dBm = B.dot(m)
     if isinstance(dAl, (int, np.int64) ):
         return Fraction(dAl, dAm) / Fraction(dBl, dBm)
     else:
@@ -155,10 +155,10 @@ def isharmonic(A, B, C, D):
     O = (C*D).aux()
     OC = O * C
     OD = O * D
-    ac = dot(A, OC)
-    ad = dot(A, OD)
-    bc = dot(B, OC)
-    bd = dot(B, OD)
+    ac = A.dot(OC)
+    ad = A.dot(OD)
+    bc = B.dot(OC)
+    bd = B.dot(OD)
     return ac*bd + ad*bc == 0
 
 def check_pappus(A, B, C, D, E, F):
