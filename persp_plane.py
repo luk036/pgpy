@@ -5,58 +5,72 @@ import numpy as np
 from fractions import *
 from .proj_plane import * 
 
-def dual(x):
-    if isinstance(x, pg_point):
-        return l_infty
-    elif isinstance(x, pg_line):
-        return pk_point(x.dot(B_infty), A_infty, x.dot(A_infty), B_infty)
-    else:
-        raise NotImplementedError()
+class persp_euclid_plane:
+    def __init__(self, A_infty, B_infty):
+        self.A_infty = A_infty
+        self.B_infty = B_infty
+        self.l_infty = A_infty*B_infty
 
-def is_perpendicular(l, m):
-    return m.incident(dual(l)) # not useful
+    def dual(self, x):
+        if isinstance(x, pg_point):
+            return self.l_infty
+        elif isinstance(x, pg_line):
+            return pk_point(x.dot(self.B_infty), self.A_infty, x.dot(self.A_infty), self.B_infty)
+        else:
+            raise NotImplementedError()
 
-def is_parallel(l, m):
-    return l_infty.incident(l*m)
+    def is_perpendicular(self, l, m):
+        return m.incident(self.dual(l)) # not useful
 
-def altitude(p, l):
-    return dual(l) * p
+    def is_parallel(self, l, m):
+        return self.l_infty.incident(l*m)
 
-def midpoint(a, b):
-    return pk_point(b.dot(l_infty), a, a.dot(l_infty), b)
+    def altitude(self, p, l):
+        return self.dual(l) * p
 
-def omega(x):
-    if isinstance(x, pg_point):
-        return x.dot(l_infty)**2
-    elif isinstance(x, pg_line):
-        return 2*x.dot(B_infty)*x.dot(A_infty)
-    else:
-        raise NotImplementedError()
+    def orthocenter(self, a1, a2, a3):
+        t1 = self.altitude(a1, a2*a3)
+        t2 = self.altitude(a2, a1*a3)
+        return t1*t2
 
-def omegaB(l):
-    return 2*l.dot(B_infty)*l.dot(A_infty)
+    # def line_reflect(m):
+    #    return line_involution(m, fB(m))
 
-def omegaA(p):
-    return p.dot(l_infty)**2
+    def midpoint(self, a, b):
+        return pk_point(b.dot(self.l_infty), a, a.dot(self.l_infty), b)
 
-def measure(a1, a2):
-    omg = omega(a1*a2)
-    if isinstance(omg, (int, np.int64) ):
-        return Fraction(omg, omega(a1) * omega(a2))
-    else:
-        return omg / (omega(a1) * omega(a2))
+    def omega(self, x):
+        if isinstance(x, pg_point):
+            return x.dot(self.l_infty)**2
+        elif isinstance(x, pg_line):
+            return 2*x.dot(self.B_infty)*x.dot(self.A_infty)
+        else:
+            raise NotImplementedError()
 
-def cross(l1, l2):
-    return 1 - spread(l1, l2) # ???
+    def omegaB(self, l):
+        return 2*l.dot(self.B_infty)*l.dot(self.A_infty)
 
-def quadrance(a1, a2):
-    return measure(a1, a2)
+    def omegaA(self, p):
+        return p.dot(self.l_infty)**2
 
-def spread(l1, l2):
-    return measure(l1, l2)
+    def measure(self, a1, a2):
+        omg = self.omega(a1*a2)
+        if isinstance(omg, (int, np.int64) ):
+            return Fraction(omg, self.omega(a1) * self.omega(a2))
+        else:
+            return omg / (self.omega(a1) * self.omega(a2))
 
-def A(a, b, c):
-    return (4*a*b) - (a + b - c)**2
+    def cross(self, l1, l2):
+        return 1 - self.spread(l1, l2) # ???
+
+    def quadrance(self, a1, a2):
+        return self.measure(a1, a2)
+
+    def spread(self, l1, l2):
+        return self.measure(l1, l2)
+
+    def Ar(self, a, b, c):
+        return (4*a*b) - (a + b - c)**2
 
 if __name__ == "__main__":
     import sympy
@@ -88,40 +102,40 @@ if __name__ == "__main__":
     # print(N)
     # print(BB)
 
-    A_infty = pg_point([-1j, 1, 1])
-    B_infty = pg_point([1j, 1, 1])
-    l_infty = A_infty * B_infty
+    A_inf = pg_point([-1j, 1, 1])
+    B_inf = pg_point([1j, 1, 1])
+    P = persp_euclid_plane(A_inf, B_inf)
 
     a1 = pg_point([1, 3, 1])
     a2 = pg_point([4, 2, 1])
     a3 = pg_point(3*a1 + 4*a2)
-    q1 = quadrance(a2, a3)
-    q2 = quadrance(a1, a3)
-    q3 = quadrance(a1, a2)
+    q1 = P.quadrance(a2, a3)
+    q2 = P.quadrance(a1, a3)
+    q3 = P.quadrance(a1, a2)
     print((q1 + q2 + q3)**2 - 2*(q1*q1 + q2*q2 + q3*q3))
 
     a3 = pg_point([4, -2, 1])
     l1 = join(a2, a3)
     l2 = join(a1, a3)
     l3 = join(a1, a2)
-    q1 = quadrance(a2, a3)
-    q2 = quadrance(a1, a3)
+    q1 = P.quadrance(a2, a3)
+    q2 = P.quadrance(a1, a3)
     # q3 = quadrance(a1, a2)
-    s1 = spread(l2, l3)
-    s2 = spread(l1, l3)
-    s3 = spread(l1, l2)
+    s1 = P.spread(l2, l3)
+    s2 = P.spread(l1, l3)
+    s3 = P.spread(l1, l2)
 
     print(q1/s1, q2/s2, q3/s3)
-    t1 = altitude(a1, l1)
-    t2 = altitude(a2, l2)
-    t3 = altitude(a3, l3)
-    print(spread(t1, l1))
+    t1 = P.altitude(a1, l1)
+    t2 = P.altitude(a2, l2)
+    t3 = P.altitude(a3, l3)
+    print(P.spread(t1, l1))
     # print(coincident(t1, t2, t3))
     tqf = ((q1 + q2 + q3)**2) - 2*(q1*q1 + q2*q2 + q3*q3)
-    print(tqf, A(q1, q2, q3)) # get the same
+    print(tqf, P.Ar(q1, q2, q3)) # get the same
 
-    assert spread(l1, l1) == 0
-    assert quadrance(a1, a1) == 0
+    assert P.spread(l1, l1) == 0
+    assert P.quadrance(a1, a1) == 0
 
     # ???
     c3 = ((q1 + q2 - q3)**2) / (4*q1*q2)

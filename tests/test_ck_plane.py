@@ -23,7 +23,17 @@ def test_int():
     assert l1.incident(a2)
     l2 = join(a1, a3)
     l3 = join(a1, a2)
+
+    assert(myck.dual(myck.dual(l1)) == l1)
     
+    t1 = myck.altitude(a1, l1)
+    assert myck.is_perpendicular(t1, l1)
+
+    t2 = myck.altitude(a2, l2)
+    t3 = myck.altitude(a3, l3)
+    o = myck.orthocenter(a1, a2, a3)
+    assert o ==  meet(t2, t3)
+    assert a1 == myck.orthocenter(o, a2, a3)
 
     tau = myck.line_reflect(l1)
     assert(tau(tau(a1)) == a1)
@@ -39,9 +49,3 @@ def test_int():
     assert myck.quadrance(a1,a1) == 0
 
 
-    t1 = myck.altitude(a1, l1)
-    t2 = myck.altitude(a2, l2)
-    t3 = myck.altitude(a3, l3)
-    ans = t1.dot(meet(t2, t3))
-    # ans = sympy.simplify(ans)
-    assert ans == 0

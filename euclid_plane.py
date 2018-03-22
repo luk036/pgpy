@@ -27,11 +27,24 @@ def is_parallel(l, m):
 def altitude(a, l):
     return join(a, fB(l))
 
+def orthocenter(a1, a2, a3):
+    t1 = altitude(a1, a2*a3)
+    t2 = altitude(a2, a1*a3)
+    return t1*t2
+
+def line_reflect(m):
+    return line_involution(m, fB(m))
+
 def omgB(x, y):
     return x[0] * y[0] + x[1] * y[1]
 
 def det(x, y):
     return x[0] * y[1] - x[1] * y[0]
+
+def midpoint(a, b):
+    return pk_point(b[2], a, a[2], b)
+
+## Angle Bisector???
 
 def quad1(x1, z1, x2, z2):
     if isinstance(x1, (int, np.int64) ):
@@ -75,6 +88,12 @@ def cqq(a, b, c, d):
 
 def Ptolemy(Q12, Q23, Q34, Q14, Q13, Q24):
     return Ar(Q12*Q34, Q23* Q14, Q13*Q24) == 0
+
+def distance(a, b):
+    return np.sqrt(float(quadrance(a, b)))
+
+def angle(l,m):
+    return np.arcsin(np.sqrt(spread(l,m)))
 
 if __name__ == "__main__":
     import sympy

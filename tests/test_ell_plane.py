@@ -12,6 +12,18 @@ def test_int():
     l1 = join(a2, a3)
     l2 = join(a1, a3)
     l3 = join(a1, a2)
+
+    t1 = altitude(a1, l1)
+    assert is_perpendicular(t1, l1)
+    t2 = altitude(a2, l2)
+    t3 = altitude(a3, l3)
+    o = orthocenter(a1, a2, a3)
+    assert o ==  meet(t2, t3)
+    assert a1 == orthocenter(o, a2, a3)
+
+    tau = line_reflect(l1)
+    assert(tau(tau(a1)) == a1)
+    
     # a3 = pg_point([sx, sy, sz])
 
     s1 = spread(l2, l3)
