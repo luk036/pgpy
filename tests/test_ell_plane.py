@@ -1,6 +1,7 @@
 from __future__ import print_function
 
-from ..ell_plane import * 
+from ..ell_plane import *
+
 
 def test_int():
     a1 = pg_point([1, 3, 1])
@@ -18,21 +19,21 @@ def test_int():
     t2 = altitude(a2, l2)
     t3 = altitude(a3, l3)
     o = orthocenter(a1, a2, a3)
-    assert o ==  meet(t2, t3)
+    assert o == meet(t2, t3)
     assert a1 == orthocenter(o, a2, a3)
 
     tau = line_reflect(l1)
     assert(tau(tau(a1)) == a1)
-    
+
     # a3 = pg_point([sx, sy, sz])
 
     s1 = spread(l2, l3)
     s2 = spread(l1, l3)
     s3 = spread(l1, l2)
 
-    q1 = quadrance(a2,a3)
-    q2 = quadrance(a1,a3)
-    q3 = quadrance(a1,a2)
+    q1 = quadrance(a2, a3)
+    q2 = quadrance(a1, a3)
+    q3 = quadrance(a1, a2)
 
     # print(s1, s2, s3, q1, q2, q3)
 

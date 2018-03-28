@@ -3,7 +3,8 @@ from __future__ import print_function
 from pprint import pprint
 import numpy as np
 from fractions import *
-from .proj_plane import * 
+from .proj_plane import *
+
 
 class persp_euclid_plane:
     def __init__(self, A_infty, B_infty):
@@ -20,7 +21,7 @@ class persp_euclid_plane:
             raise NotImplementedError()
 
     def is_perpendicular(self, l, m):
-        return m.incident(self.dual(l)) # not useful
+        return m.incident(self.dual(l))  # not useful
 
     def is_parallel(self, l, m):
         return self.l_infty.incident(l*m)
@@ -55,13 +56,13 @@ class persp_euclid_plane:
 
     def measure(self, a1, a2):
         omg = self.omega(a1*a2)
-        if isinstance(omg, (int, np.int64) ):
+        if isinstance(omg, (int, np.int64)):
             return Fraction(omg, self.omega(a1) * self.omega(a2))
         else:
             return omg / (self.omega(a1) * self.omega(a2))
 
     def cross(self, l1, l2):
-        return 1 - self.spread(l1, l2) # ???
+        return 1 - self.spread(l1, l2)  # ???
 
     def quadrance(self, a1, a2):
         return self.measure(a1, a2)
@@ -71,6 +72,7 @@ class persp_euclid_plane:
 
     def Ar(self, a, b, c):
         return (4*a*b) - (a + b - c)**2
+
 
 if __name__ == "__main__":
     import sympy
@@ -132,7 +134,7 @@ if __name__ == "__main__":
     print(P.spread(t1, l1))
     # print(coincident(t1, t2, t3))
     tqf = ((q1 + q2 + q3)**2) - 2*(q1*q1 + q2*q2 + q3*q3)
-    print(tqf, P.Ar(q1, q2, q3)) # get the same
+    print(tqf, P.Ar(q1, q2, q3))  # get the same
 
     assert P.spread(l1, l1) == 0
     assert P.quadrance(a1, a1) == 0

@@ -5,6 +5,7 @@ from pprint import pprint
 from fractions import *
 import numpy as np
 
+
 class pg_point(np.ndarray):
     def __new__(cls, inputarr):
         obj = np.asarray(inputarr).view(cls)
@@ -18,7 +19,7 @@ class pg_point(np.ndarray):
     def __ne__(self, other):
         return not self.__eq__(other)
 
-    def incident(self, l): 
+    def incident(self, l):
         return not self.dot(l)
 
     # def __add__(self, other):
@@ -34,6 +35,7 @@ class pg_point(np.ndarray):
 
     def aux(self):
         return pg_line(self)
+
 
 class pg_line(np.ndarray):
     def __new__(cls, inputarr):
@@ -64,31 +66,38 @@ class pg_line(np.ndarray):
     def aux(self):
         return pg_point(self)
 
+
 def join(p, q):
     assert type(p) is pg_point
     return p * q
+
 
 def meet(l, m):
     assert type(l) is pg_line
     return l * m
 
+
 def coincident(p, q, r):
     return r.incident(p * q)
 
 # note: `lambda` is a preserved keyword in python
+
+
 def plucker(lambda1, p, mu1, q):
     T = type(p)
     return T(lambda1 * p + mu1 * q)
 
 # note: `lambda` is a preserved keyword in python
-## def plucker(lambda1, l, mu1, m):
-##    return pg_line(lambda1 * l + mu1 * m)
+# def plucker(lambda1, l, mu1, m):
+# return pg_line(lambda1 * l + mu1 * m)
+
 
 def coI_core(l, Lst):
     for p in Lst:
         if not l.incident(p):
             return False
     return True
+
 
 def coI(Lst):
     if len(Lst) < 3:
@@ -97,6 +106,7 @@ def coI(Lst):
     assert p != q
     return coI_core(p*q, Lst[2:])
 
+
 def persp(L, M):
     if len(L) != len(M):
         return False
@@ -104,7 +114,7 @@ def persp(L, M):
         return True
     [pL, qL] = L[0:2]
     [pM, qM] = M[0:2]
-    assert pL != qL 
+    assert pL != qL
     assert pM != qM
     assert pL != pM
     assert qL != qM
@@ -113,6 +123,7 @@ def persp(L, M):
         if not O.incident(rL * rM):
             return False
     return True
+
 
 def harm_conj(A, B, C):
     # assert coincident(A,B,C)
@@ -124,13 +135,15 @@ def harm_conj(A, B, C):
     R = P + C
     Q = (A * R) * b
     S = (B * R) * a
-    return (Q * S) * l 
+    return (Q * S) * l
 
 # def dot(p, l):
 #    return p.dot(l)
 
+
 class involution:
     """ Definition: $\tau(\tau(a)) == a$ """
+
     def __init__(self, m, o):
         self.m = m
         self.o = o
@@ -139,15 +152,17 @@ class involution:
     def __call__(self, p):
         return plucker(self.c, p, -2 * p.dot(self.m), self.o)
 
+
 def x_ratio(A, B, l, m):
     dAl = A.dot(l)
     dAm = A.dot(m)
     dBl = B.dot(l)
     dBm = B.dot(m)
-    if isinstance(dAl, (int, np.int64) ):
+    if isinstance(dAl, (int, np.int64)):
         return Fraction(dAl, dAm) / Fraction(dBl, dBm)
     else:
         return dAl*dBm/(dAm*dBl)
+
 
 def R(A, B, C, D):
     O = (C*D).aux()
@@ -164,11 +179,13 @@ def isharmonic(A, B, C, D):
     bd = B.dot(OD)
     return ac*bd + ad*bc == 0
 
+
 def check_pappus(A, B, C, D, E, F):
     G = (A*E) * (B*D)
     H = (A*F) * (C*D)
     I = (B*F) * (C*E)
     assert coincident(G, H, I)
+
 
 def check_desargue(A, B, C, D, E, F):
     a = B * C
@@ -180,8 +197,11 @@ def check_desargue(A, B, C, D, E, F):
 
     b1 = persp([A, B, C], [D, E, F])
     b2 = persp([a, b, c], [d, e, f])
-    if b1: assert b2
-    else: assert not b2
+    if b1:
+        assert b2
+    else:
+        assert not b2
+
 
 if __name__ == "__main__":
     p = pg_point([1, 3, 2])
@@ -191,7 +211,6 @@ if __name__ == "__main__":
     l = pg_line([5, 7, 8])
     m = pg_line([-5, 1, 6])
     print(meet(l, m))
-
 
     import sympy
     sympy.init_printing()
@@ -214,7 +233,7 @@ if __name__ == "__main__":
     I = meet(join(q, u), join(r, t))
     ans = G.dot(join(H, I))
     ans = sympy.simplify(ans)
-    print(ans) # get 0
+    print(ans)  # get 0
 
     # p, q, s, t
     lambda3, mu3 = sympy.symbols("lambda3 mu3", integer=True)
@@ -228,5 +247,4 @@ if __name__ == "__main__":
     I = meet(join(s, p), join(s2, p2))
     ans = G.dot(join(H, I))
     ans = sympy.simplify(ans)
-    print(ans) # get 0
-
+    print(ans)  # get 0

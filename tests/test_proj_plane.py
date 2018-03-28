@@ -1,9 +1,10 @@
 from __future__ import print_function
 
-from ..proj_plane import * 
+from ..proj_plane import *
+
 
 def test_complex_point():
-    p = pg_point([1-2j, 3-1j, 2+1j]) # complex number
+    p = pg_point([1-2j, 3-1j, 2+1j])  # complex number
     q = pg_point([-2+1j, 1-3j, -1-1j])
     l = p*q
     assert l == q*p
@@ -23,11 +24,12 @@ def test_complex_point():
 
     O = meet(join(p, s), join(q, t))
     r = join(p, q)
-    u = O - r # ???
+    u = O - r  # ???
     check_desargue(p, q, r, s, t, u)
 
+
 def test_complex_line():
-    l = pg_line([1-2j, 3-1j, 2+1j]) # complex number
+    l = pg_line([1-2j, 3-1j, 2+1j])  # complex number
     m = pg_line([-2+1j, 1-3j, -1-1j])
     A = l*m
     assert A == m*l
@@ -47,5 +49,5 @@ def test_complex_line():
 
     o = join(meet(l, s), meet(m, t))
     r = meet(l, m)
-    u = o - r # ???
+    u = o - r  # ???
     check_desargue(l, m, r, s, t, u)

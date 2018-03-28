@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 from pprint import pprint
-from .proj_plane import * 
+from .proj_plane import *
+
 
 class ck:
     def __init__(self, dual):
@@ -33,7 +34,6 @@ class ck:
     def line_reflect(self, m):
         return involution(m, self.dual(m))
 
- 
     # def measure(self, a1, a2):
     #     omg = self.omega(a1*a2)
     #     if isinstance(omg, (int, np.int64) ):
@@ -48,6 +48,7 @@ class ck:
     def spread(self, l1, l2):
         assert type(l1) == pg_line
         return self.measure(l1, l2)
+
 
 if __name__ == "__main__":
     def mydual(v):
@@ -72,7 +73,7 @@ if __name__ == "__main__":
     # i6 = sympy.Integer(1)
     # i7 = sympy.Integer(4)
     # i8 = sympy.Integer(-2)
-    # i9 = sympy.Integer(1)    
+    # i9 = sympy.Integer(1)
     a1 = pg_point([1, 2, 3])
     a2 = pg_point([4, -5, 6])
     a3 = pg_point([-7, 8, 9])
@@ -80,16 +81,16 @@ if __name__ == "__main__":
     assert l1.incident(a2)
     l2 = join(a1, a3)
     l3 = join(a1, a2)
-    q1 = myck.quadrance(a2,a3)
-    q2 = myck.quadrance(a1,a3)
-    q3 = myck.quadrance(a1,a2)
+    q1 = myck.quadrance(a2, a3)
+    q2 = myck.quadrance(a1, a3)
+    q3 = myck.quadrance(a1, a2)
     s1 = myck.spread(l2, l3)
     s2 = myck.spread(l1, l3)
     s3 = myck.spread(l1, l2)
     # print(q1, s1, q2, s2, q3, s3)
     print(q1/s1, q2/s2, q3/s3)
-    assert myck.spread(l1,l1) == 0
-    assert myck.quadrance(a1,a1) == 0
+    assert myck.spread(l1, l1) == 0
+    assert myck.quadrance(a1, a1) == 0
 
     # import sympy
     # sympy.init_printing()
@@ -113,4 +114,4 @@ if __name__ == "__main__":
     t3 = myck.altitude(a3, l3)
     ans = t1.dot(meet(t2, t3))
     # ans = sympy.simplify(ans)
-    print(ans) # get 0
+    print(ans)  # get 0

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from .ck_plane import * 
+from .ck_plane import *
+
 
 def dual(v):
     [x, y, z] = v
@@ -10,25 +11,33 @@ def dual(v):
     else:
         raise NotImplementedError()
 
+
 __hyck = ck(dual)
+
 
 def is_perpendicular(l, m):
     return __hyck.is_perpendicular(l, m)
 
+
 def line_reflect(m):
     return __hyck.line_reflect(m)
+
 
 def altitude(p, l):
     return __hyck.altitude(p, l)
 
+
 def orthocenter(a1, a2, a3):
     return __hyck.orthocenter(a1, a2, a3)
-        
+
+
 def quadrance(a1, a2):
     return __hyck.quadrance(a1, a2)
 
+
 def spread(l1, l2):
     return __hyck.spread(l1, l2)
+
 
 if __name__ == "__main__":
     a1 = pg_point([1, 3, 1])
@@ -43,9 +52,9 @@ if __name__ == "__main__":
     s2 = spread(l1, l3)
     s3 = spread(l1, l2)
 
-    q1 = quadrance(a2,a3)
-    q2 = quadrance(a1,a3)
-    q3 = quadrance(a1,a2)
+    q1 = quadrance(a2, a3)
+    q2 = quadrance(a1, a3)
+    q3 = quadrance(a1, a2)
 
     # print(s1, s2, s3, q1, q2, q3)
 
@@ -72,13 +81,13 @@ if __name__ == "__main__":
 
     lambda1, mu1 = sympy.symbols("lambda1 mu1", integer=True)
     a3 = plucker(lambda1, a1, mu1, a2)
-    
-    q1 = quadrance(a2,a3)
-    q2 = quadrance(a1,a3)
-    q3 = quadrance(a1,a2)
+
+    q1 = quadrance(a2, a3)
+    q2 = quadrance(a1, a3)
+    q3 = quadrance(a1, a2)
     tqf = (q1 + q2 + q3)**2 - 2*(q1*q1 + q2*q2 + q3*q3) - 4*q1*q2*q3
     tqf = sympy.simplify(tqf)
-    print(tqf) # get 0
+    print(tqf)  # get 0
 
     sv = sympy.symbols("s:3", integer=True)
     a3 = pg_point(sv)
@@ -91,4 +100,4 @@ if __name__ == "__main__":
     o = t1*t2
     ans = t3.dot(o)
     ans = sympy.simplify(ans)
-    print(ans) # get 0
+    print(ans)  # get 0
