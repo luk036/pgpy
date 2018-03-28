@@ -15,7 +15,7 @@ class persp_euclid_plane:
         if isinstance(x, pg_point):
             return self.l_infty
         elif isinstance(x, pg_line):
-            return pk_point(x.dot(self.B_infty), self.A_infty, x.dot(self.A_infty), self.B_infty)
+            return plucker(x.dot(self.B_infty), self.A_infty, x.dot(self.A_infty), self.B_infty)
         else:
             raise NotImplementedError()
 
@@ -34,10 +34,10 @@ class persp_euclid_plane:
         return t1*t2
 
     # def line_reflect(m):
-    #    return line_involution(m, fB(m))
+    #    return involution(m, fB(m))
 
     def midpoint(self, a, b):
-        return pk_point(b.dot(self.l_infty), a, a.dot(self.l_infty), b)
+        return plucker(b.dot(self.l_infty), a, a.dot(self.l_infty), b)
 
     def omega(self, x):
         if isinstance(x, pg_point):

@@ -10,10 +10,10 @@ def test_complex_point():
     assert l.incident(p)
     assert l.incident(q)
 
-    r = pk_point(2, p, 3, q)
+    r = plucker(2, p, 3, q)
     assert l.incident(r)
 
-    assert coI([p, q, pk_point(1, p, 1, q), pk_point(1, p, -1, q)])
+    assert coI([p, q, plucker(1, p, 1, q), plucker(1, p, -1, q)])
 
     r = pg_point([2-1j, -2+1j, 1+1j])
     s = pg_point([2j, 2-2j, 3])
@@ -34,10 +34,10 @@ def test_complex_line():
     assert A.incident(l)
     assert A.incident(m)
 
-    r = pk_line(2, l, 3, m)
+    r = plucker(2, l, 3, m)
     assert A.incident(r)
 
-    assert coI([l, m, pk_line(1, l, 1, m), pk_line(1, l, -1, m)])
+    assert coI([l, m, plucker(1, l, 1, m), plucker(1, l, -1, m)])
 
     r = pg_line([2-1j, -2+1j, 1+1j])
     s = pg_line([2j, 2-2j, 3])

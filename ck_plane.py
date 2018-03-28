@@ -24,13 +24,14 @@ class ck:
     def measure(self, a1, a2):
         """test"""
         omg = a1.dot(self.dual(a2))
-        if isinstance(omg, (int, np.int64) ):
-            return 1 - Fraction(omg, self.omega(a1)) * Fraction(omg, self.omega(a2))
-        else:
-            return 1 - (omg * omg) / (self.omega(a1) * self.omega(a2))
+        return 1 - x_ratio(a1, a2, self.dual(a2), self.dual(a1))
+        # if isinstance(omg, (int, np.int64) ):
+        #     return 1 - Fraction(omg, self.omega(a1)) * Fraction(omg, self.omega(a2))
+        # else:
+        #     return 1 - (omg * omg) / (self.omega(a1) * self.omega(a2))
 
     def line_reflect(self, m):
-        return line_involution(m, self.dual(m))
+        return involution(m, self.dual(m))
 
  
     # def measure(self, a1, a2):
@@ -41,9 +42,11 @@ class ck:
     #         return omg / (self.omega(a1) * self.omega(a2))
 
     def quadrance(self, a1, a2):
+        assert type(a1) == pg_point
         return self.measure(a1, a2)
 
     def spread(self, l1, l2):
+        assert type(l1) == pg_line
         return self.measure(l1, l2)
 
 if __name__ == "__main__":

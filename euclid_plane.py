@@ -33,7 +33,7 @@ def orthocenter(a1, a2, a3):
     return t1*t2
 
 def line_reflect(m):
-    return line_involution(m, fB(m))
+    return involution(m, fB(m))
 
 def omgB(x, y):
     return x[0] * y[0] + x[1] * y[1]
@@ -42,7 +42,7 @@ def det(x, y):
     return x[0] * y[1] - x[1] * y[0]
 
 def midpoint(a, b):
-    return pk_point(b[2], a, a[2], b)
+    return plucker(b[2], a, a[2], b)
 
 ## Angle Bisector???
 
@@ -112,7 +112,7 @@ if __name__ == "__main__":
     # a2 = pg_point([qx, qy, qz])
     # lambda1 = sympy.Symbol("lambda1", integer=True)
     # mu1 = sympy.Symbol("mu1", integer=True)
-    # a3 = pk_point(lambda1, a1, mu1, a2)
+    # a3 = plucker(lambda1, a1, mu1, a2)
 
     a1 = pg_point([1, 3, 1])
     a2 = pg_point([4, 2, 1])

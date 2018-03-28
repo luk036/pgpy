@@ -71,7 +71,7 @@ if __name__ == "__main__":
     a2 = pg_point(qv)
 
     lambda1, mu1 = sympy.symbols("lambda1 mu1", integer=True)
-    a3 = pk_point(lambda1, a1, mu1, a2)
+    a3 = plucker(lambda1, a1, mu1, a2)
     
     q1 = quadrance(a2,a3)
     q2 = quadrance(a1,a3)

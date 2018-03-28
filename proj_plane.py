@@ -65,21 +65,24 @@ class pg_line(np.ndarray):
         return pg_point(self)
 
 def join(p, q):
+    assert type(p) is pg_point
     return p * q
 
 def meet(l, m):
+    assert type(l) is pg_line
     return l * m
 
 def coincident(p, q, r):
     return r.incident(p * q)
 
 # note: `lambda` is a preserved keyword in python
-def pk_point(lambda1, p, mu1, q):
-    return pg_point(lambda1 * p + mu1 * q)
+def plucker(lambda1, p, mu1, q):
+    T = type(p)
+    return T(lambda1 * p + mu1 * q)
 
 # note: `lambda` is a preserved keyword in python
-def pk_line(lambda1, l, mu1, m):
-    return pg_line(lambda1 * l + mu1 * m)
+## def plucker(lambda1, l, mu1, m):
+##    return pg_line(lambda1 * l + mu1 * m)
 
 def coI_core(l, Lst):
     for p in Lst:
@@ -126,7 +129,7 @@ def harm_conj(A, B, C):
 # def dot(p, l):
 #    return p.dot(l)
 
-class line_involution:
+class involution:
     """ Definition: $\tau(\tau(a)) == a$ """
     def __init__(self, m, o):
         self.m = m
@@ -134,7 +137,7 @@ class line_involution:
         self.c = m.dot(o)
 
     def __call__(self, p):
-        return pk_point(self.c, p, -2 * p.dot(self.m), self.o)
+        return plucker(self.c, p, -2 * p.dot(self.m), self.o)
 
 def x_ratio(A, B, l, m):
     dAl = A.dot(l)
@@ -197,13 +200,13 @@ if __name__ == "__main__":
     lambda1, mu1 = sympy.symbols("lambda1 mu1", integer=True)
     p = pg_point(pv)
     q = pg_point(qv)
-    r = pk_point(lambda1, p, mu1, q)
+    r = plucker(lambda1, p, mu1, q)
     sv = sympy.symbols("s:3", integer=True)
     tv = sympy.symbols("t:3", integer=True)
     lambda2, mu2 = sympy.symbols("lambda2 mu2", integer=True)
     s = pg_point(sv)
     t = pg_point(tv)
-    u = pk_point(lambda2, s, mu2, t)
+    u = plucker(lambda2, s, mu2, t)
 
     # Prove Pappus Theorem
     G = meet(join(p, t), join(q, s))
@@ -215,9 +218,9 @@ if __name__ == "__main__":
 
     # p, q, s, t
     lambda3, mu3 = sympy.symbols("lambda3 mu3", integer=True)
-    p2 = pk_point(lambda1, p, mu1, t)
-    q2 = pk_point(lambda2, q, mu2, t)
-    s2 = pk_point(lambda3, s, mu3, t)
+    p2 = plucker(lambda1, p, mu1, t)
+    q2 = plucker(lambda2, q, mu2, t)
+    s2 = plucker(lambda3, s, mu3, t)
 
     # Prove Desargue Theorem
     G = meet(join(p, q), join(p2, q2))
