@@ -5,12 +5,14 @@ import numpy as np
 from fractions import *
 from .proj_plane import *
 
+from .ck_plane import *
 
-class persp_euclid_plane:
+class persp_euclid_plane():
     def __init__(self, A_infty, B_infty, l_infty):
         self.A_infty = A_infty
         self.B_infty = B_infty
         self.l_infty = l_infty
+        self.ck = ck(self.dual)
 
     def dual(self, x):
         if isinstance(x, pg_point):
@@ -20,20 +22,18 @@ class persp_euclid_plane:
         else:
             raise NotImplementedError()
 
-    def is_perpendicular(self, l, m):
-        return m.incident(self.dual(l))  # not useful
-
     def is_parallel(self, l, m):
         return self.l_infty.incident(l*m)
 
+    def is_perpendicular(self, l, m):
+        return self.ck.is_perpendicular(l,m)
+
     def altitude(self, p, l):
-        return self.dual(l) * p
+        return self.ck.altitude(p, l)
 
     def orthocenter(self, a1, a2, a3):
-        t1 = self.altitude(a1, a2*a3)
-        t2 = self.altitude(a2, a1*a3)
-        return t1*t2
-
+        return self.ck.orthocenter(a1, a2, a3)
+        
     # def line_reflect(m):
     #    return involution(m, fB(m))
 
