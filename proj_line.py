@@ -31,19 +31,19 @@ def ratio_ratio(a, b, c, d):
         return a * d / (b * c)
 
 
-def R1(A, B, C, D):
-    ac = cross1_l(A, C)
-    ad = cross1_l(A, D)
-    bc = cross1_l(B, C)
-    bd = cross1_l(B, D)
-    return ratio_ratio(ac, ad, bc, bd)
+# def R1(A, B, C, D):
+#     ac = cross1_l(A, C)
+#     ad = cross1_l(A, D)
+#     bc = cross1_l(B, C)
+#     bd = cross1_l(B, D)
+#     return ratio_ratio(ac, ad, bc, bd)
 
 
-def isharmonic(A, B, C, D):
-    ac = cross1_l(A, C)
-    ad = cross1_l(A, D)
-    bc = cross1_l(B, C)
-    bd = cross1_l(B, D)
-    return ac*bd + ad*bc == 0
+# def isharmonic(A, B, C, D):
+#     ac = cross1_l(A, C)
+#     ad = cross1_l(A, D)
+#     bc = cross1_l(B, C)
+#     bd = cross1_l(B, D)
+#     return ac*bd + ad*bc == 0
 
 
