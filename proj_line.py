@@ -47,9 +47,3 @@ def isharmonic(A, B, C, D):
     return ac*bd + ad*bc == 0
 
 
-if __name__ == "__main__":
-    p = pl_point([1-2j, 3-1j])
-    q = pl_point([-2+1j, 1-3j])
-    r = pl_point([2-1j, -2+1j])
-    s = pl_point([2j, 2-2j])
-    t = pl_point([2, -2j])

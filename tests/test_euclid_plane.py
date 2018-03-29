@@ -68,3 +68,26 @@ def test_int():
     t = Ar(q12*q34, q23*q14, q13*q24)
     # t = sympy.simplify(t)
     assert t == 0
+
+
+def no_test_symbolic():
+    import sympy
+    sympy.init_printing()
+    lambda1, mu1 = sympy.symbols("lambda1 mu1", integer=True)
+    lambda2, mu2 = sympy.symbols("lambda2 mu2", integer=True)
+    lambda3, mu3 = sympy.symbols("lambda3 mu3", integer=True)
+    lambda4, mu4 = sympy.symbols("lambda4 mu4", integer=True)
+    a1 = uc_point(lambda1, mu1)
+    a2 = uc_point(lambda2, mu2)
+    a3 = uc_point(lambda3, mu3)
+    a4 = uc_point(lambda4, mu4)
+    q12 = quadrance(a1, a2)
+    q23 = quadrance(a2, a3)
+    q34 = quadrance(a3, a4)
+    q14 = quadrance(a1, a4)
+    q24 = quadrance(a2, a4)
+    q13 = quadrance(a1, a3)
+    #print(q12, q23, q34, q14, q24, q13)
+    t = Ar(q12*q34, q23*q14, q13*q24)
+    t = sympy.simplify(t)
+    assert t == 0

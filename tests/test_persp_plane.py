@@ -6,7 +6,8 @@ from ..persp_plane import *
 def test_int():
     A_inf = pg_point([-1j, 1, 1])
     B_inf = pg_point([1j, 1, 1])
-    P = persp_euclid_plane(A_inf, B_inf)
+    l_inf = pg_line([0, -1, 1])
+    P = persp_euclid_plane(A_inf, B_inf, l_inf)
 
     a1 = pg_point([1, 3, 1])
     a2 = pg_point([4, 2, 1])
@@ -49,3 +50,4 @@ def test_int():
     # tsf = (s1 + s2 + s3)**2 - 2*(s1*s1 + s2*s2 + s3*s3) - 4*s1*s2*s3
     # tsf = sympy.simplify(tsf)
     #assert tsf == 0
+
