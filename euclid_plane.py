@@ -71,20 +71,19 @@ def quadrance(a1, a2):
         quad1(a1[1], a1[2], a2[1], a2[2])
 
 
-def spread(l1, l2):
-    d = det(l1, l2)
+def sbase(l1, l2, d):
     if isinstance(d, (int, np.int64)):
         return Fraction(d, omgB(l1, l1)) * Fraction(d, omgB(l2, l2))
     else:
         return d * d / (omgB(l1, l1) * omgB(l2, l2))
+
+
+def spread(l1, l2):
+    return sbase(l1, l2, det(l1, l2))
 
 
 def cross(l1, l2):
-    d = omgB(l1, l2)
-    if isinstance(d, (int, np.int64)):
-        return Fraction(d, omgB(l1, l1)) * Fraction(d, omgB(l2, l2))
-    else:
-        return d * d / (omgB(l1, l1) * omgB(l2, l2))
+    return sbase(l1, l2, omgB(l1, l2))
 
 
 def uc_point(lambda1, mu1):
