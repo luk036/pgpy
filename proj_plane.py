@@ -4,6 +4,7 @@ from __future__ import print_function
 from pprint import pprint
 from fractions import *
 import numpy as np
+from .proj_line import *
 
 
 class pg_point(np.ndarray):
@@ -22,19 +23,13 @@ class pg_point(np.ndarray):
     def incident(self, l):
         return not self.dot(l)
 
-    # def __add__(self, other):
-    #     return pg_point(np.ndarray.__add__(self, other))
-
-    # def __sub__(self, other):
-    #     return pg_point(np.ndarray.__sub__(self, other))
-
     def __mul__(self, other):
         ''' meet '''
         l = np.cross(self, other)
         return pg_line(l)
 
-    def aux(self):
-        return pg_line(self)
+#    def aux(self):
+#        return pg_line(self)
 
 
 class pg_line(np.ndarray):
@@ -53,18 +48,12 @@ class pg_line(np.ndarray):
     def incident(self, p):
         return not self.dot(p)
 
-    # def __add__(self, other):
-    #     return pg_line(np.ndarray.__add__(self, other))
-
-    # def __sub__(self, other):
-    #     return pg_line(np.ndarray.__sub__(self, other))
-
     def __mul__(self, other):
         ''' join '''
         return pg_point(np.cross(self, other))
 
-    def aux(self):
-        return pg_point(self)
+#    def aux(self):
+#        return pg_point(self)
 
 
 def join(p, q):
@@ -158,26 +147,23 @@ def x_ratio(A, B, l, m):
     dAm = A.dot(m)
     dBl = B.dot(l)
     dBm = B.dot(m)
-    if isinstance(dAl, (int, np.int64)):
-        return Fraction(dAl, dAm) / Fraction(dBl, dBm)
-    else:
-        return dAl*dBm/(dAm*dBl)
+    return ratio_ratio(dAl, dAm, dBl, dBm)
 
 
-def R(A, B, C, D):
-    O = (C*D).aux()
-    return x_ratio(A, B, O*C, O*D)
+# def R(A, B, C, D):
+#     O = (C*D).aux()
+#     return x_ratio(A, B, O*C, O*D)
 
 
-def isharmonic(A, B, C, D):
-    O = (C*D).aux()
-    OC = O * C
-    OD = O * D
-    ac = A.dot(OC)
-    ad = A.dot(OD)
-    bc = B.dot(OC)
-    bd = B.dot(OD)
-    return ac*bd + ad*bc == 0
+# def isharmonic(A, B, C, D):
+#     O = (C*D).aux()
+#     OC = O * C
+#     OD = O * D
+#     ac = A.dot(OC)
+#     ad = A.dot(OD)
+#     bc = B.dot(OC)
+#     bd = B.dot(OD)
+#     return ac*bd + ad*bc == 0
 
 
 def check_pappus(A, B, C, D, E, F):

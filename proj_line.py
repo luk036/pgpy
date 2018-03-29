@@ -28,15 +28,19 @@ class pl_point:
         return not self.__eq__(other)
 
 
+def ratio_ratio(a, b, c, d):
+    if isinstance(a, (int, np.int64)):
+        return Fraction(a, b) / Fraction(c, d)
+    else:
+        return a * d / (b * c)
+
+
 def R1(A, B, C, D):
     ac = cross1(A, C)
     ad = cross1(A, D)
     bc = cross1(B, C)
     bd = cross1(B, D)
-    if isinstance(ac, (int, np.int64)):
-        return Fraction(ac, ad) / Fraction(bc, bd)
-    else:
-        return ac*bd/(ad*bc)
+    return ratio_ratio(ac, ad, bc, bd)
 
 
 def isharmonic(A, B, C, D):
