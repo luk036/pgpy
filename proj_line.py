@@ -6,11 +6,7 @@ from fractions import *
 import numpy as np
 
 
-def dot1(p, q):
-    return p.x * q.x + p.y * q.y
-
-
-def cross1(p, q):
+def cross1_l(p, q):
     return p.x * q.y - p.y * q.x
 
 
@@ -21,7 +17,7 @@ class pl_point:
 
     def __eq__(self, other):
         if type(other) is type(self):
-            return cross1(self, other) == 0
+            return cross1_l(self, other) == 0
         return False
 
     def __ne__(self, other):
@@ -36,18 +32,18 @@ def ratio_ratio(a, b, c, d):
 
 
 def R1(A, B, C, D):
-    ac = cross1(A, C)
-    ad = cross1(A, D)
-    bc = cross1(B, C)
-    bd = cross1(B, D)
+    ac = cross1_l(A, C)
+    ad = cross1_l(A, D)
+    bc = cross1_l(B, C)
+    bd = cross1_l(B, D)
     return ratio_ratio(ac, ad, bc, bd)
 
 
 def isharmonic(A, B, C, D):
-    ac = cross1(A, C)
-    ad = cross1(A, D)
-    bc = cross1(B, C)
-    bd = cross1(B, D)
+    ac = cross1_l(A, C)
+    ad = cross1_l(A, D)
+    bc = cross1_l(B, C)
+    bd = cross1_l(B, D)
     return ac*bd + ad*bc == 0
 
 
