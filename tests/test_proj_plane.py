@@ -23,7 +23,7 @@ def test_complex_point():
     assert not persp([p, q, p + q], [r, p + r, p])
 
     O = meet(join(p, s), join(q, t))
-    r = join(p, q)
+    # r = join(p, q)
     u = O - r  # ???
     check_desargue(p, q, r, s, t, u)
 
@@ -48,7 +48,7 @@ def test_complex_line():
     assert not persp([l, m, l + m], [r, l + r, l])
 
     o = join(meet(l, s), meet(m, t))
-    r = meet(l, m)
+    # r = meet(l, m)
     u = o - r  # ???
     check_desargue(l, m, r, s, t, u)
 

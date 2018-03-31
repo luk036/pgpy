@@ -66,19 +66,14 @@ def meet(l, m):
     return l * m
 
 
-def coincident(p, q, r):
-    return r.incident(p * q)
-
 # note: `lambda` is a preserved keyword in python
-
-
 def plucker(lambda1, p, mu1, q):
     T = type(p)
     return T(lambda1 * p + mu1 * q)
 
-# note: `lambda` is a preserved keyword in python
-# def plucker(lambda1, l, mu1, m):
-# return pg_line(lambda1 * l + mu1 * m)
+
+def coincident(p, q, r):
+    return r.incident(p * q)
 
 
 def coI_core(l, Lst):

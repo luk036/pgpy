@@ -24,7 +24,7 @@ class ck:
 
     def measure(self, a1, a2):
         """test"""
-        omg = a1.dot(self.dual(a2))
+        # omg = a1.dot(self.dual(a2))
         return 1 - x_ratio(a1, a2, self.dual(a2), self.dual(a1))
         # if isinstance(omg, (int, np.int64) ):
         #     return 1 - Fraction(omg, self.omega(a1)) * Fraction(omg, self.omega(a2))
@@ -48,3 +48,8 @@ class ck:
     def spread(self, l1, l2):
         assert type(l1) == pg_line
         return self.measure(l1, l2)
+
+
+def check_sine_law(s1, q1, s2, q2):
+  return s1*q2 == s2*q1
+
