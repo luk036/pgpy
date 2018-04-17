@@ -1,13 +1,27 @@
 # -*- coding: utf-8 -*-
+from __future__ import print_function
+
+from pprint import pprint
 from .ck_plane import *
 
 
 def dual(v):
-    [x, y, z] = v
+    """pole/polar of v in elliptic geometry
+    
+    Arguments:
+        v {pg_point/pg_line} -- projective point or plane 
+    
+    Raises:
+        NotImplementedError
+    
+    Returns:
+        [type] -- [description]
+    """
+
     if isinstance(v, pg_point):
-        return pg_line([x, y, z])
+        return pg_line(v.base)
     elif isinstance(v, pg_line):
-        return pg_point([x, y, z])
+        return pg_point(v.base)
     else:
         raise NotImplementedError()
 

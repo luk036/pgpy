@@ -28,6 +28,9 @@ class pg_point(np.ndarray):
         l = np.cross(self, other)
         return pg_line(l)
 
+    def dual(self):
+        return type(pg_line)
+
 #    def aux(self):
 #        return pg_line(self)
 
@@ -51,6 +54,9 @@ class pg_line(np.ndarray):
     def __mul__(self, other):
         ''' join '''
         return pg_point(np.cross(self, other))
+
+    def dual(self):
+        return type(pg_point)
 
 #    def aux(self):
 #        return pg_point(self)

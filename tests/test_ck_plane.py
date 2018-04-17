@@ -29,10 +29,10 @@ def test_int():
     assert(myck.dual(myck.dual(l1)) == l1)
 
     t1 = myck.altitude(a1, l1)
-    assert myck.is_perpendicular(t1, l1)
-
     t2 = myck.altitude(a2, l2)
     t3 = myck.altitude(a3, l3)
+    assert myck.is_perpendicular(t1, l1)
+
     o = myck.orthocenter(a1, a2, a3)
     assert o == meet(t2, t3)
     assert a1 == myck.orthocenter(o, a2, a3)
