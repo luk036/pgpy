@@ -1,6 +1,7 @@
 from __future__ import print_function
 
 from ..euclid_plane import *
+from ..proj_plane import dual_tri, join, meet
 
 
 def test_int():
@@ -8,10 +9,10 @@ def test_int():
     a2 = pg_point([4, 2, 1])
     a3 = pg_point([4, -3, 1])
     # a3 = pg_point([sx, sy, sz])
-    l1 = join(a2, a3)
-    l2 = join(a1, a3)
-    l3 = join(a1, a2)
-
+    # l1 = join(a2, a3)
+    # l2 = join(a1, a3)
+    # l3 = join(a1, a2)
+    l1, l2, l3 = dual_tri(a1, a2, a3)
     t1 = altitude(a1, l1)
     assert is_perpendicular(t1, l1)
     t2 = altitude(a2, l2)
