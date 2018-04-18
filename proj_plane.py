@@ -95,7 +95,12 @@ def coI(Lst):
     assert p != q
     return coI_core(p*q, Lst[2:])
 
-
+def dual_tri(a1, a2, a3):
+    l1 = a2 * a3
+    l2 = a1 * a3
+    l3 = a1 * a2
+    return l1, l2, l3
+    
 def persp(L, M):
     if len(L) != len(M):
         return False

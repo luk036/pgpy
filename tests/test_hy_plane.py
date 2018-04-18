@@ -1,6 +1,7 @@
 from __future__ import print_function
 
 from ..hy_plane import *
+from ..proj_plane import dual_tri, join, meet
 
 
 def test_int():
@@ -10,9 +11,10 @@ def test_int():
 
     assert(dual(dual(a1)) == a1)
 
-    l1 = join(a2, a3)
-    l2 = join(a1, a3)
-    l3 = join(a1, a2)
+    # l1 = join(a2, a3)
+    # l2 = join(a1, a3)
+    # l3 = join(a1, a2)
+    l1, l2, l3 = dual_tri(a1, a2, a3)
     # a3 = pg_point([sx, sy, sz])
 
     t1 = altitude(a1, l1)

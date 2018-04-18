@@ -1,7 +1,7 @@
 from __future__ import print_function
 
 from ..ell_plane import *
-
+from ..proj_plane import dual_tri, join, meet
 
 def test_int():
     a1 = pg_point([1, 3, 1])
@@ -10,10 +10,10 @@ def test_int():
 
     assert(dual(dual(a1)) == a1)
 
-    l1 = join(a2, a3)
-    l2 = join(a1, a3)
-    l3 = join(a1, a2)
-
+    # l1 = join(a2, a3)
+    # l2 = join(a1, a3)
+    # l3 = join(a1, a2)
+    l1, l2, l3 = dual_tri(a1, a2, a3)
     t1 = altitude(a1, l1)
     assert is_perpendicular(t1, l1)
     t2 = altitude(a2, l2)
