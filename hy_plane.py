@@ -9,8 +9,7 @@ def dual(v):
         return pg_line([x, y, -z])
     elif isinstance(v, pg_line):
         return pg_point([x, y, -z])
-    else:
-        raise NotImplementedError()
+    raise NotImplementedError()
 
 
 __hyck = ck(dual)

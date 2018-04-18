@@ -18,8 +18,7 @@ class persp_euclid_plane():
             return self.l_infty
         elif isinstance(x, pg_line):
             return plucker(x.dot(self.B_infty), self.A_infty, x.dot(self.A_infty), self.B_infty)
-        else:
-            raise NotImplementedError()
+        raise NotImplementedError()
 
     def is_parallel(self, l, m):
         return self.l_infty.incident(l*m)
@@ -44,8 +43,7 @@ class persp_euclid_plane():
             return x.dot(self.l_infty)**2
         elif isinstance(x, pg_line):
             return 2*x.dot(self.B_infty)*x.dot(self.A_infty)
-        else:
-            raise NotImplementedError()
+        raise NotImplementedError()
 
     def omegaB(self, l):
         return 2*l.dot(self.B_infty)*l.dot(self.A_infty)
@@ -58,8 +56,7 @@ class persp_euclid_plane():
         den = self.omega(a1) * self.omega(a2)
         if isinstance(omg, (int, np.int64)) and isinstance(den, (int, np.int64)):
             return Fraction(omg, den)
-        else:
-            return omg / den
+        return omg / den
 
     def cross(self, l1, l2):
         return 1 - self.spread(l1, l2)  # ???

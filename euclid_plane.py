@@ -62,8 +62,7 @@ def midpoint(a, b):
 def quad1(x1, z1, x2, z2):
     if isinstance(x1, (int, np.int64)):
         return (Fraction(x1, z1) - Fraction(x2, z2))**2
-    else:
-        return (x1/z1 - x2/z2)**2
+    return (x1/z1 - x2/z2)**2
 
 
 def quadrance(a1, a2):
@@ -74,8 +73,7 @@ def quadrance(a1, a2):
 def sbase(l1, l2, d):
     if isinstance(d, (int, np.int64)):
         return Fraction(d, omgB(l1, l1)) * Fraction(d, omgB(l2, l2))
-    else:
-        return d * d / (omgB(l1, l1) * omgB(l2, l2))
+    return d * d / (omgB(l1, l1) * omgB(l2, l2))
 
 
 def spread(l1, l2):

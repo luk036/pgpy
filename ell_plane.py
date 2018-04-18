@@ -23,8 +23,7 @@ def dual(v):
         return pg_line(v.base)
     elif isinstance(v, pg_line):
         return pg_point(v.base)
-    else:
-        raise NotImplementedError()
+    raise NotImplementedError()
 
 
 __ellck = ck(dual)

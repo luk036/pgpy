@@ -27,8 +27,7 @@ class pl_point:
 def ratio_ratio(a, b, c, d):
     if isinstance(a, (int, np.int64)):
         return Fraction(a, b) / Fraction(c, d)
-    else:
-        return a * d / (b * c)
+    return a * d / (b * c)
 
 
 # def R1(A, B, C, D):
