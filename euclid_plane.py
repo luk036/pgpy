@@ -2,7 +2,7 @@
 from __future__ import print_function
 from pprint import pprint
 import numpy as np
-from fractions import *
+from fractions import Fraction
 from .proj_plane import *
 
 

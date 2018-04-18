@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 from pprint import pprint
-from .proj_plane import *
+from .proj_plane import pg_point, pg_line, join, meet, x_ratio, involution
 
 
 class ck:
@@ -42,11 +42,11 @@ class ck:
     #         return omg / (self.omega(a1) * self.omega(a2))
 
     def quadrance(self, a1, a2):
-        assert type(a1) == pg_point
+        assert isinstance(a1, pg_point)
         return self.measure(a1, a2)
 
     def spread(self, l1, l2):
-        assert type(l1) == pg_line
+        assert isinstance(l1, pg_line)
         return self.measure(l1, l2)
 
 

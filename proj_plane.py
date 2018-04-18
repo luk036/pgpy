@@ -2,9 +2,8 @@
 from __future__ import print_function
 
 from pprint import pprint
-from fractions import *
 import numpy as np
-from .proj_line import *
+from .proj_line import ratio_ratio
 
 
 class pg_point(np.ndarray):
@@ -63,12 +62,12 @@ class pg_line(np.ndarray):
 
 
 def join(p, q):
-    assert type(p) is pg_point
+    assert isinstance(p, pg_point)
     return p * q
 
 
 def meet(l, m):
-    assert type(l) is pg_line
+    assert isinstance(l, pg_line)
     return l * m
 
 
@@ -188,5 +187,3 @@ def check_desargue(A, B, C, D, E, F):
         assert b2
     else:
         assert not b2
-
-

@@ -2,18 +2,19 @@
 from __future__ import print_function
 
 from pprint import pprint
-from .ck_plane import *
+from .ck_plane import ck
+from .proj_plane import pg_point, pg_line, join, meet
 
 
 def dual(v):
     """pole/polar of v in elliptic geometry
-    
+
     Arguments:
         v {pg_point/pg_line} -- projective point or plane 
-    
+
     Raises:
         NotImplementedError
-    
+
     Returns:
         [type] -- [description]
     """
@@ -51,5 +52,3 @@ def quadrance(a1, a2):
 
 def spread(l1, l2):
     return __ellck.spread(l1, l2)
-
-

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from .ck_plane import *
+from .ck_plane import ck
+from .proj_plane import pg_point, pg_line, join, meet
 
 
 def dual(v):
@@ -37,5 +38,3 @@ def quadrance(a1, a2):
 
 def spread(l1, l2):
     return __hyck.spread(l1, l2)
-
-

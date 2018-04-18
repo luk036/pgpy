@@ -34,7 +34,7 @@ def test_int():
     s1 = P.spread(l2, l3)
     s2 = P.spread(l1, l3)
     s3 = P.spread(l1, l2)
-    # print(q1/s1, q2/s2, q3/s3)
+    print(q1/s1, q2/s2, q3/s3)
     # assert P.spread(t1, l1) == 1.0 # get 1.0
     assert coincident(t1, t2, t3)
 
@@ -50,4 +50,3 @@ def test_int():
     # tsf = (s1 + s2 + s3)**2 - 2*(s1*s1 + s2*s2 + s3*s3) - 4*s1*s2*s3
     # tsf = sympy.simplify(tsf)
     #assert tsf == 0
-

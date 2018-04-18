@@ -1,7 +1,7 @@
 from __future__ import print_function
 
-from ..ck_plane import *
-
+from ..ck_plane import ck
+from ..proj_plane import pg_point, pg_line, join, meet
 
 def tstdual(v):
     [x, y, z] = v
@@ -46,7 +46,7 @@ def test_int():
     s1 = myck.spread(l2, l3)
     s2 = myck.spread(l1, l3)
     s3 = myck.spread(l1, l2)
-    # print(q1/s1, q2/s2, q3/s3)
+    print(q1/s1, q2/s2, q3/s3)
     assert myck.spread(l1, l1) == 0
     assert myck.quadrance(a1, a1) == 0
 

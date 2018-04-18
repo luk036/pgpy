@@ -2,7 +2,7 @@
 from __future__ import print_function
 
 from pprint import pprint
-from fractions import *
+from fractions import Fraction
 import numpy as np
 
 
@@ -16,7 +16,7 @@ class pl_point:
         self.y = p[1]
 
     def __eq__(self, other):
-        if type(other) is type(self):
+        if isinstance(self, type(other)):
             return cross1_l(self, other) == 0
         return False
 
@@ -45,5 +45,3 @@ def ratio_ratio(a, b, c, d):
 #     bc = cross1_l(B, C)
 #     bd = cross1_l(B, D)
 #     return ac*bd + ad*bc == 0
-
-

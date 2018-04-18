@@ -2,10 +2,9 @@
 from __future__ import print_function
 from pprint import pprint
 import numpy as np
-from fractions import *
+from fractions import Fraction
 from .proj_plane import *
-
-from .ck_plane import *
+from .ck_plane import ck
 
 class persp_euclid_plane():
     def __init__(self, A_infty, B_infty, l_infty):
