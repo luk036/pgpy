@@ -29,6 +29,9 @@ class persp_euclid_plane():
     def altitude(self, p, l):
         return self.ck.altitude(p, l)
 
+    def tri_altitude(self, a1, a2, a3):
+        return self.ck.tri_altitude(a1, a2, a3)
+
     def orthocenter(self, a1, a2, a3):
         return self.ck.orthocenter(a1, a2, a3)
         
@@ -66,6 +69,18 @@ class persp_euclid_plane():
 
     def spread(self, l1, l2):
         return self.measure(l1, l2)
+
+    def tri_quadrance(self, a1, a2, a3):
+        q1 = self.quadrance(a2, a3)
+        q2 = self.quadrance(a1, a3)
+        q3 = self.quadrance(a1, a2)
+        return q1, q2, q3
+
+    def tri_spread(self, l1, l2, l3):
+        s1 = self.spread(l2, l3)
+        s2 = self.spread(l1, l3)
+        s3 = self.spread(l1, l2)
+        return s1, s2, s3
 
     def Ar(self, a, b, c):
         return (4*a*b) - (a + b - c)**2

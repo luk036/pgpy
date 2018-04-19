@@ -1,7 +1,7 @@
 from __future__ import print_function
 
 from ..ell_plane import *
-from ..proj_plane import dual_tri, join, meet
+from ..proj_plane import tri, join, meet
 
 def test_int():
     a1 = pg_point([1, 3, 1])
@@ -13,11 +13,10 @@ def test_int():
     # l1 = join(a2, a3)
     # l2 = join(a1, a3)
     # l3 = join(a1, a2)
-    l1, l2, l3 = dual_tri(a1, a2, a3)
-    t1 = altitude(a1, l1)
+    l1, l2, l3 = tri(a1, a2, a3)
+    t1, t2, t3 = tri_altitude(a1, a2, a3)
     assert is_perpendicular(t1, l1)
-    t2 = altitude(a2, l2)
-    t3 = altitude(a3, l3)
+
     o = orthocenter(a1, a2, a3)
     assert o == meet(t2, t3)
     assert a1 == orthocenter(o, a2, a3)
@@ -27,13 +26,8 @@ def test_int():
 
     # a3 = pg_point([sx, sy, sz])
 
-    s1 = spread(l2, l3)
-    s2 = spread(l1, l3)
-    s3 = spread(l1, l2)
-
-    q1 = quadrance(a2, a3)
-    q2 = quadrance(a1, a3)
-    q3 = quadrance(a1, a2)
+    q1, q2, q3 = tri_quadrance(a1, a2, a3)
+    s1, s2, s3 = tri_spread(l1, l2, l3)
 
     # print(s1, s2, s3, q1, q2, q3)
 

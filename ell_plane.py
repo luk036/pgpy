@@ -41,6 +41,10 @@ def altitude(p, l):
     return __ellck.altitude(p, l)
 
 
+def tri_altitude(a1, a2, a3):
+    return __ellck.tri_altitude(a1, a2, a3)
+
+
 def orthocenter(a1, a2, a3):
     return __ellck.orthocenter(a1, a2, a3)
 
@@ -51,3 +55,11 @@ def quadrance(a1, a2):
 
 def spread(l1, l2):
     return __ellck.spread(l1, l2)
+
+
+def tri_quadrance(a1, a2, a3):
+    return __ellck.tri_quadrance(a1, a2, a3)
+
+
+def tri_spread(l1, l2, l3):
+    return __ellck.tri_spread(l1, l2, l3)

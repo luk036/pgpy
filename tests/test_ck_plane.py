@@ -1,7 +1,7 @@
 from __future__ import print_function
 
 from ..ck_plane import ck
-from ..proj_plane import pg_point, pg_line, join, meet
+from ..proj_plane import pg_point, pg_line, join, meet, tri
 
 def tstdual(v):
     [x, y, z] = v
@@ -21,16 +21,11 @@ def test_int():
 
     assert(myck.dual(myck.dual(a1)) == a1)
 
-    l1 = join(a2, a3)
+    l1, l2, l3 = tri(a1, a2, a3)
     assert l1.incident(a2)
-    l2 = join(a1, a3)
-    l3 = join(a1, a2)
-
     assert(myck.dual(myck.dual(l1)) == l1)
 
-    t1 = myck.altitude(a1, l1)
-    t2 = myck.altitude(a2, l2)
-    t3 = myck.altitude(a3, l3)
+    t1, t2, t3 = myck.tri_altitude(a1, a2, a3)
     assert myck.is_perpendicular(t1, l1)
 
     o = myck.orthocenter(a1, a2, a3)
@@ -40,12 +35,8 @@ def test_int():
     tau = myck.line_reflect(l1)
     assert(tau(tau(a1)) == a1)
 
-    q1 = myck.quadrance(a2, a3)
-    q2 = myck.quadrance(a1, a3)
-    q3 = myck.quadrance(a1, a2)
-    s1 = myck.spread(l2, l3)
-    s2 = myck.spread(l1, l3)
-    s3 = myck.spread(l1, l2)
+    q1, q2, q3 = myck.tri_quadrance(a1, a2, a3)
+    s1, s2, s3 = myck.tri_spread(l1, l2, l3)
     print(q1/s1, q2/s2, q3/s3)
     assert myck.spread(l1, l1) == 0
     assert myck.quadrance(a1, a1) == 0

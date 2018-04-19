@@ -1,7 +1,7 @@
 from __future__ import print_function
 
 from ..persp_plane import *
-from ..proj_plane import dual_tri, join, meet
+from ..proj_plane import tri, join, meet
 
 
 def test_int():
@@ -17,12 +17,11 @@ def test_int():
     # l1 = join(a2, a3)
     # l2 = join(a1, a3)
     # l3 = join(a1, a2)
-    l1, l2, l3 = dual_tri(a1, a2, a3)
+    l1, l2, l3 = tri(a1, a2, a3)
     
-    t1 = P.altitude(a1, l1)
+    t1, t2, t3 = P.tri_altitude(a1, a2, a3)
     assert P.is_perpendicular(t1, l1)
-    t2 = P.altitude(a2, l2)
-    t3 = P.altitude(a3, l3)
+
     o = P.orthocenter(a1, a2, a3)
     assert o == meet(t2, t3)
     assert a1 == P.orthocenter(o, a2, a3)
@@ -30,12 +29,8 @@ def test_int():
     # tau = P.line_reflect(l1)
     # assert(tau(tau(a1)) == a1)
 
-    q1 = P.quadrance(a2, a3)
-    q2 = P.quadrance(a1, a3)
-    q3 = P.quadrance(a1, a2)
-    s1 = P.spread(l2, l3)
-    s2 = P.spread(l1, l3)
-    s3 = P.spread(l1, l2)
+    q1, q2, q3 = P.tri_quadrance(a1, a2, a3)
+    s1, s2, s3 = P.tri_spread(l1, l2, l3)
     print(q1/s1, q2/s2, q3/s3)
     # assert P.spread(t1, l1) == 1.0 # get 1.0
     assert coincident(t1, t2, t3)

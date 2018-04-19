@@ -1,7 +1,7 @@
 from __future__ import print_function
 
 from ..hy_plane import *
-from ..proj_plane import dual_tri, join, meet
+from ..proj_plane import tri, join, meet
 
 
 def test_int():
@@ -14,7 +14,7 @@ def test_int():
     # l1 = join(a2, a3)
     # l2 = join(a1, a3)
     # l3 = join(a1, a2)
-    l1, l2, l3 = dual_tri(a1, a2, a3)
+    l1, l2, l3 = tri(a1, a2, a3)
     # a3 = pg_point([sx, sy, sz])
 
     t1 = altitude(a1, l1)
@@ -28,14 +28,8 @@ def test_int():
     tau = line_reflect(l1)
     assert(tau(tau(a1)) == a1)
 
-    s1 = spread(l2, l3)
-    s2 = spread(l1, l3)
-    s3 = spread(l1, l2)
-
-    q1 = quadrance(a2, a3)
-    q2 = quadrance(a1, a3)
-    q3 = quadrance(a1, a2)
-
+    q1, q2, q3 = tri_quadrance(a1, a2, a3)
+    s1, s2, s3 = tri_spread(l1, l2, l3)
     # print(s1, s2, s3, q1, q2, q3)
 
     t12 = q1*s2 - q2*s1

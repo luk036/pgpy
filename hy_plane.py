@@ -27,6 +27,10 @@ def altitude(p, l):
     return __hyck.altitude(p, l)
 
 
+def tri_altitude(a1, a2, a3):
+    return __hyck.tri_altitude(a1, a2, a3)
+
+
 def orthocenter(a1, a2, a3):
     return __hyck.orthocenter(a1, a2, a3)
 
@@ -37,3 +41,11 @@ def quadrance(a1, a2):
 
 def spread(l1, l2):
     return __hyck.spread(l1, l2)
+
+
+def tri_quadrance(a1, a2, a3):
+    return __hyck.tri_quadrance(a1, a2, a3)
+
+
+def tri_spread(l1, l2, l3):
+    return __hyck.tri_spread(l1, l2, l3)
