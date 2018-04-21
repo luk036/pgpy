@@ -84,4 +84,3 @@ class persp_euclid_plane():
 
     def Ar(self, a, b, c):
         return (4*a*b) - (a + b - c)**2
-

@@ -25,7 +25,7 @@ def test_complex_point():
     O = meet(join(p, s), join(q, t))
     # r = join(p, q)
     u = O - r  # ???
-    check_desargue(p, q, r, s, t, u)
+    check_desargue((p, q, r), (s, t, u))
 
 
 def test_complex_line():
@@ -50,7 +50,7 @@ def test_complex_line():
     o = join(meet(l, s), meet(m, t))
     # r = meet(l, m)
     u = o - r  # ???
-    check_desargue(l, m, r, s, t, u)
+    check_desargue((l, m, r), (s, t, u))
 
 
 # def no_test_symbolic():

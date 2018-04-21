@@ -171,20 +171,20 @@ def x_ratio(A, B, l, m):
 #     return ac*bd + ad*bc == 0
 
 
-def check_pappus(A, B, C, D, E, F):
+def check_pappus(co1, co2):
+    A, B, C = co1
+    D, E, F = co2
     G = (A*E) * (B*D)
     H = (A*F) * (C*D)
     I = (B*F) * (C*E)
     assert coincident(G, H, I)
 
 
-def check_desargue(A, B, C, D, E, F):
-    a = B * C
-    b = A * C
-    c = B * A
-    d = E * F
-    e = D * F
-    f = E * D
+def check_desargue(tri1, tri2):
+    A, B, C = tri1
+    D, E, F = tri2
+    a, b, c = tri(A, B, C)
+    d, e, f = tri(D, E, F)
 
     b1 = persp([A, B, C], [D, E, F])
     b2 = persp([a, b, c], [d, e, f])
