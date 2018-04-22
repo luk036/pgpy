@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
-from __future__ import print_function
-
-from pprint import pprint
-from .ck_plane import ck
-from .proj_plane import pg_point, pg_line, join, meet
+from pgpy.ck_plane import ck
+from pgpy.proj_plane import pg_point, pg_line
 
 
-def dual(v):
+def elldual(v):
     """pole/polar of v in elliptic geometry
 
     Arguments:
@@ -26,40 +23,8 @@ def dual(v):
     raise NotImplementedError()
 
 
-__ellck = ck(dual)
+class ellck(ck):
 
+    def __init__(self):
+        ck.__init__(self, elldual)
 
-def is_perpendicular(l, m):
-    return __ellck.is_perpendicular(l, m)
-
-
-def line_reflect(m):
-    return __ellck.line_reflect(m)
-
-
-def altitude(p, l):
-    return __ellck.altitude(p, l)
-
-
-def tri_altitude(a1, a2, a3):
-    return __ellck.tri_altitude(a1, a2, a3)
-
-
-def orthocenter(a1, a2, a3):
-    return __ellck.orthocenter(a1, a2, a3)
-
-
-def quadrance(a1, a2):
-    return __ellck.quadrance(a1, a2)
-
-
-def spread(l1, l2):
-    return __ellck.spread(l1, l2)
-
-
-def tri_quadrance(a1, a2, a3):
-    return __ellck.tri_quadrance(a1, a2, a3)
-
-
-def tri_spread(l1, l2, l3):
-    return __ellck.tri_spread(l1, l2, l3)

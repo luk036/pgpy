@@ -1,39 +1,20 @@
 from __future__ import print_function
 
-from ..ell_plane import *
-from ..proj_plane import tri, join, meet
+from ..ell_plane import ellck
+from ..proj_plane import pg_point, pg_line, tri, join, meet
+from .test_ck_plane import chk_int
 
 def test_int():
+    chk_int(ellck())
+
+def chk_tri(myck):
     a1 = pg_point([1, 3, 1])
     a2 = pg_point([4, 2, 1])
     a3 = pg_point([1, 1, -1])
 
-    assert(dual(dual(a1)) == a1)
-
-    # l1 = join(a2, a3)
-    # l2 = join(a1, a3)
-    # l3 = join(a1, a2)
     l1, l2, l3 = tri(a1, a2, a3)
-    t1, t2, t3 = tri_altitude(a1, a2, a3)
-    assert is_perpendicular(t1, l1)
-
-    o = orthocenter(a1, a2, a3)
-    assert o == meet(t2, t3)
-    assert a1 == orthocenter(o, a2, a3)
-
-    tau = line_reflect(l1)
-    assert(tau(tau(a1)) == a1)
-
-    # a3 = pg_point([sx, sy, sz])
-
-    q1, q2, q3 = tri_quadrance(a1, a2, a3)
-    s1, s2, s3 = tri_spread(l1, l2, l3)
-
-    # print(s1, s2, s3, q1, q2, q3)
-
-    t12 = q1*s2 - q2*s1
-    # t12 = sympy.simplify(t12)
-    assert t12 == 0
+    q1, q2, q3 = myck.tri_quadrance(a1, a2, a3)
+    s1, s2, s3 = myck.tri_spread(l1, l2, l3)
 
     cl = (s1*s2*q3 - (s1+s2+s3)+2)**2 - 4*(1 - s1)*(1 - s2)*(1 - s3)
     # cld = (q1*q2*s3 - (q1+q2+q3)+2)**2 - 4*(1 - q1)*(1 - q2)*(1 - q3)
@@ -42,6 +23,8 @@ def test_int():
     cld = (q1*q2*s3 - (q1+q2+q3)+2)**2 - 4*(1 - q1)*(1 - q2)*(1 - q3)
     assert cld == 0
 
+def test_tri():
+    chk_tri(ellck())
 
 # def no_test_symbolic():
 #     import sympy

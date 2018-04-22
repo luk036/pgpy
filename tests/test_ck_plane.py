@@ -13,8 +13,7 @@ def tstdual(v):
         raise NotImplementedError()
 
 
-def test_int():
-    myck = ck(tstdual)
+def chk_int(myck):
     a1 = pg_point([1, 2, 3])
     a2 = pg_point([4, -5, 6])
     a3 = pg_point([-7, 8, 9])
@@ -40,6 +39,10 @@ def test_int():
     print(q1/s1, q2/s2, q3/s3)
     assert myck.spread(l1, l1) == 0
     assert myck.quadrance(a1, a1) == 0
+
+
+def test_int():
+    chk_int(ck(tstdual))
 
 
 # def no_test_symbolic():

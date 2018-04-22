@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-from .ck_plane import ck
-from .proj_plane import pg_point, pg_line, join, meet
+from pgpy.ck_plane import ck
+from pgpy.proj_plane import pg_point, pg_line
 
 
-def dual(v):
+def hydual(v):
     [x, y, z] = v
     if isinstance(v, pg_point):
         return pg_line([x, y, -z])
@@ -12,40 +12,7 @@ def dual(v):
     raise NotImplementedError()
 
 
-__hyck = ck(dual)
+class hyck(ck):
 
-
-def is_perpendicular(l, m):
-    return __hyck.is_perpendicular(l, m)
-
-
-def line_reflect(m):
-    return __hyck.line_reflect(m)
-
-
-def altitude(p, l):
-    return __hyck.altitude(p, l)
-
-
-def tri_altitude(a1, a2, a3):
-    return __hyck.tri_altitude(a1, a2, a3)
-
-
-def orthocenter(a1, a2, a3):
-    return __hyck.orthocenter(a1, a2, a3)
-
-
-def quadrance(a1, a2):
-    return __hyck.quadrance(a1, a2)
-
-
-def spread(l1, l2):
-    return __hyck.spread(l1, l2)
-
-
-def tri_quadrance(a1, a2, a3):
-    return __hyck.tri_quadrance(a1, a2, a3)
-
-
-def tri_spread(l1, l2, l3):
-    return __hyck.tri_spread(l1, l2, l3)
+    def __init__(self):
+        ck.__init__(self, hydual)
