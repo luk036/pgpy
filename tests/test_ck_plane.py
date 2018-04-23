@@ -18,7 +18,8 @@ def chk_int(myck):
     a2 = pg_point([4, -5, 6])
     a3 = pg_point([-7, 8, 9])
 
-    assert(myck.dual(myck.dual(a1)) == a1)
+    temp = myck.dual(a1)
+    assert(myck.dual(temp) == a1)
 
     l1, l2, l3 = tri(a1, a2, a3)
     assert l1.incident(a2)

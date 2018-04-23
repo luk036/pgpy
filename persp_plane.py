@@ -48,11 +48,11 @@ class persp_euclid_plane():
             return 2*x.dot(self.B_infty)*x.dot(self.A_infty)
         raise NotImplementedError()
 
-    def omegaB(self, l):
-        return 2*l.dot(self.B_infty)*l.dot(self.A_infty)
+    # def omegaB(self, l):
+    #     return 2*l.dot(self.B_infty)*l.dot(self.A_infty)
 
-    def omegaA(self, p):
-        return p.dot(self.l_infty)**2
+    # def omegaA(self, p):
+    #     return p.dot(self.l_infty)**2
 
     def measure(self, a1, a2):
         omg = self.omega(a1*a2)
@@ -70,17 +70,19 @@ class persp_euclid_plane():
     def spread(self, l1, l2):
         return self.measure(l1, l2)
 
+    def tri_measure(self, a1, a2, a3):
+        m1 = self.measure(a2, a3)
+        m2 = self.measure(a1, a3)
+        m3 = self.measure(a1, a2)
+        return m1, m2, m3
+
     def tri_quadrance(self, a1, a2, a3):
-        q1 = self.quadrance(a2, a3)
-        q2 = self.quadrance(a1, a3)
-        q3 = self.quadrance(a1, a2)
-        return q1, q2, q3
+        assert isinstance(a1, pg_point)
+        return self.tri_measure(a1, a2, a3)
 
     def tri_spread(self, l1, l2, l3):
-        s1 = self.spread(l2, l3)
-        s2 = self.spread(l1, l3)
-        s3 = self.spread(l1, l2)
-        return s1, s2, s3
+        assert isinstance(l1, pg_line)
+        return self.tri_measure(l1, l2, l3)
 
     def Ar(self, a, b, c):
         return (4*a*b) - (a + b - c)**2

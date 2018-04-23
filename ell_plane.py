@@ -16,12 +16,7 @@ def elldual(v):
         [type] -- [description]
     """
 
-    if isinstance(v, pg_point):
-        return pg_line(v.base)
-    elif isinstance(v, pg_line):
-        return pg_point(v.base)
-    raise NotImplementedError()
-
+    return v.dual()(v.base)
 
 class ellck(ck):
 

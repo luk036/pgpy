@@ -5,11 +5,12 @@ from pgpy.proj_plane import pg_point, pg_line
 
 def hydual(v):
     [x, y, z] = v
-    if isinstance(v, pg_point):
-        return pg_line([x, y, -z])
-    elif isinstance(v, pg_line):
-        return pg_point([x, y, -z])
-    raise NotImplementedError()
+    return v.dual()([x, y, -z])
+    # if isinstance(v, pg_point):
+    #     return pg_line([x, y, -z])
+    # elif isinstance(v, pg_line):
+    #     return pg_point([x, y, -z])
+    # raise NotImplementedError()
 
 
 class hyck(ck):

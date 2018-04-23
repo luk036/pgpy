@@ -3,7 +3,7 @@ from __future__ import print_function
 
 from pprint import pprint
 import numpy as np
-from .proj_line import ratio_ratio
+from .proj_line import ratio_ratio, R1
 
 
 class pg_point(np.ndarray):
@@ -28,7 +28,7 @@ class pg_point(np.ndarray):
         return pg_line(l)
 
     def dual(self):
-        return type(pg_line)
+        return pg_line
 
 #    def aux(self):
 #        return pg_line(self)
@@ -55,7 +55,7 @@ class pg_line(np.ndarray):
         return pg_point(np.cross(self, other))
 
     def dual(self):
-        return type(pg_point)
+        return pg_point
 
 #    def aux(self):
 #        return pg_point(self)
@@ -71,7 +71,7 @@ def meet(l, m):
     return l * m
 
 
-# note: `lambda` is a preserved keyword in python
+# Note: `lambda` is a preserved keyword in python
 def plucker(lambda1, p, mu1, q):
     T = type(p)
     return T(lambda1 * p + mu1 * q)
@@ -120,19 +120,8 @@ def persp(L, M):
 
 
 def harm_conj(A, B, C):
-    # assert coincident(A,B,C)
-    l = A * B
-    P = l.aux()
-    a = P * A
-    b = P * B
-    # c = P * C
-    R = P + C
-    Q = (A * R) * b
-    S = (B * R) * a
-    return (Q * S) * l
-
-# def dot(p, l):
-#    return p.dot(l)
+    lC = C * (A * B).aux()
+    return plucker(B.dot(lC), A, A.dot(lC), B)
 
 
 class involution:
@@ -155,20 +144,24 @@ def x_ratio(A, B, l, m):
     return ratio_ratio(dAl, dAm, dBl, dBm)
 
 
+def R(A, B, C, D):
+    if A[1] != B[1] or A[2] != B[2]: 
+        # Project points to yz-plane
+        a, b, c, d = A[1:], B[1:], C[1:], D[1:]
+        return R1(a, b, c, d)
+    else:
+        # Project points to xz-plane
+        a, b, c, d = A[(0,2)], B[(0,2)], C[(0,2)], D[(0,2)]
+        return R1(a, b, c, d)
+
+
 # def R(A, B, C, D):
 #     O = (C*D).aux()
 #     return x_ratio(A, B, O*C, O*D)
 
 
-# def isharmonic(A, B, C, D):
-#     O = (C*D).aux()
-#     OC = O * C
-#     OD = O * D
-#     ac = A.dot(OC)
-#     ad = A.dot(OD)
-#     bc = B.dot(OC)
-#     bd = B.dot(OD)
-#     return ac*bd + ad*bc == 0
+def isharmonic(A, B, C, D):
+    return R(A, B, C, D) == -1
 
 
 def check_pappus(co1, co2):

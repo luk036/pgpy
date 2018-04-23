@@ -14,12 +14,12 @@ def cross1(x, y):
     return x[0] * y[1] - x[1] * y[0]
 
 
-def dot2(x, y):
-    return x[0] * y[0] + x[2] * y[2]
+# def dot2(x, y):
+#     return x[0] * y[0] + x[2] * y[2]
 
 
 def fB(l):
-    [a, b] = l[0:2]
+    [a, b] = l[:2]
     return pg_point([a, b, 0])
 
 
