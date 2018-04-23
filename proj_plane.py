@@ -30,8 +30,8 @@ class pg_point(np.ndarray):
     def dual(self):
         return pg_line
 
-#    def aux(self):
-#        return pg_line(self)
+    def aux(self):
+        return pg_line(self)
 
 
 class pg_line(np.ndarray):
@@ -57,8 +57,8 @@ class pg_line(np.ndarray):
     def dual(self):
         return pg_point
 
-#    def aux(self):
-#        return pg_point(self)
+    def aux(self):
+        return pg_point(self)
 
 
 def join(p, q):

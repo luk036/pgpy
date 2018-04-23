@@ -81,7 +81,7 @@ def quadrance(a1, a2):
 def sbase(l1, l2, d):
     if isinstance(d, (int, np.int64)):
         return Fraction(d, omgB(l1, l1)) * Fraction(d, omgB(l2, l2))
-    return d * d / (omgB(l1, l1) * omgB(l2, l2))
+    return (d * d) / (omgB(l1, l1) * omgB(l2, l2))
 
 
 def spread(l1, l2):
@@ -100,6 +100,7 @@ def tri_spread(l1, l2, l3):
     s2 = spread(l1, l3)
     s3 = spread(l1, l2)
     return s1, s2, s3
+
 
 def cross(l1, l2):
     return sbase(l1, l2, omgB(l1, l2))
@@ -133,4 +134,4 @@ def distance(a, b):
 
 
 def angle(l, m):
-    return np.arcsin(np.sqrt(spread(l, m)))
+    return np.arcsin(np.sqrt(float(spread(l, m))))

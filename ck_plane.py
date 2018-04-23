@@ -26,11 +26,11 @@ class ck:
         t2 = self.altitude(a2, a1*a3)
         return t1*t2
 
-    def measure(self, a1, a2):
-        return 1 - x_ratio(a1, a2, self.dual(a2), self.dual(a1))
-
     def reflect(self, m):
         return involution(m, self.dual(m))
+
+    def measure(self, a1, a2):
+        return 1 - x_ratio(a1, a2, self.dual(a2), self.dual(a1))
 
     def quadrance(self, a1, a2):
         assert isinstance(a1, pg_point)

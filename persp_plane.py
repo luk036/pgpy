@@ -7,9 +7,9 @@ from .proj_plane import *
 from .ck_plane import ck
 
 class persp_euclid_plane():
-    def __init__(self, A_infty, B_infty, l_infty):
-        self.A_infty = A_infty
-        self.B_infty = B_infty
+    def __init__(self, Ire, Iim, l_infty):
+        self.Ire = Ire
+        self.Iim = Iim
         self.l_infty = l_infty
         self.ck = ck(self.dual)
 
@@ -17,7 +17,7 @@ class persp_euclid_plane():
         if isinstance(x, pg_point):
             return self.l_infty
         elif isinstance(x, pg_line):
-            return plucker(x.dot(self.B_infty), self.A_infty, x.dot(self.A_infty), self.B_infty)
+            return plucker(x.dot(self.Ire), self.Ire, x.dot(self.Iim), self.Iim)
         raise NotImplementedError()
 
     def is_parallel(self, l, m):
@@ -45,7 +45,7 @@ class persp_euclid_plane():
         if isinstance(x, pg_point):
             return x.dot(self.l_infty)**2
         elif isinstance(x, pg_line):
-            return 2*x.dot(self.B_infty)*x.dot(self.A_infty)
+            return x.dot(self.Ire)**2 + x.dot(self.Iim)**2
         raise NotImplementedError()
 
     # def omegaB(self, l):
@@ -86,3 +86,4 @@ class persp_euclid_plane():
 
     def Ar(self, a, b, c):
         return (4*a*b) - (a + b - c)**2
+

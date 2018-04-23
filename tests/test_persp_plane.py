@@ -24,6 +24,7 @@ def chk_degenerate(myck):
     q1, q2, q3 = myck.tri_quadrance(a1, a2, a3)
     s1, s2, s3 = myck.tri_spread(l1, l2, l3)
     print(q1/s1, q2/s2, q3/s3)
+    assert q1*s2 == q2*s1
     assert myck.spread(l1, l1) == 0
     assert myck.quadrance(a1, a1) == 0
 
@@ -32,8 +33,8 @@ def chk_degenerate(myck):
 
 
 def test_int():
-    A_inf = pg_point([-1j, 1, 1])
-    B_inf = pg_point([1j, 1, 1])
+    Ire = pg_point([0, 1, 1])
+    Iim = pg_point([1, 0, 0])
     l_inf = pg_line([0, -1, 1])
-    P = persp_euclid_plane(A_inf, B_inf, l_inf)
+    P = persp_euclid_plane(Ire, Iim, l_inf)
     chk_degenerate(P)
