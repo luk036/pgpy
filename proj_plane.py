@@ -145,14 +145,14 @@ def x_ratio(A, B, l, m):
 
 
 def R(A, B, C, D):
-    if A[1] != B[1] or A[2] != B[2]: 
+    # not sure???
+    if A[1]*B[2] != B[1]*A[2]: 
         # Project points to yz-plane
         a, b, c, d = A[1:], B[1:], C[1:], D[1:]
-        return R1(a, b, c, d)
     else:
         # Project points to xz-plane
         a, b, c, d = A[(0,2)], B[(0,2)], C[(0,2)], D[(0,2)]
-        return R1(a, b, c, d)
+    return R1(a, b, c, d)
 
 
 # def R(A, B, C, D):
