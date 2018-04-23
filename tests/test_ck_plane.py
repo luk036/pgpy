@@ -13,10 +13,10 @@ def tstdual(v):
         raise NotImplementedError()
 
 
-def chk_int(myck):
-    a1 = pg_point([1, 2, 3])
-    a2 = pg_point([4, -5, 6])
-    a3 = pg_point([-7, 8, 9])
+def chk_int(myck, pg_object=pg_point):
+    a1 = pg_object([1, 2, 3])
+    a2 = pg_object([4, -5, 6])
+    a3 = pg_object([-7, 8, 9])
 
     temp = myck.dual(a1)
     assert(myck.dual(temp) == a1)
@@ -29,21 +29,23 @@ def chk_int(myck):
     assert myck.is_perpendicular(t1, l1)
 
     o = myck.orthocenter(a1, a2, a3)
-    assert o == meet(t2, t3)
+    assert o == t2 * t3
     assert a1 == myck.orthocenter(o, a2, a3)
 
     tau = myck.line_reflect(l1)
     assert(tau(tau(a1)) == a1)
 
-    q1, q2, q3 = myck.tri_quadrance(a1, a2, a3)
-    s1, s2, s3 = myck.tri_spread(l1, l2, l3)
+    q1, q2, q3 = myck.tri_measure(a1, a2, a3)
+    s1, s2, s3 = myck.tri_measure(l1, l2, l3)
     print(q1/s1, q2/s2, q3/s3)
-    assert myck.spread(l1, l1) == 0
-    assert myck.quadrance(a1, a1) == 0
+    assert(q1*s2 == q2*s1)
+    assert myck.measure(l1, l1) == 0
+    assert myck.measure(a1, a1) == 0
 
 
 def test_int():
-    chk_int(ck(tstdual))
+    chk_int(ck(tstdual), pg_point)
+    chk_int(ck(tstdual), pg_line)
 
 
 # def no_test_symbolic():

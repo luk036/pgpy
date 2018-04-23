@@ -1,11 +1,12 @@
 from __future__ import print_function
 
 from ..ell_plane import ellck
-from ..proj_plane import pg_point, pg_line, tri, join, meet
+from ..proj_plane import pg_point, pg_line, tri
 from .test_ck_plane import chk_int
 
 def test_int():
-    chk_int(ellck())
+    chk_int(ellck(), pg_point)
+    chk_int(ellck(), pg_line)
 
 def chk_tri(myck):
     a1 = pg_point([1, 3, 1])
