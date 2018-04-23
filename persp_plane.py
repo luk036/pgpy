@@ -35,7 +35,7 @@ class persp_euclid_plane():
     def orthocenter(self, a1, a2, a3):
         return self.ck.orthocenter(a1, a2, a3)
         
-    # def line_reflect(m):
+    # def reflect(m):
     #    return involution(m, fB(m))
 
     def midpoint(self, a, b):

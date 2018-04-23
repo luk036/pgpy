@@ -32,7 +32,7 @@ def chk_int(myck, pg_object=pg_point):
     assert o == t2 * t3
     assert a1 == myck.orthocenter(o, a2, a3)
 
-    tau = myck.line_reflect(l1)
+    tau = myck.reflect(l1)
     assert(tau(tau(a1)) == a1)
 
     q1, q2, q3 = myck.tri_measure(a1, a2, a3)

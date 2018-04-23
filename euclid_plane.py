@@ -49,7 +49,7 @@ def orthocenter(a1, a2, a3):
     return t1*t2
 
 
-def line_reflect(m):
+def reflect(m):
     return involution(m, fB(m))
 
 

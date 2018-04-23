@@ -29,7 +29,7 @@ class ck:
     def measure(self, a1, a2):
         return 1 - x_ratio(a1, a2, self.dual(a2), self.dual(a1))
 
-    def line_reflect(self, m):
+    def reflect(self, m):
         return involution(m, self.dual(m))
 
     def quadrance(self, a1, a2):

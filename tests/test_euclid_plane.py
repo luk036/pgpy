@@ -20,7 +20,7 @@ def test_int():
     assert o == meet(t2, t3)
     assert a1 == orthocenter(o, a2, a3)
 
-    tau = line_reflect(l1)
+    tau = reflect(l1)
     assert(tau(tau(a1)) == a1)
 
     q1, q2, q3 = tri_quadrance(a1, a2, a3)

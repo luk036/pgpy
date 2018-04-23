@@ -18,7 +18,7 @@ def chk_degenerate(myck):
     assert o == meet(t2, t3)
     assert a1 == myck.orthocenter(o, a2, a3)
 
-    #tau = myck.line_reflect(l1)
+    #tau = myck.reflect(l1)
     #assert(tau(tau(a1)) == a1)
 
     q1, q2, q3 = myck.tri_quadrance(a1, a2, a3)
