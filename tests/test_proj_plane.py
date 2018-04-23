@@ -3,9 +3,9 @@ from __future__ import print_function
 from ..proj_plane import *
 
 
-def test_complex_point():
-    p = pg_point([1-2j, 3-1j, 2+1j])  # complex number
-    q = pg_point([-2+1j, 1-3j, -1-1j])
+def chk_complex(pg_object):
+    p = pg_object([1-2j, 3-1j, 2+1j])  # complex number
+    q = pg_object([-2+1j, 1-3j, -1-1j])
     l = p*q
     assert l == q*p
     assert l.incident(p)
@@ -16,41 +16,22 @@ def test_complex_point():
 
     assert coI([p, q, plucker(1, p, 1, q), plucker(1, p, -1, q)])
 
-    r = pg_point([2-1j, -2+1j, 1+1j])
-    s = pg_point([2j, 2-2j, 3])
-    t = pg_point([2, -2j, 2])
+    r = pg_object([2-1j, -2+1j, 1+1j])
+    s = pg_object([2j, 2-2j, 3])
+    t = pg_object([2, -2j, 2])
 
     assert not persp([p, q, p + q], [r, p + r, p])
 
-    O = meet(join(p, s), join(q, t))
+    O = (p * s) * (q * t)
     # r = join(p, q)
     u = O - r  # ???
     check_desargue((p, q, r), (s, t, u))
 
 
-def test_complex_line():
-    l = pg_line([1-2j, 3-1j, 2+1j])  # complex number
-    m = pg_line([-2+1j, 1-3j, -1-1j])
-    A = l*m
-    assert A == m*l
-    assert A.incident(l)
-    assert A.incident(m)
 
-    r = plucker(2, l, 3, m)
-    assert A.incident(r)
-
-    assert coI([l, m, plucker(1, l, 1, m), plucker(1, l, -1, m)])
-
-    r = pg_line([2-1j, -2+1j, 1+1j])
-    s = pg_line([2j, 2-2j, 3])
-    t = pg_line([2, -2j, 2])
-
-    assert not persp([l, m, l + m], [r, l + r, l])
-
-    o = join(meet(l, s), meet(m, t))
-    # r = meet(l, m)
-    u = o - r  # ???
-    check_desargue((l, m, r), (s, t, u))
+def test_complex():
+    chk_complex(pg_point)
+    chk_complex(pg_line)
 
 
 # def no_test_symbolic():
