@@ -14,7 +14,10 @@ def chk_complex(pg_object):
     r = plucker(2, p, 3, q)
     assert l.incident(r)
 
-    assert coI([p, q, plucker(1, p, 1, q), plucker(1, p, -1, q)])
+    s = harm_conj(p, q, r)
+    assert isharmonic(p, q, r, s)
+    assert coI([p, q, r, s])
+
 
     r = pg_object([2-1j, -2+1j, 1+1j])
     s = pg_object([2j, 2-2j, 3])
