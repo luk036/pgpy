@@ -16,6 +16,11 @@ def test_int():
     l1, l2, l3 = tri(a1, a2, a3)
     t1, t2, t3 = tri_altitude(a1, a2, a3)
     assert is_perpendicular(t1, l1)
+    assert not is_parallel(t1, l1)
+
+    t4 = harm_conj(t1, t2, t3)
+    assert R(t1, t2, t3, t4) == -1
+
     o = orthocenter(a1, a2, a3)
     assert o == meet(t2, t3)
     assert a1 == orthocenter(o, a2, a3)

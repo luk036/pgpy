@@ -7,16 +7,19 @@ import numpy as np
 
 
 def cross1_l(p, q):
-    return p.x * q.y - p.y * q.x
+    return p[0] * q[1] - p[1] * q[0]
 
 
-class pl_point:
+class pl_point(np.ndarray):
     """Projective point in Projective line
     
     """
+    def __new__(cls, inputarr):
+        obj = np.asarray(inputarr).view(cls)
+        return obj
 
-    def __init__(self, p):
-        self.x, self.y = p
+    # def __init__(self, p):
+    #     self.p = p
 
     def __eq__(self, other):
         if isinstance(self, type(other)):
