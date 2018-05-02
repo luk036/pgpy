@@ -11,9 +11,9 @@ class persp_euclid_plane(ck):
         self.Ire = Ire
         self.Iim = Iim
         self.l_infty = l_infty
-        # self.ck = ck(self.dual)
+        # self.ck = ck(self.perp)
 
-    def dual(self, x):
+    def perp(self, x):
         if isinstance(x, pg_point):
             return self.l_infty
         elif isinstance(x, pg_line):

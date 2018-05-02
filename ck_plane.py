@@ -8,14 +8,14 @@ class ck():
     __meta_class = ABCMeta
     
     @abstractmethod
-    def dual(self, v):
+    def perp(self, v):
         """abstract method"""
 
     def is_perpendicular(self, l, m):
-        return m.incident(self.dual(l))
+        return m.incident(self.perp(l))
 
     def altitude(self, p, l):
-        return p * self.dual(l)
+        return p * self.perp(l)
 
     def tri_altitude(self, a1, a2, a3):
         l1, l2, l3 = tri([a1, a2, a3])
@@ -30,10 +30,10 @@ class ck():
         return t1*t2
 
     def reflect(self, m):
-        return involution(m, self.dual(m))
+        return involution(m, self.perp(m))
 
     def measure(self, a1, a2):
-        return 1 - x_ratio(a1, a2, self.dual(a2), self.dual(a1))
+        return 1 - x_ratio(a1, a2, self.perp(a2), self.perp(a1))
 
     def quadrance(self, a1, a2):
         assert isinstance(a1, pg_point)
@@ -64,12 +64,12 @@ def check_sine_law(s1, q1, s2, q2):
 
 class ellck(ck):
 
-    def dual(self, v):
+    def perp(self, v):
         return v.dual()(v.base)
 
 
 class hyck(ck):
 
-    def dual(self, v):
+    def perp(self, v):
         [x, y, z] = v
         return v.dual()([x, y, -z])

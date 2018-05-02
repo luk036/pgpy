@@ -1,4 +1,4 @@
 {
-    "python.pythonPath": "/media/ubuntu/casper-rw/miniconda2/bin/python",
+    "python.pythonPath": "/media/ubuntu/casper-rw/miniconda2/bin/python2",
     "python.formatting.provider": "autopep8"
 }

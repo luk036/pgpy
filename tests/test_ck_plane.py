@@ -3,7 +3,7 @@ from __future__ import print_function
 from ..ck_plane import ck
 from ..proj_plane import pg_point, pg_line, join, meet, tri
 
-# def tstdual(v):
+# def tstperp(v):
 #     [x, y, z] = v
 #     if isinstance(v, pg_point):
 #         return pg_line([-2*x, y, -2*z])
@@ -18,12 +18,12 @@ def chk_int(myck, pg_obj=pg_point):
     a2 = pg_obj([4, -5, 6])
     a3 = pg_obj([-7, 8, 9])
 
-    temp = myck.dual(a1)
-    assert(myck.dual(temp) == a1)
+    temp = myck.perp(a1)
+    assert(myck.perp(temp) == a1)
 
     l1, l2, l3 = tri([a1, a2, a3])
     assert l1.incident(a2)
-    assert(myck.dual(myck.dual(l1)) == l1)
+    assert(myck.perp(myck.perp(l1)) == l1)
 
     t1, t2, t3 = myck.tri_altitude(a1, a2, a3)
     assert myck.is_perpendicular(t1, l1)
@@ -44,7 +44,7 @@ def chk_int(myck, pg_obj=pg_point):
 
 
 class myck(ck):
-    def dual(self, v):
+    def perp(self, v):
         [x, y, z] = v
         if isinstance(v, pg_point):
             return pg_line([-2*x, y, -2*z])
@@ -62,7 +62,7 @@ def test_int():
 # def no_test_symbolic():
 #     import sympy
 #     sympy.init_printing()
-#     myck = ck(tstdual)
+#     myck = ck(tstperp)
 #     pv = sympy.symbols("p:3", integer=True)
 #     qv = sympy.symbols("q:3", integer=True)
 #     rv = sympy.symbols("r:3", integer=True)
