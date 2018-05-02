@@ -21,7 +21,7 @@ def chk_int(myck, pg_object=pg_point):
     temp = myck.dual(a1)
     assert(myck.dual(temp) == a1)
 
-    l1, l2, l3 = tri(a1, a2, a3)
+    l1, l2, l3 = tri([a1, a2, a3])
     assert l1.incident(a2)
     assert(myck.dual(myck.dual(l1)) == l1)
 

@@ -36,7 +36,7 @@ def altitude(a, l):
 
 
 def tri_altitude(a1, a2, a3):
-    l1, l2, l3 = tri(a1, a2, a3)
+    l1, l2, l3 = tri([a1, a2, a3])
     t1 = altitude(a1, l1)
     t2 = altitude(a2, l2)
     t3 = altitude(a3, l3)

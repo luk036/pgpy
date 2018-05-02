@@ -13,7 +13,7 @@ def chk_tri(myck):
     a2 = pg_point([4, 2, 1])
     a3 = pg_point([1, 1, -1])
 
-    l1, l2, l3 = tri(a1, a2, a3)
+    l1, l2, l3 = tri([a1, a2, a3])
     q1, q2, q3 = myck.tri_quadrance(a1, a2, a3)
     s1, s2, s3 = myck.tri_spread(l1, l2, l3)
 

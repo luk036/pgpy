@@ -8,7 +8,7 @@ def chk_degenerate(myck):
     a2 = pg_point([4, -5, 6])
     a3 = pg_point([-7, 8, 9])
 
-    l1, l2, l3 = tri(a1, a2, a3)
+    l1, l2, l3 = tri([a1, a2, a3])
     assert l1.incident(a2)
 
     t1, t2, t3 = myck.tri_altitude(a1, a2, a3)

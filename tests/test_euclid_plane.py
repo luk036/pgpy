@@ -13,7 +13,7 @@ def test_int():
     # l2 = join(a1, a3)
     # l3 = join(a1, a2)
 
-    l1, l2, l3 = tri(a1, a2, a3)
+    l1, l2, l3 = tri([a1, a2, a3])
     t1, t2, t3 = tri_altitude(a1, a2, a3)
     assert is_perpendicular(t1, l1)
     assert not is_parallel(t1, l1)

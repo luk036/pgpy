@@ -15,7 +15,7 @@ class ck:
         return p * self.dual(l)
 
     def tri_altitude(self, a1, a2, a3):
-        l1, l2, l3 = tri(a1, a2, a3)
+        l1, l2, l3 = tri([a1, a2, a3])
         t1 = self.altitude(a1, l1)
         t2 = self.altitude(a2, l2)
         t3 = self.altitude(a3, l3)

@@ -6,7 +6,7 @@ import numpy as np
 from .proj_line import ratio_ratio, R1
 
 
-class pg_point(np.ndarray):
+class pg_object(np.ndarray):
     def __new__(cls, inputarr):
         obj = np.asarray(inputarr).view(cls)
         return obj
@@ -23,42 +23,30 @@ class pg_point(np.ndarray):
         return not self.dot(l)
 
     def __mul__(self, other):
-        ''' meet '''
-        l = np.cross(self, other)
-        return pg_line(l)
+        T = self.dual()
+        return T(np.cross(self, other))
+
+    def aux(self):
+        T = self.dual()
+        return T(self)
+
+
+class pg_point(pg_object):
+    def __new__(cls, inputarr):
+        obj = pg_object(inputarr).view(cls)
+        return obj
 
     def dual(self):
         return pg_line
 
-    def aux(self):
-        return pg_line(self)
 
-
-class pg_line(np.ndarray):
+class pg_line(pg_object):
     def __new__(cls, inputarr):
-        obj = np.asarray(inputarr).view(cls)
+        obj = pg_object(inputarr).view(cls)
         return obj
-
-    def __eq__(self, other):
-        if type(other) is type(self):
-            return (np.cross(self, other) == 0).all()
-        return False
-
-    def __ne__(self, other):
-        return not self.__eq__(other)
-
-    def incident(self, p):
-        return not self.dot(p)
-
-    def __mul__(self, other):
-        ''' join '''
-        return pg_point(np.cross(self, other))
 
     def dual(self):
         return pg_point
-
-    def aux(self):
-        return pg_point(self)
 
 
 def join(p, q):
@@ -95,12 +83,15 @@ def coI(Lst):
     assert p != q
     return coI_core(p*q, Lst[2:])
 
-def tri(a1, a2, a3):
+
+def tri(T):
+    a1, a2, a3 = T
     l1 = a2 * a3
     l2 = a1 * a3
     l3 = a1 * a2
     return l1, l2, l3
-    
+
+
 def persp(L, M):
     if len(L) != len(M):
         return False
@@ -146,12 +137,12 @@ def x_ratio(A, B, l, m):
 
 def R(A, B, C, D):
     # not sure???
-    if A[1]*B[2] != B[1]*A[2]: 
+    if A[1]*B[2] != B[1]*A[2]:
         # Project points to yz-plane
         a, b, c, d = A[1:], B[1:], C[1:], D[1:]
     else:
         # Project points to xz-plane
-        a, b, c, d = A[(0,2)], B[(0,2)], C[(0,2)], D[(0,2)]
+        a, b, c, d = A[(0, 2)], B[(0, 2)], C[(0, 2)], D[(0, 2)]
     return R1(a, b, c, d)
 
 
@@ -174,13 +165,11 @@ def check_pappus(co1, co2):
 
 
 def check_desargue(tri1, tri2):
-    A, B, C = tri1
-    D, E, F = tri2
-    a, b, c = tri(A, B, C)
-    d, e, f = tri(D, E, F)
+    trid1 = tri(tri1)
+    trid2 = tri(tri2)
 
-    b1 = persp([A, B, C], [D, E, F])
-    b2 = persp([a, b, c], [d, e, f])
+    b1 = persp(tri1, tri2)
+    b2 = persp(trid1, trid2)
     if b1:
         assert b2
     else:
