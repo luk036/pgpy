@@ -4,7 +4,9 @@ from pprint import pprint
 from .proj_plane import pg_point, pg_line, join, meet, x_ratio, involution, tri
 from abc import ABCMeta, abstractmethod
 
-class ck(metaclass=ABCMeta):
+class ck():
+    __meta_class = ABCMeta
+    
     @abstractmethod
     def dual(self, v):
         """abstract method"""
