@@ -3,20 +3,20 @@ from __future__ import print_function
 from ..ck_plane import ck
 from ..proj_plane import pg_point, pg_line, join, meet, tri
 
-def tstdual(v):
-    [x, y, z] = v
-    if isinstance(v, pg_point):
-        return pg_line([-2*x, y, -2*z])
-    elif isinstance(v, pg_line):
-        return pg_point([-x, 2*y, -z])
-    else:
-        raise NotImplementedError()
+# def tstdual(v):
+#     [x, y, z] = v
+#     if isinstance(v, pg_point):
+#         return pg_line([-2*x, y, -2*z])
+#     elif isinstance(v, pg_line):
+#         return pg_point([-x, 2*y, -z])
+#     else:
+#         raise NotImplementedError()
 
 
-def chk_int(myck, pg_object=pg_point):
-    a1 = pg_object([1, 2, 3])
-    a2 = pg_object([4, -5, 6])
-    a3 = pg_object([-7, 8, 9])
+def chk_int(myck, pg_obj=pg_point):
+    a1 = pg_obj([1, 2, 3])
+    a2 = pg_obj([4, -5, 6])
+    a3 = pg_obj([-7, 8, 9])
 
     temp = myck.dual(a1)
     assert(myck.dual(temp) == a1)
@@ -43,9 +43,20 @@ def chk_int(myck, pg_object=pg_point):
     assert myck.measure(a1, a1) == 0
 
 
+class myck(ck):
+    def dual(self, v):
+        [x, y, z] = v
+        if isinstance(v, pg_point):
+            return pg_line([-2*x, y, -2*z])
+        elif isinstance(v, pg_line):
+            return pg_point([-x, 2*y, -z])
+        else:
+            raise NotImplementedError()
+
+
 def test_int():
-    chk_int(ck(tstdual), pg_point)
-    chk_int(ck(tstdual), pg_line)
+    chk_int(myck(), pg_point)
+    chk_int(myck(), pg_line)
 
 
 # def no_test_symbolic():

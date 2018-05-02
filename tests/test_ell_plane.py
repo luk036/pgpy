@@ -1,6 +1,6 @@
 from __future__ import print_function
 
-from ..ell_plane import ellck
+from ..ck_plane import ellck
 from ..proj_plane import pg_point, pg_line, tri
 from .test_ck_plane import chk_int
 

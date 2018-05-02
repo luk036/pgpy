@@ -4,9 +4,14 @@ from __future__ import print_function
 from pprint import pprint
 import numpy as np
 from .proj_line import ratio_ratio, R1
+from abc import abstractmethod
 
 
 class pg_object(np.ndarray):
+    @abstractmethod
+    def dual(self):
+        """abstract method"""
+
     def __new__(cls, inputarr):
         obj = np.asarray(inputarr).view(cls)
         return obj

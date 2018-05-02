@@ -2,11 +2,12 @@
 from __future__ import print_function
 from pprint import pprint
 from .proj_plane import pg_point, pg_line, join, meet, x_ratio, involution, tri
+from abc import ABCMeta, abstractmethod
 
-
-class ck:
-    def __init__(self, dual):
-        self.dual = dual
+class ck(metaclass=ABCMeta):
+    @abstractmethod
+    def dual(self, v):
+        """abstract method"""
 
     def is_perpendicular(self, l, m):
         return m.incident(self.dual(l))
@@ -57,3 +58,16 @@ class ck:
 
 def check_sine_law(s1, q1, s2, q2):
     return s1*q2 == s2*q1
+
+
+class ellck(ck):
+
+    def dual(self, v):
+        return v.dual()(v.base)
+
+
+class hyck(ck):
+
+    def dual(self, v):
+        [x, y, z] = v
+        return v.dual()([x, y, -z])

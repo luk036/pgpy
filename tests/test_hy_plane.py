@@ -1,6 +1,6 @@
 from __future__ import print_function
 
-from ..hy_plane import hyck
+from ..ck_plane import hyck
 from ..proj_plane import pg_point, pg_line, tri
 from .test_ck_plane import chk_int
 from .test_ell_plane import chk_tri

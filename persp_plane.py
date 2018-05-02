@@ -6,12 +6,12 @@ from fractions import Fraction
 from .proj_plane import *
 from .ck_plane import ck
 
-class persp_euclid_plane():
+class persp_euclid_plane(ck):
     def __init__(self, Ire, Iim, l_infty):
         self.Ire = Ire
         self.Iim = Iim
         self.l_infty = l_infty
-        self.ck = ck(self.dual)
+        # self.ck = ck(self.dual)
 
     def dual(self, x):
         if isinstance(x, pg_point):
@@ -23,17 +23,17 @@ class persp_euclid_plane():
     def is_parallel(self, l, m):
         return self.l_infty.incident(l*m)
 
-    def is_perpendicular(self, l, m):
-        return self.ck.is_perpendicular(l,m)
+    # def is_perpendicular(self, l, m):
+    #     return self.ck.is_perpendicular(l,m)
 
-    def altitude(self, p, l):
-        return self.ck.altitude(p, l)
+    # def altitude(self, p, l):
+    #     return self.ck.altitude(p, l)
 
-    def tri_altitude(self, a1, a2, a3):
-        return self.ck.tri_altitude(a1, a2, a3)
+    # def tri_altitude(self, a1, a2, a3):
+    #     return self.ck.tri_altitude(a1, a2, a3)
 
-    def orthocenter(self, a1, a2, a3):
-        return self.ck.orthocenter(a1, a2, a3)
+    # def orthocenter(self, a1, a2, a3):
+    #     return self.ck.orthocenter(a1, a2, a3)
         
     # def reflect(m):
     #    return involution(m, fB(m))
