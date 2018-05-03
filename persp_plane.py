@@ -70,19 +70,16 @@ class persp_euclid_plane(ck):
     def spread(self, l1, l2):
         return self.measure(l1, l2)
 
-    def tri_measure(self, a1, a2, a3):
-        m1 = self.measure(a2, a3)
-        m2 = self.measure(a1, a3)
-        m3 = self.measure(a1, a2)
-        return m1, m2, m3
+    def tri_measure(self, T):
+        return tri_func(self.measure, T)
 
     def tri_quadrance(self, a1, a2, a3):
         assert isinstance(a1, pg_point)
-        return self.tri_measure(a1, a2, a3)
+        return self.tri_measure([a1, a2, a3])
 
     def tri_spread(self, l1, l2, l3):
         assert isinstance(l1, pg_line)
-        return self.tri_measure(l1, l2, l3)
+        return self.tri_measure([l1, l2, l3])
 
     def Ar(self, a, b, c):
         return (4*a*b) - (a + b - c)**2

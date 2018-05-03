@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 from pprint import pprint
-from .proj_plane import pg_point, pg_line, join, meet, x_ratio, involution, tri
+from .proj_plane import pg_point, pg_line, join, meet, x_ratio, involution, tri, tri_func
 from abc import ABCMeta, abstractmethod
+
 
 class ck():
     __meta_class = ABCMeta
-    
+
     @abstractmethod
     def perp(self, v):
         """abstract method"""
@@ -43,19 +44,16 @@ class ck():
         assert isinstance(l1, pg_line)
         return self.measure(l1, l2)
 
-    def tri_measure(self, a1, a2, a3):
-        m1 = self.measure(a2, a3)
-        m2 = self.measure(a1, a3)
-        m3 = self.measure(a1, a2)
-        return m1, m2, m3
+    def tri_measure(self, T):
+        return tri_func(self.measure, T)
 
     def tri_quadrance(self, a1, a2, a3):
         assert isinstance(a1, pg_point)
-        return self.tri_measure(a1, a2, a3)
+        return self.tri_measure([a1, a2, a3])
 
     def tri_spread(self, l1, l2, l3):
         assert isinstance(l1, pg_line)
-        return self.tri_measure(l1, l2, l3)
+        return self.tri_measure([l1, l2, l3])
 
 
 def check_sine_law(s1, q1, s2, q2):
@@ -73,3 +71,11 @@ class hyck(ck):
     def perp(self, v):
         [x, y, z] = v
         return v.dual()([x, y, -z])
+
+
+def check_cross_TQF(q1, q2, q3):
+    return (q1 + q2 + q3)**2 - 2 * (q1 * q1 + q2 * q2 + q3 * q3) - 4 * q1 * q2 * q3
+
+
+def check_cross_law(s1, s2, s3, q3):
+    return (s1 * s2 * q3 - (s1 + s2 + s3) + 2)**2 == 4 * (1 - s1) * (1 - s2) * (1 - s3)

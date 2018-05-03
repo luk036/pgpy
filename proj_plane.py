@@ -97,6 +97,14 @@ def tri(T):
     return l1, l2, l3
 
 
+def tri_func(func, T):
+    a1, a2, a3 = T    
+    m1 = func(a2, a3)
+    m2 = func(a1, a3)
+    m3 = func(a1, a2)
+    return m1, m2, m3
+
+
 def persp(L, M):
     if len(L) != len(M):
         return False

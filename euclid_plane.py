@@ -89,17 +89,11 @@ def spread(l1, l2):
 
 
 def tri_quadrance(a1, a2, a3):
-    q1 = quadrance(a2, a3)
-    q2 = quadrance(a1, a3)
-    q3 = quadrance(a1, a2)
-    return q1, q2, q3
+    return tri_func(quadrance, [a1, a2, a3])
 
 
 def tri_spread(l1, l2, l3):
-    s1 = spread(l2, l3)
-    s2 = spread(l1, l3)
-    s3 = spread(l1, l2)
-    return s1, s2, s3
+    return tri_func(spread, [l1, l2, l3])
 
 
 def cross(l1, l2):

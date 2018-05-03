@@ -35,8 +35,8 @@ def chk_int(myck, pg_obj=pg_point):
     tau = myck.reflect(l1)
     assert(tau(tau(a1)) == a1)
 
-    q1, q2, q3 = myck.tri_measure(a1, a2, a3)
-    s1, s2, s3 = myck.tri_measure(l1, l2, l3)
+    q1, q2, q3 = myck.tri_measure([a1, a2, a3])
+    s1, s2, s3 = myck.tri_measure([l1, l2, l3])
     print(q1/s1, q2/s2, q3/s3)
     assert(q1*s2 == q2*s1)
     assert myck.measure(l1, l1) == 0
