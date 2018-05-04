@@ -81,12 +81,9 @@ def coI_core(l, Lst):
     return True
 
 
-def coI(Lst):
-    if len(Lst) < 3:
-        return True
-    [p, q] = Lst[0:2]
+def coI(p, q, *rest):
     assert p != q
-    return coI_core(p*q, Lst[2:])
+    return coI_core(p*q, rest )
 
 
 def tri(T):

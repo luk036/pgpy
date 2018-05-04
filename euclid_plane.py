@@ -53,12 +53,12 @@ def reflect(m):
     return involution(m, fB(m))
 
 
-def omgB(x, y):
-    return x[0] * y[0] + x[1] * y[1]
+# def dot1(x, y):
+#    return x[0] * y[0] + x[1] * y[1]
 
 
-def det(x, y):
-    return x[0] * y[1] - x[1] * y[0]
+# def cross1(x, y):
+#     return x[0] * y[1] - x[1] * y[0]
 
 
 def midpoint(a, b):
@@ -80,12 +80,12 @@ def quadrance(a1, a2):
 
 def sbase(l1, l2, d):
     if isinstance(d, (int, np.int64)):
-        return Fraction(d, omgB(l1, l1)) * Fraction(d, omgB(l2, l2))
-    return (d * d) / (omgB(l1, l1) * omgB(l2, l2))
+        return Fraction(d, dot1(l1, l1)) * Fraction(d, dot1(l2, l2))
+    return (d * d) /  (dot1(l1, l1) * dot1(l2, l2))
 
 
 def spread(l1, l2):
-    return sbase(l1, l2, det(l1, l2))
+    return sbase(l1, l2, cross1(l1, l2))
 
 
 def tri_quadrance(a1, a2, a3):
@@ -97,7 +97,7 @@ def tri_spread(l1, l2, l3):
 
 
 def cross(l1, l2):
-    return sbase(l1, l2, omgB(l1, l2))
+    return sbase(l1, l2, dot1(l1, l2))
 
 
 def uc_point(lambda1, mu1):
