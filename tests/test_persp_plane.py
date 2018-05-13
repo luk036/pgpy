@@ -4,9 +4,9 @@ from ..persp_plane import persp_euclid_plane
 from ..proj_plane import pg_point, pg_line, tri, join, meet
 
 def chk_degenerate(myck):
-    a1 = pg_point([1, 2, 3])
-    a2 = pg_point([4, -5, 6])
-    a3 = pg_point([-7, 8, 9])
+    a1 = pg_point([-1, 2, 3])
+    a2 = pg_point([4, -1, 1])
+    a3 = pg_point([0, -1, 1])
 
     l1, l2, l3 = tri([a1, a2, a3])
     assert l1.incident(a2)
