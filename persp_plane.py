@@ -6,6 +6,7 @@ from fractions import Fraction
 from .proj_plane import *
 from .ck_plane import ck
 
+
 class persp_euclid_plane(ck):
     def __init__(self, Ire, Iim, l_infty):
         self.Ire = Ire
@@ -34,7 +35,7 @@ class persp_euclid_plane(ck):
 
     # def orthocenter(self, a1, a2, a3):
     #     return self.ck.orthocenter(a1, a2, a3)
-        
+
     # def reflect(m):
     #    return involution(m, fB(m))
 
@@ -83,4 +84,3 @@ class persp_euclid_plane(ck):
 
     def Ar(self, a, b, c):
         return (4*a*b) - (a + b - c)**2
-

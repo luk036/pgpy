@@ -4,9 +4,11 @@ from ..ck_plane import ellck
 from ..proj_plane import pg_point, pg_line, tri
 from .test_ck_plane import chk_int
 
+
 def test_int():
     chk_int(ellck(), pg_point)
     chk_int(ellck(), pg_line)
+
 
 def chk_tri(myck):
     a1 = pg_point([1, 3, 1])
@@ -23,6 +25,7 @@ def chk_tri(myck):
     assert cl == 0
     cld = (q1*q2*s3 - (q1+q2+q3)+2)**2 - 4*(1 - q1)*(1 - q2)*(1 - q3)
     assert cld == 0
+
 
 def test_tri():
     chk_tri(ellck())

@@ -12,7 +12,7 @@ def cross1_l(p, q):
 
 class pl_point(np.ndarray):
     """Projective point in Projective line
-    
+
     """
     def __new__(cls, inputarr):
         obj = np.asarray(inputarr).view(cls)

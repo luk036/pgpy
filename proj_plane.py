@@ -83,7 +83,7 @@ def coI_core(l, Lst):
 
 def coI(p, q, *rest):
     assert p != q
-    return coI_core(p*q, rest )
+    return coI_core(p*q, rest)
 
 
 def tri(T):
@@ -95,7 +95,7 @@ def tri(T):
 
 
 def tri_func(func, T):
-    a1, a2, a3 = T    
+    a1, a2, a3 = T
     m1 = func(a2, a3)
     m2 = func(a1, a3)
     m3 = func(a1, a2)

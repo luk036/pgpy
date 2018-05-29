@@ -81,7 +81,7 @@ def quadrance(a1, a2):
 def sbase(l1, l2, d):
     if isinstance(d, (int, np.int64)):
         return Fraction(d, dot1(l1, l1)) * Fraction(d, dot1(l2, l2))
-    return (d * d) /  (dot1(l1, l1) * dot1(l2, l2))
+    return (d * d) / (dot1(l1, l1) * dot1(l2, l2))
 
 
 def spread(l1, l2):

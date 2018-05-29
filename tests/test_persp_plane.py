@@ -3,6 +3,7 @@ from __future__ import print_function
 from ..persp_plane import persp_euclid_plane
 from ..proj_plane import pg_point, pg_line, tri, join, meet
 
+
 def chk_degenerate(myck):
     a1 = pg_point([-1, 2, 3])
     a2 = pg_point([4, -1, 1])

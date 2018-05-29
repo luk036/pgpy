@@ -14,4 +14,5 @@ from pgpy.ck_plane import *
 from pgpy.persp_plane import *
 
 
-__all__ = ["proj_plane", "proj_line", "ck_plane", "euclid_plane", "persp_plane"]
+__all__ = ["proj_plane", "proj_line",
+           "ck_plane", "euclid_plane", "persp_plane"]
