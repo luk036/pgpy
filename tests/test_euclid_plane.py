@@ -8,10 +8,6 @@ def test_int():
     a1 = pg_point([1, 3, 1])
     a2 = pg_point([4, 2, 1])
     a3 = pg_point([4, -3, 1])
-    # a3 = pg_point([sx, sy, sz])
-    # l1 = join(a2, a3)
-    # l2 = join(a1, a3)
-    # l3 = join(a1, a2)
 
     l1, l2, l3 = tri([a1, a2, a3])
     t1, t2, t3 = tri_altitude(a1, a2, a3)
@@ -44,7 +40,6 @@ def test_int():
     assert c3 + s3 == 1  # get the same
 
     tsf = (s1 + s2 + s3)**2 - 2*(s1*s1 + s2*s2 + s3*s3) - 4*s1*s2*s3
-    # tsf = sympy.simplify(tsf)
     assert tsf == 0
 
     a3 = pg_point(3*a1 + 4*a2)
@@ -52,7 +47,6 @@ def test_int():
     q2 = quadrance(a1, a3)
     q3 = quadrance(a1, a2)
     tqf = (q1 + q2 + q3)**2 - 2*(q1*q1 + q2*q2 + q3*q3)  # get 0
-    #tqf = sympy.simplify(tqf)
     assert tqf == 0
 
     a1 = uc_point(1, 0)

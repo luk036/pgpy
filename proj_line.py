@@ -18,9 +18,6 @@ class pl_point(np.ndarray):
         obj = np.asarray(inputarr).view(cls)
         return obj
 
-    # def __init__(self, p):
-    #     self.p = p
-
     def __eq__(self, other):
         if isinstance(self, type(other)):
             return cross1_l(self, other) == 0

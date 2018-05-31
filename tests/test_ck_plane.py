@@ -3,15 +3,6 @@ from __future__ import print_function
 from ..ck_plane import ck
 from ..proj_plane import pg_point, pg_line, join, meet, tri
 
-# def tstperp(v):
-#     [x, y, z] = v
-#     if isinstance(v, pg_point):
-#         return pg_line([-2*x, y, -2*z])
-#     elif isinstance(v, pg_line):
-#         return pg_point([-x, 2*y, -z])
-#     else:
-#         raise NotImplementedError()
-
 
 def chk_int(myck, pg_obj=pg_point):
     a1 = pg_obj([1, 2, 3])

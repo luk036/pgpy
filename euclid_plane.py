@@ -14,10 +14,6 @@ def cross1(x, y):
     return x[0] * y[1] - x[1] * y[0]
 
 
-# def dot2(x, y):
-#     return x[0] * y[0] + x[2] * y[2]
-
-
 def fB(l):
     [a, b] = l[:2]
     return pg_point([a, b, 0])
@@ -51,14 +47,6 @@ def orthocenter(a1, a2, a3):
 
 def reflect(m):
     return involution(m, fB(m))
-
-
-# def dot1(x, y):
-#    return x[0] * y[0] + x[1] * y[1]
-
-
-# def cross1(x, y):
-#     return x[0] * y[1] - x[1] * y[0]
 
 
 def midpoint(a, b):

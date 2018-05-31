@@ -12,7 +12,6 @@ class persp_euclid_plane(ck):
         self.Ire = Ire
         self.Iim = Iim
         self.l_infty = l_infty
-        # self.ck = ck(self.perp)
 
     def perp(self, x):
         if isinstance(x, pg_point):
@@ -24,21 +23,6 @@ class persp_euclid_plane(ck):
     def is_parallel(self, l, m):
         return self.l_infty.incident(l*m)
 
-    # def is_perpendicular(self, l, m):
-    #     return self.ck.is_perpendicular(l,m)
-
-    # def altitude(self, p, l):
-    #     return self.ck.altitude(p, l)
-
-    # def tri_altitude(self, a1, a2, a3):
-    #     return self.ck.tri_altitude(a1, a2, a3)
-
-    # def orthocenter(self, a1, a2, a3):
-    #     return self.ck.orthocenter(a1, a2, a3)
-
-    # def reflect(m):
-    #    return involution(m, fB(m))
-
     def midpoint(self, a, b):
         return plucker(b.dot(self.l_infty), a, a.dot(self.l_infty), b)
 
@@ -48,12 +32,6 @@ class persp_euclid_plane(ck):
         elif isinstance(x, pg_line):
             return x.dot(self.Ire)**2 + x.dot(self.Iim)**2
         raise NotImplementedError()
-
-    # def omegaB(self, l):
-    #     return 2*l.dot(self.B_infty)*l.dot(self.A_infty)
-
-    # def omegaA(self, p):
-    #     return p.dot(self.l_infty)**2
 
     def measure(self, a1, a2):
         omg = self.omega(a1*a2)
