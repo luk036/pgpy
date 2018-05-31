@@ -11,6 +11,7 @@ class ck():
     @abstractmethod
     def perp(self, v):
         """abstract method"""
+        pass
 
     def is_perpendicular(self, l, m):
         return m.incident(self.perp(l))

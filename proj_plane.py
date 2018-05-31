@@ -11,6 +11,7 @@ class pg_object(np.ndarray):
     @abstractmethod
     def dual(self):
         """abstract method"""
+        pass
 
     def __new__(cls, inputarr):
         obj = np.asarray(inputarr).view(cls)
@@ -64,12 +65,6 @@ def meet(l, m):
     return l * m
 
 
-# Note: `lambda` is a preserved keyword in python
-def plucker(lambda1, p, mu1, q):
-    T = type(p)
-    return T(lambda1 * p + mu1 * q)
-
-
 def coincident(p, q, r):
     return r.incident(p * q)
 
@@ -83,7 +78,13 @@ def coI_core(l, Lst):
 
 def coI(p, q, *rest):
     assert p != q
-    return coI_core(p*q, rest )
+    return coI_core(p*q, rest)
+
+
+# Note: `lambda` is a preserved keyword in python
+def plucker(lambda1, p, mu1, q):
+    T = type(p)
+    return T(lambda1 * p + mu1 * q)
 
 
 def tri(T):
@@ -95,7 +96,7 @@ def tri(T):
 
 
 def tri_func(func, T):
-    a1, a2, a3 = T    
+    a1, a2, a3 = T
     m1 = func(a2, a3)
     m2 = func(a1, a3)
     m3 = func(a1, a2)

@@ -18,7 +18,6 @@ def chk_complex(pg_object):
     assert isharmonic(p, q, r, s)
     assert coI(p, q, r, s)
 
-
     r = pg_object([2-1j, -2+1j, 1+1j])
     s = pg_object([2j, 2-2j, 3])
     t = pg_object([2, -2j, 2])
@@ -29,7 +28,6 @@ def chk_complex(pg_object):
     # r = join(p, q)
     u = O - r  # ???
     check_desargue((p, q, r), (s, t, u))
-
 
 
 def test_complex():

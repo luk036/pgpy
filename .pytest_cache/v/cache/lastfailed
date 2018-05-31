@@ -1,3 +1,10 @@
 {
-  "test_hyper_geom.py::test_complex": true
+  "test_hyper_geom.py::test_complex": true, 
+  "tests/test_ck_plane.py": true, 
+  "tests/test_ell_plane.py": true, 
+  "tests/test_euclid_plane.py": true, 
+  "tests/test_hy_plane.py": true, 
+  "tests/test_persp_plane.py": true, 
+  "tests/test_proj_line.py": true, 
+  "tests/test_proj_plane.py": true
 }
