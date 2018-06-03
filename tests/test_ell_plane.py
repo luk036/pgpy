@@ -1,7 +1,7 @@
 from __future__ import print_function
 
 from ..ck_plane import ellck
-from ..proj_plane import pg_point, pg_line, tri, join, meet, plucker
+from ..proj_plane import pg_point, pg_line, tri, join, plucker
 from .test_ck_plane import chk_int
 
 

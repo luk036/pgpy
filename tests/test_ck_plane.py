@@ -1,7 +1,7 @@
 from __future__ import print_function
 
 from ..ck_plane import ck
-from ..proj_plane import pg_point, pg_line, join, meet, tri
+from ..proj_plane import pg_point, pg_line, tri
 
 
 def chk_int(myck, pg_obj=pg_point):

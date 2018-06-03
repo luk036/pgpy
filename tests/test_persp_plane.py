@@ -1,7 +1,7 @@
 from __future__ import print_function
 
 from ..persp_plane import persp_euclid_plane
-from ..proj_plane import pg_point, pg_line, tri, join, meet
+from ..proj_plane import pg_point, pg_line, tri, meet
 
 
 def chk_degenerate(myck):
