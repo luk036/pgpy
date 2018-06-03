@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from __future__ import print_function
-from pprint import pprint
 import numpy as np
 from fractions import Fraction
 from .proj_plane import *
@@ -13,11 +11,11 @@ class persp_euclid_plane(ck):
         self.Iim = Iim
         self.l_infty = l_infty
 
-    def perp(self, x):
-        if isinstance(x, pg_point):
+    def perp(self, v):
+        if isinstance(v, pg_point):
             return self.l_infty
-        elif isinstance(x, pg_line):
-            return plucker(x.dot(self.Ire), self.Ire, x.dot(self.Iim), self.Iim)
+        elif isinstance(v, pg_line):
+            return plucker(v.dot(self.Ire), self.Ire, v.dot(self.Iim), self.Iim)
         raise NotImplementedError()
 
     def is_parallel(self, l, m):
@@ -60,5 +58,6 @@ class persp_euclid_plane(ck):
         assert isinstance(l1, pg_line)
         return self.tri_measure([l1, l2, l3])
 
-    def Ar(self, a, b, c):
+    @staticmethod
+    def Ar(a, b, c):
         return (4*a*b) - (a + b - c)**2

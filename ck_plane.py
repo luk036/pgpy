@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-from __future__ import print_function
-from pprint import pprint
-from .proj_plane import pg_point, pg_line, join, meet, x_ratio, involution, tri, tri_func
+from .proj_plane import pg_point, pg_line, x_ratio, involution, tri, tri_func
 from abc import ABCMeta, abstractmethod
 
 

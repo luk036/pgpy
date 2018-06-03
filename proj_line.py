@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-from __future__ import print_function
-
-from pprint import pprint
 from fractions import Fraction
 import numpy as np
 

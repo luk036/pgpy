@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-from __future__ import print_function
-
-from pprint import pprint
 import numpy as np
 from .proj_line import ratio_ratio, R1
 from abc import abstractmethod
@@ -56,12 +53,14 @@ class pg_line(pg_object):
 
 
 def join(p, q):
-    assert isinstance(p, pg_point)
+    if not isinstance(p, pg_point):
+        raise AssertionError()
     return p * q
 
 
 def meet(l, m):
-    assert isinstance(l, pg_line)
+    if not isinstance(l, pg_line):
+        raise AssertionError()
     return l * m
 
 
@@ -77,7 +76,8 @@ def coI_core(l, Lst):
 
 
 def coI(p, q, *rest):
-    assert p != q
+    if not p != q:
+        raise AssertionError()
     return coI_core(p*q, rest)
 
 

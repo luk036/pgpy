@@ -33,8 +33,6 @@ def test_tri():
 def no_test_symbolic(myck):
     import sympy
     sympy.init_printing()
-    import sympy
-    sympy.init_printing()
     pv = sympy.symbols("p:3", integer=True)
     qv = sympy.symbols("q:3", integer=True)
 
