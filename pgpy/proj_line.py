@@ -25,7 +25,7 @@ class pl_point(np.ndarray):
 
 
 def ratio_ratio(a, b, c, d):
-    if isinstance(a, (int, np.int64)):
+    if isinstance(a, (int, np.int64, np.int32)):
         return Fraction(a, b) / Fraction(c, d)
     return (a * d) / (b * c)
 

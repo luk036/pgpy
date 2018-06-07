@@ -34,7 +34,8 @@ class persp_euclid_plane(ck):
     def measure(self, a1, a2):
         omg = self.omega(a1*a2)
         den = self.omega(a1) * self.omega(a2)
-        if isinstance(omg, (int, np.int64)) and isinstance(den, (int, np.int64)):
+        if isinstance(omg, (int, np.int64, np.int32)) and \
+            isinstance(den, (int, np.int64, np.int32)):
             return Fraction(omg, den)
         return omg / den
 
