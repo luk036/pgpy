@@ -65,11 +65,11 @@ before_install:
 install:
   # install required packages
   - pip install --upgrade pip
+  - pip install --retries 3 ${PIP_FLAGS} -r requirements.txt
+  - if [[ "${OPTIONAL_DEPS}" == 1 ]]; then
+      pip install --retries 3 ${PIP_FLAGS} -r requirements/extras.txt;
+    fi
   - printenv PWD
-  - pip install numpy
-  - pip install codecov
-  - pip install pytest pytest-cov
-  - pip install sympy
   # install pgpy
   - pip install .
   # show what's installed

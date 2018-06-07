@@ -53,12 +53,7 @@ install:
   - "python -c \"import struct; print(struct.calcsize('P') * 8)\""
 
   # Install the build and runtime dependencies of the project.
-  # - "%CMD_IN_ENV% pip install --timeout=60 -r requirements.txt"
-  - "pip install numpy"
-  - "pip install codecov"
-  - "pip install pytest pytest-cov"
-  - "pip install sympy"
-  - "pip install nose"
+  - "%CMD_IN_ENV% pip install --timeout=60 -r requirements.txt"
   - "pip install ."
 
 # Not a .NET project, we build pgpy in the install step instead
