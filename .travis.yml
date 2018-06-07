@@ -83,6 +83,7 @@ after_success:
   - codecov;
 
 notifications:
+  email: false
   slack:
     rooms:
       - loksu:jErzuILLSNn9qGYkkILvBwje#pgpy
