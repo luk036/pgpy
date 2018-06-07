@@ -64,8 +64,3 @@ test_script:
   # installed library.
   - "python -m pytest --cov=./"
 
-notifications:
-  slack:
-    rooms:
-      - loksu:jErzuILLSNn9qGYkkILvBwje#pgpy
-

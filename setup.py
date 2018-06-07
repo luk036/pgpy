@@ -66,8 +66,8 @@ package_data = {
     'pgpy': ['tests/*.py']
 }
 
-install_requires = ['decorator>=4.1.0']
-extras_require = {'all': ['numpy', 'matplotlib']}
+install_requires = ['decorator>=4.1.0', 'numpy>=1.12.0']
+extras_require = {'all': ['sympy', 'matplotlib']}
 
 if __name__ == "__main__":
 
