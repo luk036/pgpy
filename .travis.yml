@@ -66,6 +66,7 @@ install:
   # install required packages
   - pip install --upgrade pip
   - printenv PWD
+  - pip install numpy
   - pip install codecov
   - pip install pytest pytest-cov
   - pip install sympy
