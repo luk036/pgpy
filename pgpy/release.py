@@ -191,7 +191,7 @@ PgPy is a Python package for the creation, manipulation, and
 study of the structure, dynamics, and functions of projective geometry.
 
 """
-# license = 'BSD'
+license = 'BSD'
 authors = {'luk036': ('Wai-Shing Luk', 'luk036@gmail.com')}
 maintainer = "PgPy Developers"
 maintainer_email = "pgpy-discuss@googlegroups.com"
