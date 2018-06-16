@@ -7,7 +7,7 @@ You can install pgpy with
 
 python setup.py install
 """
-from glob import glob
+# from glob import glob
 import os
 import sys
 if os.path.exists('MANIFEST'):
