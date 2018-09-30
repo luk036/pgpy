@@ -36,22 +36,25 @@ class ck():
         return 1 - x_ratio(a1, a2, self.perp(a2), self.perp(a1))
 
     def quadrance(self, a1, a2):
-        assert isinstance(a1, pg_point)
+        if not isinstance(a1, pg_point):
         return self.measure(a1, a2)
 
     def spread(self, l1, l2):
-        assert isinstance(l1, pg_line)
+        if not isinstance(l1, pg_line):
+            raise AssertionError()
         return self.measure(l1, l2)
 
     def tri_measure(self, T):
         return tri_func(self.measure, T)
 
     def tri_quadrance(self, a1, a2, a3):
-        assert isinstance(a1, pg_point)
+        if not isinstance(a1, pg_point):
+            raise AssertionError()
         return self.tri_measure([a1, a2, a3])
 
     def tri_spread(self, l1, l2, l3):
-        assert isinstance(l1, pg_line)
+        if not isinstance(l1, pg_line):
+            raise AssertionError()
         return self.tri_measure([l1, l2, l3])
 
 

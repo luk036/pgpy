@@ -110,10 +110,10 @@ def persp(L, M):
         return True
     [pL, qL] = L[0:2]
     [pM, qM] = M[0:2]
-    assert pL != qL
-    assert pM != qM
-    assert pL != pM
-    assert qL != qM
+    if pL == qL or pM == qM:
+        raise AssertionError()
+    if pL == pM or qL == qM:
+        raise AssertionError()
     O = (pL * pM) * (qL * qM)
     for rL, rM in zip(L[2:], M[2:]):
         if not O.incident(rL * rM):
