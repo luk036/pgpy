@@ -87,16 +87,16 @@ def plucker(lambda1, p, mu1, q):
     return T(lambda1 * p + mu1 * q)
 
 
-def tri(T):
-    a1, a2, a3 = T
+def tri_dual(Tri):
+    a1, a2, a3 = Tri
     l1 = a2 * a3
     l2 = a1 * a3
     l3 = a1 * a2
     return l1, l2, l3
 
 
-def tri_func(func, T):
-    a1, a2, a3 = T
+def tri_func(func, Tri):
+    a1, a2, a3 = Tri
     m1 = func(a2, a3)
     m2 = func(a1, a3)
     m3 = func(a1, a2)
@@ -110,9 +110,7 @@ def persp(L, M):
         return True
     [pL, qL] = L[0:2]
     [pM, qM] = M[0:2]
-    if pL == qL or pM == qM:
-        raise AssertionError()
-    if pL == pM or qL == qM:
+    if pL == qL or pM == qM or pL == pM or qL == qM:
         raise AssertionError()
     O = (pL * pM) * (qL * qM)
     for rL, rM in zip(L[2:], M[2:]):
@@ -176,8 +174,8 @@ def check_pappus(co1, co2):
 
 
 def check_desargue(tri1, tri2):
-    trid1 = tri(tri1)
-    trid2 = tri(tri2)
+    trid1 = tri_dual(tri1)
+    trid2 = tri_dual(tri2)
 
     b1 = persp(tri1, tri2)
     b2 = persp(trid1, trid2)

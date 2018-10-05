@@ -1,7 +1,7 @@
 from __future__ import print_function
 
 from ..euclid_plane import *
-from ..proj_plane import tri, join, meet
+from ..proj_plane import tri_dual, join, meet
 
 
 def test_int():
@@ -9,23 +9,25 @@ def test_int():
     a2 = pg_point([4, 2, 1])
     a3 = pg_point([4, -3, 1])
 
-    l1, l2, l3 = tri([a1, a2, a3])
-    t1, t2, t3 = tri_altitude(a1, a2, a3)
+    triangle = [a1, a2, a3]
+    trilateral = tri_dual(triangle)
+    l1, _, _ = trilateral
+    t1, t2, t3 = tri_altitude(triangle)
     assert is_perpendicular(t1, l1)
     assert not is_parallel(t1, l1)
 
     t4 = harm_conj(t1, t2, t3)
     assert R(t1, t2, t3, t4) == -1
 
-    o = orthocenter(a1, a2, a3)
+    o = orthocenter(triangle)
     assert o == meet(t2, t3)
-    assert a1 == orthocenter(o, a2, a3)
+    assert a1 == orthocenter([o, a2, a3])
 
     tau = reflect(l1)
     assert(tau(tau(a1)) == a1)
 
-    q1, q2, q3 = tri_quadrance(a1, a2, a3)
-    s1, s2, s3 = tri_spread(l1, l2, l3)
+    q1, q2, q3 = tri_quadrance(triangle)
+    s1, s2, s3 = tri_spread(trilateral)
     # print(q1/s1, q2/s2, q3/s3)
     assert spread(t1, l1) == 1.0  # get 1.0
     assert coincident(t1, t2, t3)

@@ -51,15 +51,15 @@ class persp_euclid_plane(ck):
     def tri_measure(self, T):
         return tri_func(self.measure, T)
 
-    def tri_quadrance(self, a1, a2, a3):
-        if not isinstance(a1, pg_point):
+    def tri_quadrance(self, triangle):
+        if not isinstance(triangle[0], pg_point):
             raise AssertionError()
-        return self.tri_measure([a1, a2, a3])
+        return self.tri_measure(triangle)
 
-    def tri_spread(self, l1, l2, l3):
-        if not isinstance(l1, pg_line):
+    def tri_spread(self, trilateral):
+        if not isinstance(trilateral[0], pg_line):
             raise AssertionError()
-        return self.tri_measure([l1, l2, l3])
+        return self.tri_measure(trilateral)
 
     @staticmethod
     def Ar(a, b, c):

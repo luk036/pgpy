@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from .proj_plane import pg_point, pg_line, x_ratio, involution, tri, tri_func
+from .proj_plane import pg_point, pg_line, x_ratio, involution, tri_dual, tri_func
 from abc import ABCMeta, abstractmethod
 
 
@@ -17,14 +17,16 @@ class ck():
     def altitude(self, p, l):
         return p * self.perp(l)
 
-    def tri_altitude(self, a1, a2, a3):
-        l1, l2, l3 = tri([a1, a2, a3])
+    def tri_altitude(self, tri):
+        l1, l2, l3 = tri_dual(tri)
+        a1, a2, a3 = tri
         t1 = self.altitude(a1, l1)
         t2 = self.altitude(a2, l2)
         t3 = self.altitude(a3, l3)
         return t1, t2, t3
 
-    def orthocenter(self, a1, a2, a3):
+    def orthocenter(self, tri):
+        a1, a2, a3 = tri
         t1 = self.altitude(a1, a2*a3)
         t2 = self.altitude(a2, a1*a3)
         return t1*t2
@@ -45,18 +47,18 @@ class ck():
             raise AssertionError()
         return self.measure(l1, l2)
 
-    def tri_measure(self, T):
-        return tri_func(self.measure, T)
+    def tri_measure(self, tri):
+        return tri_func(self.measure, tri)
 
-    def tri_quadrance(self, a1, a2, a3):
-        if not isinstance(a1, pg_point):
+    def tri_quadrance(self, triangle):
+        if not isinstance(triangle[0], pg_point):
             raise AssertionError()
-        return self.tri_measure([a1, a2, a3])
+        return self.tri_measure(triangle)
 
-    def tri_spread(self, l1, l2, l3):
-        if not isinstance(l1, pg_line):
+    def tri_spread(self, trilateral):
+        if not isinstance(trilateral[0], pg_line):
             raise AssertionError()
-        return self.tri_measure([l1, l2, l3])
+        return self.tri_measure(trilateral)
 
 
 def check_sine_law(s1, q1, s2, q2):

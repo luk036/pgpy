@@ -29,15 +29,17 @@ def altitude(a, l):
     return join(a, fB(l))
 
 
-def tri_altitude(a1, a2, a3):
-    l1, l2, l3 = tri([a1, a2, a3])
+def tri_altitude(tri):
+    l1, l2, l3 = tri_dual(tri)
+    a1, a2, a3 = tri
     t1 = altitude(a1, l1)
     t2 = altitude(a2, l2)
     t3 = altitude(a3, l3)
     return t1, t2, t3
 
 
-def orthocenter(a1, a2, a3):
+def orthocenter(tri):
+    a1, a2, a3 = tri
     t1 = altitude(a1, a2*a3)
     t2 = altitude(a2, a1*a3)
     return t1*t2
@@ -74,12 +76,12 @@ def spread(l1, l2):
     return sbase(l1, l2, cross1(l1, l2))
 
 
-def tri_quadrance(a1, a2, a3):
-    return tri_func(quadrance, [a1, a2, a3])
+def tri_quadrance(triangle):
+    return tri_func(quadrance, triangle)
 
 
-def tri_spread(l1, l2, l3):
-    return tri_func(spread, [l1, l2, l3])
+def tri_spread(trilateral):
+    return tri_func(spread, trilateral)
 
 
 def cross(l1, l2):

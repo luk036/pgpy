@@ -1,7 +1,7 @@
 from __future__ import print_function
 
 from ..ck_plane import ellck
-from ..proj_plane import pg_point, pg_line, tri, join, plucker
+from ..proj_plane import pg_point, pg_line, tri_dual, join, plucker
 from .test_ck_plane import chk_int
 
 
@@ -15,9 +15,10 @@ def chk_tri(myck):
     a2 = pg_point([4, 2, 1])
     a3 = pg_point([1, 1, -1])
 
-    l1, l2, l3 = tri([a1, a2, a3])
-    q1, q2, q3 = myck.tri_quadrance(a1, a2, a3)
-    s1, s2, s3 = myck.tri_spread(l1, l2, l3)
+    triangle = [a1, a2, a3]
+    trilateral = tri_dual(triangle)
+    q1, q2, q3 = myck.tri_quadrance(triangle)
+    s1, s2, s3 = myck.tri_spread(trilateral)
 
     cl = (s1*s2*q3 - (s1+s2+s3)+2)**2 - 4*(1 - s1)*(1 - s2)*(1 - s3)
     # cld = (q1*q2*s3 - (q1+q2+q3)+2)**2 - 4*(1 - q1)*(1 - q2)*(1 - q3)
