@@ -37,6 +37,7 @@ class ck():
 
     def quadrance(self, a1, a2):
         if not isinstance(a1, pg_point):
+            raise AssertionError()
         return self.measure(a1, a2)
 
     def spread(self, l1, l2):
