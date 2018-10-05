@@ -37,7 +37,8 @@ def chk_int(myck, pg_obj=pg_point):
 
 
 class myck(ck):
-    def perp(self, v):
+    @classmethod
+    def perp(cls, v):
         [x, y, z] = v
         if isinstance(v, pg_point):
             return pg_line([-2*x, y, -2*z])
