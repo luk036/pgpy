@@ -15,14 +15,18 @@ class persp_euclid_plane(ck):
         if isinstance(v, pg_point):
             return self.l_infty
         elif isinstance(v, pg_line):
-            return plucker(v.dot(self.Ire), self.Ire, v.dot(self.Iim), self.Iim)
+            alpha = v.dot(self.Ire)
+            beta = v.dot(self.Iim)
+            return plucker(alpha, self.Ire, beta, self.Iim)
         raise NotImplementedError()
 
     def is_parallel(self, l, m):
         return self.l_infty.incident(l*m)
 
     def midpoint(self, a, b):
-        return plucker(b.dot(self.l_infty), a, a.dot(self.l_infty), b)
+        alpha = b.dot(self.l_infty)
+        beta = a.dot(self.l_infty)
+        return plucker(alpha, a, beta, b)
 
     def omega(self, x):
         if isinstance(x, pg_point):
@@ -35,31 +39,12 @@ class persp_euclid_plane(ck):
         omg = self.omega(a1*a2)
         den = self.omega(a1) * self.omega(a2)
         if isinstance(omg, (int, np.int64, np.int32)) and \
-            isinstance(den, (int, np.int64, np.int32)):
+                isinstance(den, (int, np.int64, np.int32)):
             return Fraction(omg, den)
         return omg / den
 
     def cross(self, l1, l2):
         return 1 - self.spread(l1, l2)  # ???
-
-    def quadrance(self, a1, a2):
-        return self.measure(a1, a2)
-
-    def spread(self, l1, l2):
-        return self.measure(l1, l2)
-
-    def tri_measure(self, T):
-        return tri_func(self.measure, T)
-
-    def tri_quadrance(self, triangle):
-        if not isinstance(triangle[0], pg_point):
-            raise AssertionError()
-        return self.tri_measure(triangle)
-
-    def tri_spread(self, trilateral):
-        if not isinstance(trilateral[0], pg_line):
-            raise AssertionError()
-        return self.tri_measure(trilateral)
 
     @staticmethod
     def Ar(a, b, c):

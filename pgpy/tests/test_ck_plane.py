@@ -1,7 +1,7 @@
 from __future__ import print_function
 
 from ..ck_plane import ck
-from ..proj_plane import pg_point, pg_line, tri_dual
+from ..proj_plane import pg_point, pg_line, tri_dual, x_ratio
 
 
 def chk_int(myck, pg_obj=pg_point):
@@ -46,6 +46,9 @@ class myck(ck):
             return pg_point([-x, 2*y, -z])
         else:
             raise NotImplementedError()
+
+    def measure(self, a1, a2):
+        return 1 - x_ratio(a1, a2, self.perp(a2), self.perp(a1))
 
 
 def test_int():

@@ -11,6 +11,10 @@ class ck():
         """abstract method"""
         pass
 
+    @abstractmethod
+    def measure(self, a1, a2):
+        pass
+
     def is_perpendicular(self, l, m):
         return m.incident(self.perp(l))
 
@@ -33,9 +37,6 @@ class ck():
 
     def reflect(self, m):
         return involution(m, self.perp(m))
-
-    def measure(self, a1, a2):
-        return 1 - x_ratio(a1, a2, self.perp(a2), self.perp(a1))
 
     def quadrance(self, a1, a2):
         if not isinstance(a1, pg_point):
@@ -70,12 +71,18 @@ class ellck(ck):
     def perp(self, v):
         return v.dual()(v.base)
 
+    def measure(self, a1, a2):
+        return 1 - x_ratio(a1, a2, self.perp(a2), self.perp(a1))
+
 
 class hyck(ck):
 
     def perp(self, v):
         [x, y, z] = v
         return v.dual()([x, y, -z])
+
+    def measure(self, a1, a2):
+        return 1 - x_ratio(a1, a2, self.perp(a2), self.perp(a1))
 
 
 def check_cross_TQF(q1, q2, q3):
