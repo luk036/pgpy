@@ -62,8 +62,14 @@ class ck():
         return self.tri_measure(trilateral)
 
 
-def check_sine_law(s1, q1, s2, q2):
-    return s1*q2 == s2*q1
+def check_sine_law(Q, S):
+    q1, q2, q3 = Q
+    s1, s2, s3 = S
+    if s1*q2 != s2*q1:
+        return False
+    if s2*q3 != s3*q2:
+        return False
+    return True
 
 
 class ellck(ck):
@@ -85,9 +91,12 @@ class hyck(ck):
         return 1 - x_ratio(a1, a2, self.perp(a2), self.perp(a1))
 
 
-def check_cross_TQF(q1, q2, q3):
-    return (q1 + q2 + q3)**2 - 2 * (q1 * q1 + q2 * q2 + q3 * q3) - 4 * q1 * q2 * q3
+def check_cross_TQF(Q):
+    """coincident implies TQF = 0"""
+    q1, q2, q3 = Q
+    return (q1 + q2 + q3)**2 - 2*(q1**2 + q2**2 + q3**2) - 4*q1*q2*q3
 
 
-def check_cross_law(s1, s2, s3, q3):
-    return (s1 * s2 * q3 - (s1 + s2 + s3) + 2)**2 == 4 * (1 - s1) * (1 - s2) * (1 - s3)
+def check_cross_law(S, q3):
+    s1, s2, s3 = S
+    return (s1*s2*q3 - (s1 + s2 + s3) + 2)**2 == 4*(1 - s1)*(1 - s2)*(1 - s3)

@@ -11,5 +11,5 @@ def test_int():
     chk_int(hyck(), pg_line)
 
 
-def test_tri():
+def test_hy():
     chk_tri(hyck())

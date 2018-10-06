@@ -107,8 +107,9 @@ def cqq(a, b, c, d):
     return m, p
 
 
-def Ptolemy(Q12, Q23, Q34, Q14, Q13, Q24):
-    return Ar(Q12*Q34, Q23 * Q14, Q13*Q24) == 0
+def Ptolemy(Q):
+    Q12, Q23, Q34, Q14, Q13, Q24 = Q
+    return Ar(Q12*Q34, Q23*Q14, Q13*Q24) == 0
 
 
 def distance(a, b):

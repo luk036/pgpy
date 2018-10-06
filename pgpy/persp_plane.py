@@ -46,6 +46,3 @@ class persp_euclid_plane(ck):
     def cross(self, l1, l2):
         return 1 - self.spread(l1, l2)  # ???
 
-    @staticmethod
-    def Ar(a, b, c):
-        return (4*a*b) - (a + b - c)**2

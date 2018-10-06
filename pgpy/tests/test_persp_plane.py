@@ -1,8 +1,9 @@
 from __future__ import print_function
 
 from ..persp_plane import persp_euclid_plane
-from ..proj_plane import pg_point, pg_line, tri_dual, meet
-
+from ..proj_plane import pg_point, pg_line, tri_dual, meet, coincident
+from .test_ck_plane import chk_int
+from ..euclid_plane import Ar
 
 def chk_degenerate(myck):
     a1 = pg_point([-1, 2, 3])
@@ -11,25 +12,22 @@ def chk_degenerate(myck):
 
     triangle = [a1, a2, a3]
     trilateral = tri_dual(triangle)
-    l1, _, _ = trilateral
-    assert l1.incident(a2)
+    l1, l2, l3 = trilateral
+    assert not myck.is_parallel(l1, l2)
+    assert not myck.is_parallel(l2, l3)
 
-    t1, t2, t3 = myck.tri_altitude(triangle)
-    assert myck.is_perpendicular(t1, l1)
+    m12 = myck.midpoint(a1, a2)
+    m23 = myck.midpoint(a2, a3)
+    m13 = myck.midpoint(a1, a3)
 
-    o = myck.orthocenter(triangle)
-    assert o == meet(t2, t3)
-    assert a1 == myck.orthocenter([o, a2, a3])
+    t1 = a1 * m23
+    t2 = a2 * m13
+    t3 = a3 * m12
+    assert coincident(t1, t2, t3)
 
     q1, q2, q3 = myck.tri_quadrance(triangle)
-    s1, s2, s3 = myck.tri_spread(trilateral)
-    print(q1/s1, q2/s2, q3/s3)
-    assert q1*s2 == q2*s1
-    assert myck.spread(l1, l1) == 0
-    assert myck.quadrance(a1, a1) == 0
-
     tqf = ((q1 + q2 + q3)**2) - 2*(q1*q1 + q2*q2 + q3*q3)
-    assert tqf == myck.Ar(q1, q2, q3)
+    assert tqf == Ar(q1, q2, q3)
 
 
 def test_int():
@@ -37,4 +35,5 @@ def test_int():
     Iim = pg_point([1, 0, 0])
     l_inf = pg_line([0, -1, 1])
     P = persp_euclid_plane(Ire, Iim, l_inf)
+    chk_int(P, pg_point)
     chk_degenerate(P)

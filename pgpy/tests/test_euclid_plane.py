@@ -11,10 +11,14 @@ def test_int():
 
     triangle = [a1, a2, a3]
     trilateral = tri_dual(triangle)
-    l1, _, _ = trilateral
+    l1, l2, l3 = trilateral
+    assert not is_parallel(l1, l2)
+    assert not is_parallel(l2, l3)
+
     t1, t2, t3 = tri_altitude(triangle)
     assert is_perpendicular(t1, l1)
-    assert not is_parallel(t1, l1)
+    assert spread(t1, l1) == 1  # get 1
+    assert coincident(t1, t2, t3)
 
     t4 = harm_conj(t1, t2, t3)
     assert R(t1, t2, t3, t4) == -1
@@ -26,11 +30,17 @@ def test_int():
     tau = reflect(l1)
     assert(tau(tau(a1)) == a1)
 
+    m12 = midpoint(a1, a2)
+    m23 = midpoint(a2, a3)
+    m13 = midpoint(a1, a3)
+    t1 = a1 * m23
+    t2 = a2 * m13
+    t3 = a3 * m12
+    assert coincident(t1, t2, t3)
+
     q1, q2, q3 = tri_quadrance(triangle)
     s1, s2, s3 = tri_spread(trilateral)
     # print(q1/s1, q2/s2, q3/s3)
-    assert spread(t1, l1) == 1.0  # get 1.0
-    assert coincident(t1, t2, t3)
 
     tqf = ((q1 + q2 + q3)**2) - 2*(q1*q1 + q2*q2 + q3*q3)
     assert tqf == Ar(q1, q2, q3)
@@ -65,7 +75,8 @@ def test_int():
     t = Ar(q12*q34, q23*q14, q13*q24)
     # t = sympy.simplify(t)
     assert t == 0
-
+    t = Ptolemy([q12, q23, q34, q14, q24, q13])
+    assert t == True
 
 # def no_test_symbolic():
 #     import sympy
