@@ -35,11 +35,6 @@ def chk_tri(myck):
     Q = myck.tri_quadrance(collin)
     assert check_cross_TQF(Q) == 0
 
-    l3 = plucker(2, l1, 3, l2)
-    collin = [l1, l2, l3]
-    S = myck.tri_spread(collin)
-    assert check_cross_TQF(S) == 0
-
 
 def test_ell():
     chk_tri(ellck())
