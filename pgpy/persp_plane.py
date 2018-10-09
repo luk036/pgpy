@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import numpy as np
 from fractions import Fraction
-from .proj_plane import *
+from .proj_plane import pg_point, pg_line, plucker
 from .ck_plane import ck
 
 
@@ -45,4 +45,3 @@ class persp_euclid_plane(ck):
 
     def cross(self, l1, l2):
         return 1 - self.spread(l1, l2)  # ???
-
