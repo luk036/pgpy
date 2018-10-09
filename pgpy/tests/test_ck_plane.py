@@ -2,12 +2,14 @@ from __future__ import print_function
 
 from ..ck_plane import ck, check_sine_law, check_cross_TQF
 from ..proj_plane import pg_point, pg_line, tri_dual, x_ratio, plucker, coincident
+from ..proj_plane import join, meet
+
 
 
 def chk_int(myck, pg_obj=pg_point):
-    a1 = pg_obj([1, 2, 3])
-    a2 = pg_obj([4, 0, 6])
-    a3 = pg_obj([-7, 1, 2])
+    a1 = pg_obj([13431, 34382, 34283])
+    a2 = pg_obj([83434, 34380, 34286])
+    a3 = pg_obj([-8437, 34381, 43282])
 
     triangle = [a1, a2, a3]
     trilateral = tri_dual(triangle)
@@ -57,20 +59,20 @@ def test_int():
 # def no_test_symbolic():
 #     import sympy
 #     sympy.init_printing()
-#     myck = ck(tstperp)
 #     pv = sympy.symbols("p:3", integer=True)
 #     qv = sympy.symbols("q:3", integer=True)
 #     rv = sympy.symbols("r:3", integer=True)
 
+#     tstck = myck()
 #     a1 = pg_point(pv)
 #     a2 = pg_point(qv)
 #     a3 = pg_point(rv)
 #     l1 = join(a2, a3)
 #     l2 = join(a1, a3)
 #     l3 = join(a1, a2)
-#     t1 = myck.altitude(a1, l1)
-#     t2 = myck.altitude(a2, l2)
-#     t3 = myck.altitude(a3, l3)
+#     t1 = tstck.altitude(a1, l1)
+#     t2 = tstck.altitude(a2, l2)
+#     t3 = tstck.altitude(a3, l3)
 #     ans = t1.dot(meet(t2, t3))
 #     ans = sympy.simplify(ans)
 #     assert ans == 0

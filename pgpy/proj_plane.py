@@ -1,33 +1,35 @@
 # -*- coding: utf-8 -*-
-import numpy as np
+# import numpy as np
 from .proj_line import ratio_ratio, R1
 from abc import abstractmethod
+from .pg_common import cross, dot_c, plucker_c
 
-
-class pg_object(np.ndarray):
+class pg_object(list):
     @abstractmethod
     def dual(self):
         """abstract method"""
         pass
 
-    def __new__(cls, inputarr):
-        obj = np.asarray(inputarr).view(cls)
-        return obj
+    def __new__(cls, *args, **kwargs):
+        return list.__new__(cls, *args, **kwargs)
 
     def __eq__(self, other):
         if type(other) is type(self):
-            return (np.cross(self, other) == 0).all()
+            return cross(self, other) == (0, 0, 0)
         return False
 
     def __ne__(self, other):
         return not self.__eq__(other)
 
+    def dot(self, l):
+        return dot_c(self, l)
+
     def incident(self, l):
-        return not self.dot(l)
+        return not dot_c(self, l)
 
     def __mul__(self, other):
         T = self.dual()
-        return T(np.cross(self, other))
+        return T(cross(self, other))
 
     def aux(self):
         T = self.dual()
@@ -35,18 +37,16 @@ class pg_object(np.ndarray):
 
 
 class pg_point(pg_object):
-    def __new__(cls, inputarr):
-        obj = pg_object(inputarr).view(cls)
-        return obj
+    def __new__(cls, *args, **kwargs):
+        return pg_object.__new__(cls, *args, **kwargs)
 
     def dual(self):
         return pg_line
 
 
 class pg_line(pg_object):
-    def __new__(cls, inputarr):
-        obj = pg_object(inputarr).view(cls)
-        return obj
+    def __new__(cls, *args, **kwargs):
+        return pg_object.__new__(cls, *args, **kwargs)
 
     def dual(self):
         return pg_point
@@ -84,7 +84,7 @@ def coI(p, q, *rest):
 # Note: `lambda` is a preserved keyword in python
 def plucker(lambda1, p, mu1, q):
     T = type(p)
-    return T(lambda1 * p + mu1 * q)
+    return T(plucker_c(lambda1, p, mu1, q))
 
 
 def tri_dual(Tri):

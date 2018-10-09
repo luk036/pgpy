@@ -75,7 +75,7 @@ def check_sine_law(Q, S):
 class ellck(ck):
 
     def perp(self, v):
-        return v.dual()(v.base)
+        return v.dual()(v)
 
     def measure(self, a1, a2):
         return 1 - x_ratio(a1, a2, self.perp(a2), self.perp(a1))

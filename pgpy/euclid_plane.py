@@ -1,15 +1,8 @@
 # -*- coding: utf-8 -*-
 import numpy as np
 from fractions import Fraction
-from .proj_plane import *
-
-
-def dot1(x, y):
-    return x[0] * y[0] + x[1] * y[1]
-
-
-def cross1(x, y):
-    return x[0] * y[1] - x[1] * y[0]
+from .proj_plane import pg_point, pg_line, join, tri_dual, involution, tri_func, plucker
+from .pg_common import cross2, dot1
 
 
 def fB(l):
@@ -22,7 +15,7 @@ def is_perpendicular(l, m):
 
 
 def is_parallel(l, m):
-    return cross1(l, m) == 0
+    return cross2(l, m) == 0
 
 
 def altitude(a, l):
@@ -55,25 +48,27 @@ def midpoint(a, b):
 # Angle Bisector???
 
 
-def quad1(x1, z1, x2, z2):
-    if isinstance(x1, (int, np.int64, np.int32)):
-        return (Fraction(x1, z1) - Fraction(x2, z2))**2
-    return (x1/z1 - x2/z2)**2
+def quad1(P):
+    x1, z1, x2, z2 = P
+    for v in P:
+        if not isinstance(v, int):
+            return (x1/z1 - x2/z2)**2
+    return (Fraction(x1, z1) - Fraction(x2, z2))**2
 
 
 def quadrance(a1, a2):
-    return quad1(a1[0], a1[2], a2[0], a2[2]) + \
-        quad1(a1[1], a1[2], a2[1], a2[2])
+    return quad1((a1[0], a1[2], a2[0], a2[2])) + \
+        quad1((a1[1], a1[2], a2[1], a2[2]))
 
 
 def sbase(l1, l2, d):
-    if isinstance(d, (int, np.int64, np.int32)):
+    if isinstance(d, int):
         return Fraction(d, dot1(l1, l1)) * Fraction(d, dot1(l2, l2))
     return (d * d) / (dot1(l1, l1) * dot1(l2, l2))
 
 
 def spread(l1, l2):
-    return sbase(l1, l2, cross1(l1, l2))
+    return sbase(l1, l2, cross2(l1, l2))
 
 
 def tri_quadrance(triangle):

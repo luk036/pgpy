@@ -11,9 +11,9 @@ def test_int():
 
 
 def chk_tri(myck):
-    a1 = pg_point([1, 3, 1])
-    a2 = pg_point([4, 2, 1])
-    a3 = pg_point([1, 1, -1])
+    a1 = pg_point([13423, 3234, 1234])
+    a2 = pg_point([43243, 234234, 1234])
+    a3 = pg_point([1234, 134234, -12332])
 
     temp = myck.perp(a1)
     assert(myck.perp(temp) == a1)
@@ -21,7 +21,7 @@ def chk_tri(myck):
     triangle = [a1, a2, a3]
     trilateral = tri_dual(triangle)
 
-    l1, l2, _ = trilateral
+    l1, _, _ = trilateral
     assert(myck.perp(myck.perp(l1)) == l1)
 
     Q = myck.tri_quadrance(triangle)

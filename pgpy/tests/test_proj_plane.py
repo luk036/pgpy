@@ -22,11 +22,11 @@ def chk_complex(pg_object):
     s = pg_object([2j, 2-2j, 3])
     t = pg_object([2, -2j, 2])
 
-    assert not persp([p, q, p + q], [r, p + r, p])
+    assert not persp([p, q, plucker(1, p, 1, q)], [r, plucker(1, p, 1, r), p])
 
     O = (p * s) * (q * t)
     # r = join(p, q)
-    u = O - r  # ???
+    u = plucker(1, O, -1, r)  # ???
     check_desargue((p, q, r), (s, t, u))
 
 
