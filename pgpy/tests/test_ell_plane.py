@@ -11,9 +11,9 @@ def test_int():
 
 
 def chk_tri(myck):
-    a1 = pg_point([13423, 3234, 1234])
-    a2 = pg_point([43243, 234234, 1234])
-    a3 = pg_point([1234, 134234, -12332])
+    a1 = pg_point([3, 1, 4])
+    a2 = pg_point([3, 4, 4])
+    a3 = pg_point([4, 4, -2])
 
     temp = myck.perp(a1)
     assert(myck.perp(temp) == a1)
