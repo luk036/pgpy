@@ -1,9 +1,9 @@
 def cross0(v, w):
-    return v[1] * w[2] - w[1] * v[2]
+    return cross2(v[1:], w[1:])
 
 
 def cross1(v, w):
-    return v[0] * w[2] - w[0] * v[2]
+    return cross2(v[0:3:2], w[0:3:2])
 
 
 def cross2(v, w):
@@ -31,4 +31,4 @@ def dot1(v, w):
 
 
 def dot2(v, w):
-    return v[0] * w[0] + v[2] * w[2]
+    return dot1(v[0:3:2], w[0:3:2])
