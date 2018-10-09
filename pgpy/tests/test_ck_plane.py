@@ -7,9 +7,9 @@ from ..proj_plane import join, meet
 
 
 def chk_int(myck, pg_obj=pg_point):
-    a1 = pg_obj([1, 2, 3])
-    a2 = pg_obj([4, 0, 6])
-    a3 = pg_obj([-7, 1, 2])
+    a1 = pg_obj([23241, 2322, 2343])
+    a2 = pg_obj([23234, -23420, 23346])
+    a3 = pg_obj([-2347, 23431, 5652])
 
     triangle = [a1, a2, a3]
     trilateral = tri_dual(triangle)

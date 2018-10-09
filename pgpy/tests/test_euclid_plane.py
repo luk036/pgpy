@@ -5,9 +5,9 @@ from ..proj_plane import tri_dual, join, meet, coincident, harm_conj, R
 
 
 def test_int():
-    a1 = pg_point([1, 3, 1])
-    a2 = pg_point([4, 2, 1])
-    a3 = pg_point([4, -3, 1])
+    a1 = pg_point([3451, -5673, 241])
+    a2 = pg_point([644, 2423, 2341])
+    a3 = pg_point([544, -4333, 341])
 
     triangle = [a1, a2, a3]
     trilateral = tri_dual(triangle)
