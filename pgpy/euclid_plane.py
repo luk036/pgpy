@@ -79,7 +79,7 @@ def tri_spread(trilateral):
     return tri_func(spread, trilateral)
 
 
-def cross(l1, l2):
+def cross_s(l1, l2):
     return sbase(l1, l2, dot1(l1, l2))
 
 
@@ -93,13 +93,13 @@ def Ar(a, b, c):
     return (4*a*b) - (a + b - c)**2
 
 
-def cqq(a, b, c, d):
-    ''' Cyclic quadrilateral quadrea theorem '''
-    t1 = 4*a*b
-    t2 = 4*c*d
-    m = (t1 + t2) - (a + b - c - d)**2
-    p = m*m - 4*t1*t2
-    return m, p
+# def cqq(a, b, c, d):
+#     ''' Cyclic quadrilateral quadrea theorem '''
+#     t1 = 4*a*b
+#     t2 = 4*c*d
+#     m = (t1 + t2) - (a + b - c - d)**2
+#     p = m*m - 4*t1*t2
+#     return m, p
 
 
 def Ptolemy(Q):

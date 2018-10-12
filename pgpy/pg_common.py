@@ -28,7 +28,3 @@ def plucker_c(ld, v, mu, w):
 
 def dot1(v, w):
     return v[0] * w[0] + v[1] * w[1]
-
-
-def dot2(v, w):
-    return dot1(v[0:3:2], w[0:3:2])

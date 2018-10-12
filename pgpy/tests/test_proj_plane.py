@@ -8,6 +8,7 @@ def chk_complex(pg_object):
     q = pg_object([-2+1j, 1-3j, -1-1j])
     l = p*q
     assert l == q*p
+    assert not l == q
     assert l.incident(p)
     assert l.incident(q)
 
@@ -22,12 +23,21 @@ def chk_complex(pg_object):
     s = pg_object([2j, 2-2j, 3])
     t = pg_object([2, -2j, 2])
 
-    assert not persp([p, q, plucker(1, p, 1, q)], [r, plucker(1, p, 1, r), p])
+    assert not coI(p, q, r, s)
+
+    co1 = [p, q, plucker(1, p, 1, q)]
+    co2 = [r, plucker(1, p, 1, r), p]
+    assert not persp(co1, co2)
+    assert not persp(co1[:2], co2)
+    assert persp(co1[:2], co2[:2])
 
     O = (p * s) * (q * t)
     # r = join(p, q)
     u = plucker(1, O, -1, r)  # ???
     check_desargue((p, q, r), (s, t, u))
+    check_desargue((p, q, O), (s, t, u))
+
+    check_pappus(co1, [u, O, r])
 
 
 def test_complex():

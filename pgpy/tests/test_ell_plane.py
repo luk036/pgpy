@@ -50,6 +50,9 @@ def chk_tri_int(myck):
     l1, _, _ = trilateral
     assert(myck.perp(myck.perp(l1)) == l1)
 
+    assert(myck.quadrance(a1, a1) == 0)
+    assert(myck.spread(l1, l1) == 0)
+
     Q = myck.tri_quadrance(triangle)
     S = myck.tri_spread(trilateral)
 

@@ -8,7 +8,6 @@ class pg_object(list):
     @abstractmethod
     def dual(self):
         """abstract method"""
-        pass
 
     def __new__(cls, *args, **kwargs):
         return list.__new__(cls, *args, **kwargs)

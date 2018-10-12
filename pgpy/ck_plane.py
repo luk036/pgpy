@@ -9,11 +9,10 @@ class ck():
     @abstractmethod
     def perp(self, v):
         """abstract method"""
-        pass
 
     @abstractmethod
     def measure(self, a1, a2):
-        pass
+        """abstract method"""
 
     def is_perpendicular(self, l, m):
         """Check if two lines perpendicular
@@ -74,11 +73,7 @@ class ck():
 def check_sine_law(Q, S):
     q1, q2, q3 = Q
     s1, s2, s3 = S
-    if s1*q2 != s2*q1:
-        return False
-    if s2*q3 != s3*q2:
-        return False
-    return True
+    return s1*q2 == s2*q1 and s2*q3 == s3*q2
 
 
 class ellck(ck):

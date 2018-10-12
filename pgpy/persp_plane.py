@@ -12,9 +12,7 @@ class persp_euclid_plane(ck):
         self.l_infty = l_infty
 
     def perp(self, v):
-        if isinstance(v, pg_point):
-            return self.l_infty
-        elif isinstance(v, pg_line):
+        if isinstance(v, pg_line):
             alpha = v.dot(self.Ire)
             beta = v.dot(self.Iim)
             return plucker(alpha, self.Ire, beta, self.Iim)
@@ -42,6 +40,3 @@ class persp_euclid_plane(ck):
                 isinstance(den, int):
             return Fraction(omg, den)
         return omg / den
-
-    def cross(self, l1, l2):
-        return 1 - self.spread(l1, l2)  # ???
