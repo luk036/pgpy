@@ -16,6 +16,15 @@ class ck():
         pass
 
     def is_perpendicular(self, l, m):
+        """Check if two lines perpendicular
+
+        Arguments:
+            l {pg_object} -- line
+            m {pg_object} -- line
+
+        Returns:
+            bool -- True if l and m are perpendicular
+        """
         return m.incident(self.perp(l))
 
     def altitude(self, p, l):
@@ -99,4 +108,4 @@ def check_cross_TQF(Q):
 
 def check_cross_law(S, q3):
     s1, s2, s3 = S
-    return (s1*s2*q3 - (s1 + s2 + s3) + 2)**2 == 4*(1 - s1)*(1 - s2)*(1 - s3)
+    return (s1*s2*q3 - (s1 + s2 + s3) + 2)**2 - 4*(1 - s1)*(1 - s2)*(1 - s3)

@@ -1,16 +1,42 @@
 from __future__ import print_function
 
-from ..ck_plane import ellck, check_cross_TQF, check_cross_law, check_sine_law
-from ..proj_plane import pg_point, pg_line, tri_dual, join, plucker
+from ..ck_plane import ellck, hyck, check_cross_TQF, check_cross_law, check_sine_law
+from ..proj_plane import pg_point, pg_line, tri_dual, join, plucker, cross
 from .test_ck_plane import chk_int
+from pytest import approx
 
 
-def test_int():
-    chk_int(ellck(), pg_point)
-    chk_int(ellck(), pg_line)
+# def test_int():
+#     chk_int(ellck(), pg_point)
+#     chk_int(ellck(), pg_line)
+
+def chk_tri_float(myck):
+    a1 = pg_point([34., 12., 563.])
+    a2 = pg_point([345., 655., 34.])
+    a3 = pg_point([3., 57., -68.])
+
+    temp = myck.perp(a1)
+    assert cross(myck.perp(temp), a1) == approx((0, 0, 0))
+
+    triangle = [a1, a2, a3]
+    trilateral = tri_dual(triangle)
+
+    l1, _, _ = trilateral
+    assert cross(myck.perp(myck.perp(l1)), l1) == approx((0, 0, 0))
+
+    Q = myck.tri_quadrance(triangle)
+    S = myck.tri_spread(trilateral)
+
+    assert check_cross_law(S, Q[2]) == approx(0)
+    assert check_cross_law(Q, S[2]) == approx(0)
+
+    a3 = plucker(2, a1, 3, a2)
+    collin = [a1, a2, a3]
+    Q = myck.tri_quadrance(collin)
+    assert check_cross_TQF(Q) == approx(0)
 
 
-def chk_tri(myck):
+def chk_tri_int(myck):
     a1 = pg_point([3433, 12321, 5634])
     a2 = pg_point([3453, 65564, 344])
     a3 = pg_point([3454, 5764, -6862])
@@ -27,8 +53,8 @@ def chk_tri(myck):
     Q = myck.tri_quadrance(triangle)
     S = myck.tri_spread(trilateral)
 
-    assert check_cross_law(S, Q[2])
-    assert check_cross_law(Q, S[2])
+    assert check_cross_law(S, Q[2]) == 0
+    assert check_cross_law(Q, S[2]) == 0
 
     a3 = plucker(2, a1, 3, a2)
     collin = [a1, a2, a3]
@@ -36,8 +62,12 @@ def chk_tri(myck):
     assert check_cross_TQF(Q) == 0
 
 
-def test_ell():
-    chk_tri(ellck())
+def test_ell_hy():
+    chk_tri_int(ellck())
+    chk_tri_int(hyck())
+
+    chk_tri_float(ellck())
+    chk_tri_float(hyck())
 
 # def no_test_symbolic(myck):
 #     import sympy
