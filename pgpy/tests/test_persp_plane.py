@@ -15,8 +15,8 @@ def chk_degenerate_float(myck):
     triangle = [a1, a2, a3]
     trilateral = tri_dual(triangle)
     l1, l2, l3 = trilateral
-    # assert approx( myck.is_parallel(l1, l2) )
-    # assert approx( myck.is_parallel(l2, l3) )
+    assert myck.l_infty.dot(l1 * l2) != approx(0.0)
+    assert myck.l_infty.dot(l2 * l3) != approx(0.0)
 
     m12 = myck.midpoint(a1, a2)
     m23 = myck.midpoint(a2, a3)

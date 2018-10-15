@@ -105,7 +105,7 @@ def test_int():
     assert a1 == orthocenter([o, a2, a3])
 
     tau = reflect(l1)
-    assert(tau(tau(a1)) == a1)
+    assert tau(tau(a1)) == a1
 
     m12 = midpoint(a1, a2)
     m23 = midpoint(a2, a3)

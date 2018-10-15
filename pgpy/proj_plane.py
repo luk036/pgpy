@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # import numpy as np
 from .proj_line import ratio_ratio, R1
-from abc import abstractmethod
 from .pg_common import cross, dot_c, plucker_c
+from abc import abstractmethod
 
 class pg_object(list):
     @abstractmethod
@@ -25,6 +25,12 @@ class pg_object(list):
 
     def incident(self, l):
         return not dot_c(self, l)
+
+    def coincident(self, *lst):
+        for l in lst:
+            if not self.incident(l):
+                return False
+        return True
 
     def __mul__(self, other):
         T = self.dual()
@@ -88,10 +94,7 @@ def plucker(lambda1, p, mu1, q):
 
 def tri_dual(Tri):
     a1, a2, a3 = Tri
-    l1 = a2 * a3
-    l2 = a1 * a3
-    l3 = a1 * a2
-    return l1, l2, l3
+    return a2 * a3, a1 * a3, a1 * a2
 
 
 def tri_func(func, Tri):
@@ -102,20 +105,22 @@ def tri_func(func, Tri):
     return m1, m2, m3
 
 
+def persp_core(O, L, M):
+    for rL, rM in zip(L, M):
+        if not O.incident(rL * rM):
+            return False
+    return True
+
+
 def persp(L, M):
     if len(L) != len(M):
         return False
     if len(L) < 3:
         return True
-    [pL, qL] = L[0:2]
-    [pM, qM] = M[0:2]
-    if pL == qL or pM == qM or pL == pM or qL == qM:
-        raise AssertionError()
+    pL, qL = L[0:2]
+    pM, qM = M[0:2]
     O = (pL * pM) * (qL * qM)
-    for rL, rM in zip(L[2:], M[2:]):
-        if not O.incident(rL * rM):
-            return False
-    return True
+    return persp_core(O, L[2:], M[2:])
 
 
 def harm_conj(A, B, C):
@@ -175,10 +180,6 @@ def check_pappus(co1, co2):
 def check_desargue(tri1, tri2):
     trid1 = tri_dual(tri1)
     trid2 = tri_dual(tri2)
-
     b1 = persp(tri1, tri2)
     b2 = persp(trid1, trid2)
-    if b1:
-        assert b2
-    else:
-        assert not b2
+    assert (b1 and b2) or (not b1 and not b2)
