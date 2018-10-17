@@ -14,7 +14,7 @@ def chk_complex(pg_object):
     assert l.incident(r)
 
     s = harm_conj(p, q, r)
-    assert isharmonic(p, q, r, s)
+    assert is_harmonic(p, q, r, s)
     assert coI(p, q, r, s)
 
     r = pg_object([2-1j, -2+1j, 1+1j])

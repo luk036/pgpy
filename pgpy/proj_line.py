@@ -33,5 +33,5 @@ def R1(A, B, C, D):
     return ratio_ratio(ac, ad, bc, bd)
 
 
-def isharmonic(A, B, C, D):
+def is_harmonic1(A, B, C, D):
     return R1(A, B, C, D) == -1

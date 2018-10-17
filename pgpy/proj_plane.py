@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # import numpy as np
 from .proj_line import ratio_ratio, R1
-from .pg_common import cross, dot_c, plucker_c
+from .pg_common import cross, dot_c, plucker_c, cross0
 from abc import abstractmethod
 
 class pg_object(list):
@@ -81,8 +81,6 @@ def coI_core(l, Lst):
 
 
 def coI(p, q, *rest):
-    if not p != q:
-        raise AssertionError()
     return coI_core(p*q, rest)
 
 
@@ -119,6 +117,8 @@ def persp(L, M):
         return True
     pL, qL = L[0:2]
     pM, qM = M[0:2]
+    if pL == pM:
+        return persp(L[1:], M[1:])
     O = (pL * pM) * (qL * qM)
     return persp_core(O, L[2:], M[2:])
 
@@ -150,7 +150,7 @@ def x_ratio(A, B, l, m):
 
 def R(A, B, C, D):
     # not sure???
-    if A[1]*B[2] != B[1]*A[2]:
+    if cross0(A, B) != 0:
         # Project points to yz-plane
         a, b, c, d = A[1:], B[1:], C[1:], D[1:]
     else:
@@ -164,7 +164,7 @@ def R(A, B, C, D):
 #     return x_ratio(A, B, O*C, O*D)
 
 
-def isharmonic(A, B, C, D):
+def is_harmonic(A, B, C, D):
     return R(A, B, C, D) == -1
 
 
