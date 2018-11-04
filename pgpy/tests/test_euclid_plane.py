@@ -154,7 +154,7 @@ def test_int():
     # t = sympy.simplify(t)
     assert t == 0
     t = Ptolemy([q12, q23, q34, q14, q24, q13])
-    assert t == True
+    assert t
 
 # def no_test_symbolic():
 #     import sympy
