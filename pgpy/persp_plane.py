@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import numpy as np
 from fractions import Fraction
 from .proj_plane import pg_point, pg_line, plucker
 from .ck_plane import ck

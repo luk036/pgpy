@@ -37,7 +37,7 @@ def test_float():
     t1 = a1 * m23
     t2 = a2 * m13
     t3 = a3 * m12
-    assert t1.dot(t2 * t3) == approx(0.)
+    assert t1.dot(t2 * t3) == approx(0)
 
     q1, q2, q3 = tri_quadrance(triangle)
     s1, s2, s3 = tri_spread(trilateral)

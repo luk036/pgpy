@@ -1,8 +1,7 @@
 from __future__ import print_function
 
-from ..ck_plane import ellck, hyck, check_cross_TQF, check_cross_law, check_sine_law
-from ..proj_plane import pg_point, pg_line, tri_dual, join, plucker, cross
-from .test_ck_plane import chk_int
+from ..ck_plane import ellck, hyck, check_cross_TQF, check_cross_law
+from ..proj_plane import pg_point, tri_dual, join, plucker, cross
 from pytest import approx
 
 

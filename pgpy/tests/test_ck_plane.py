@@ -1,8 +1,8 @@
 from __future__ import print_function
 
-from ..ck_plane import ck, ellck, hyck, check_sine_law, check_cross_TQF
-from ..proj_plane import pg_point, pg_line, tri_dual, x_ratio, plucker, coincident
-from ..proj_plane import join, meet, cross
+from ..ck_plane import ck, ellck, hyck, check_sine_law,
+from ..proj_plane import pg_point, pg_line, tri_dual, x_ratio, coincident
+from ..proj_plane import meet, cross
 from pytest import approx
 
 
@@ -14,11 +14,11 @@ def chk_float(myck, pg_obj=pg_point):
     triangle = [a1, a2, a3]
     trilateral = tri_dual(triangle)
     l1, _, _ = trilateral
-    assert l1.dot(a2) == approx(0.)
+    assert l1.dot(a2) == approx(0)
 
     t1, t2, t3 = myck.tri_altitude(triangle)
-    assert l1.dot(myck.perp(t1)) == approx(0.0)
-    assert t1.dot(t2 * t3) == approx(0.0)
+    assert l1.dot(myck.perp(t1)) == approx(0)
+    assert t1.dot(t2 * t3) == approx(0)
 
     o = myck.orthocenter(triangle)
     assert cross(o, t2 * t3) == approx((0, 0, 0))

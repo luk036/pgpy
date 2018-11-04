@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import numpy as np
 from fractions import Fraction
-from .proj_plane import pg_point, pg_line, join, tri_dual, involution, tri_func, plucker
+from .proj_plane import pg_point, join, tri_dual, involution, tri_func, plucker
 from .pg_common import cross2, dot1
 
 

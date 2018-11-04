@@ -6,7 +6,7 @@ from .pg_common import cross2
 
 class pl_point(list):
     """Projective point in Projective line"""
-    
+
     def __new__(cls, *args, **kwargs):
         return list.__new__(cls, *args, **kwargs)
 
