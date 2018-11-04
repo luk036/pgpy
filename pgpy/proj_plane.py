@@ -103,6 +103,17 @@ def tri_func(func, Tri):
     return m1, m2, m3
 
 
+def quad_func(func, Quad):
+    a1, a2, a3, a4 = Quad
+    m12 = func(a1, a2)
+    m23 = func(a2, a3)
+    m34 = func(a3, a4)
+    m14 = func(a1, a4)
+    m24 = func(a2, a4)
+    m13 = func(a1, a3)
+    return m12, m23, m34, m14, m24, m13
+
+
 def persp_core(O, L, M):
     for rL, rM in zip(L, M):
         if not O.incident(rL * rM):

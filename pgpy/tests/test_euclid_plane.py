@@ -1,7 +1,7 @@
 from __future__ import print_function
 
 from ..euclid_plane import *
-from ..proj_plane import tri_dual, join, meet, coincident, harm_conj, R, cross
+from ..proj_plane import tri_dual, meet, coincident, harm_conj, R, cross
 from pytest import approx
 
 
@@ -59,9 +59,7 @@ def test_float():
     assert tsf == approx(0)
 
     a3 = pg_point(3*a1 + 4*a2)
-    q1 = quadrance(a2, a3)
-    q2 = quadrance(a1, a3)
-    q3 = quadrance(a1, a2)
+    q1, q2, q3 = tri_quadrance([a1, a2, a3])
     tqf = (q1 + q2 + q3)**2 - 2*(q1*q1 + q2*q2 + q3*q3)  # get 0
     assert tqf == approx(0)
 
@@ -69,12 +67,7 @@ def test_float():
     a2 = uc_point(3., 4.)
     a3 = uc_point(-1., 2.)
     a4 = uc_point(-5., 1.)
-    q12 = quadrance(a1, a2)
-    q23 = quadrance(a2, a3)
-    q34 = quadrance(a3, a4)
-    q14 = quadrance(a1, a4)
-    q24 = quadrance(a2, a4)
-    q13 = quadrance(a1, a3)
+    q12, q23, q34, q14, q24, q13 = quad_quadrance([a1, a2, a3, a4])
     # print(q12, q23, q34, q14, q24, q13)
     t = Ar(q12*q34, q23*q14, q13*q24)
     # t = sympy.simplify(t)
@@ -133,9 +126,7 @@ def test_int():
     assert tsf == 0
 
     a3 = pg_point(3*a1 + 4*a2)
-    q1 = quadrance(a2, a3)
-    q2 = quadrance(a1, a3)
-    q3 = quadrance(a1, a2)
+    q1, q2, q3 = tri_quadrance([a1, a2, a3])
     tqf = (q1 + q2 + q3)**2 - 2*(q1*q1 + q2*q2 + q3*q3)  # get 0
     assert tqf == 0
 
@@ -143,12 +134,7 @@ def test_int():
     a2 = uc_point(3, 4)
     a3 = uc_point(-1, 2)
     a4 = uc_point(-5, 1)
-    q12 = quadrance(a1, a2)
-    q23 = quadrance(a2, a3)
-    q34 = quadrance(a3, a4)
-    q14 = quadrance(a1, a4)
-    q24 = quadrance(a2, a4)
-    q13 = quadrance(a1, a3)
+    q12, q23, q34, q14, q24, q13 = quad_quadrance([a1, a2, a3, a4])
     # print(q12, q23, q34, q14, q24, q13)
     t = Ar(q12*q34, q23*q14, q13*q24)
     # t = sympy.simplify(t)

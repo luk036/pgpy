@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import numpy as np
 from fractions import Fraction
-from .proj_plane import pg_point, join, tri_dual, involution, tri_func, plucker
+from .proj_plane import pg_point, tri_dual, involution, tri_func, quad_func, plucker
 from .pg_common import cross2, dot1
 
 
@@ -19,7 +19,7 @@ def is_parallel(l, m):
 
 
 def altitude(a, l):
-    return join(a, fB(l))
+    return a * fB(l)
 
 
 def tri_altitude(tri):
@@ -77,6 +77,10 @@ def tri_quadrance(triangle):
 
 def tri_spread(trilateral):
     return tri_func(spread, trilateral)
+
+
+def quad_quadrance(quadrangle):
+    return quad_func(quadrance, quadrangle)
 
 
 def cross_s(l1, l2):
