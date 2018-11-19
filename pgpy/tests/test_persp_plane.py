@@ -8,6 +8,16 @@ from pytest import approx
 
 
 def chk_degenerate(myck, K):
+    """[summary]
+
+    Arguments:
+        myck {[type]} -- [description]
+        K {[type]} -- [description]
+
+    Raises:
+        NotImplementedError -- [description]
+        NotImplementedError -- [description]
+    """
     if K == int:
         a1 = pg_point([-1, 2, 3])
         a2 = pg_point([4, -1, 1])
@@ -22,9 +32,7 @@ def chk_degenerate(myck, K):
     triangle = [a1, a2, a3]
     trilateral = tri_dual(triangle)
     l1, l2, l3 = trilateral
-    m12 = myck.midpoint(a1, a2)
-    m23 = myck.midpoint(a2, a3)
-    m13 = myck.midpoint(a1, a3)
+    m23, m13, m12 = myck.tri_midpoint(triangle)
     t1 = a1 * m23
     t2 = a2 * m13
     t3 = a3 * m12

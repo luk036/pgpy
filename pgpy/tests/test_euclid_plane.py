@@ -6,6 +6,15 @@ from pytest import approx
 
 
 def chk_euclid(K):
+    """[summary]
+
+    Arguments:
+        K {[type]} -- [description]
+
+    Raises:
+        NotImplementedError -- [description]
+        NotImplementedError -- [description]
+    """
     if K == int:
         a1 = pg_point([3451, -5673, 241])
         a2 = pg_point([644, 2423, 2341])
@@ -28,13 +37,11 @@ def chk_euclid(K):
     triangle = [a1, a2, a3]
     trilateral = tri_dual(triangle)
     l1, l2, l3 = trilateral
-    t1, t2, t3 = tri_altitude(triangle) #
-    t4 = harm_conj(t1, t2, t3) #
-    o = orthocenter(triangle) #
-    tau = reflect(l1) #
-    m12 = midpoint(a1, a2)
-    m23 = midpoint(a2, a3)
-    m13 = midpoint(a1, a3)
+    t1, t2, t3 = tri_altitude(triangle)
+    t4 = harm_conj(t1, t2, t3)
+    o = orthocenter(triangle)
+    tau = reflect(l1)
+    m23, m13, m12 = tri_midpoint(triangle)
     mt1 = a1 * m23
     mt2 = a2 * m13
     mt3 = a3 * m12
@@ -54,11 +61,11 @@ def chk_euclid(K):
         assert not is_parallel(l2, l3)
         assert is_perpendicular(t1, l1)
         assert spread(t1, l1) == 1  # get 1
-        assert coincident(t1, t2, t3) #
-        assert R(t1, t2, t3, t4) == -1 #
-        assert o == meet(t2, t3) #
-        assert a1 == orthocenter([o, a2, a3]) #
-        assert tau(tau(a1)) == a1 #
+        assert coincident(t1, t2, t3)
+        assert R(t1, t2, t3, t4) == -1
+        assert o == meet(t2, t3)
+        assert a1 == orthocenter([o, a2, a3])
+        assert tau(tau(a1)) == a1
         assert coincident(mt1, mt2, mt3)
         assert tqf == Ar(q1, q2, q3)
         assert spread(l1, l1) == 0

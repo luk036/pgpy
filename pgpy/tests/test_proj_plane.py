@@ -2,6 +2,11 @@ from ..proj_plane import *
 
 
 def chk_complex(pg_object):
+    """[summary]
+
+    Arguments:
+        pg_object {[type]} -- [description]
+    """
     p = pg_object([1-2j, 3-1j, 2+1j])  # complex number
     q = pg_object([-2+1j, 1-3j, -1-1j])
     l = p*q

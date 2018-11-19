@@ -7,6 +7,19 @@ from pytest import approx
 
 
 def chk_ck(myck, K, pg_obj=pg_point):
+    """[summary]
+
+    Arguments:
+        myck {[type]} -- [description]
+        K {[type]} -- [description]
+
+    Keyword Arguments:
+        pg_obj {[type]} -- [description] (default: {pg_point})
+
+    Raises:
+        NotImplementedError -- [description]
+        NotImplementedError -- [description]
+    """
     if K == int:
         a1 = pg_obj([23241, 2322, 2343])
         a2 = pg_obj([23234, -23420, 23346])
@@ -53,8 +66,30 @@ def chk_ck(myck, K, pg_obj=pg_point):
 
 
 class myck(ck):
+    """[summary]
+
+    Arguments:
+        ck {[type]} -- [description]
+
+    Raises:
+        NotImplementedError -- [description]
+
+    Returns:
+        [type] -- [description]
+    """
     @classmethod
     def perp(cls, v):
+        """[summary]
+
+        Arguments:
+            v {[type]} -- [description]
+
+        Raises:
+            NotImplementedError -- [description]
+
+        Returns:
+            [type] -- [description]
+        """
         [x, y, z] = v
         if isinstance(v, pg_point):
             return pg_line([-2*x, y, -2*z])
@@ -64,6 +99,15 @@ class myck(ck):
             raise NotImplementedError()
 
     def measure(self, a1, a2):
+        """[summary]
+
+        Arguments:
+            a1 {[type]} -- [description]
+            a2 {[type]} -- [description]
+
+        Returns:
+            [type] -- [description]
+        """
         return 1 - x_ratio(a1, a2, self.perp(a2), self.perp(a1))
 
 

@@ -4,76 +4,205 @@ from .proj_line import ratio_ratio, R1
 from .pg_common import cross, dot_c, plucker_c, cross0
 from abc import abstractmethod
 
+
 class pg_object(list):
     @abstractmethod
     def dual(self):
-        """abstract method"""
+        """abstract method
+
+        Arguments:
+            list {[type]} -- [description]
+        """
 
     def __new__(cls, *args, **kwargs):
+        """[summary]
+
+        Returns:
+            [type] -- [description]
+        """
         return list.__new__(cls, *args, **kwargs)
 
     def __eq__(self, other):
+        """[summary]
+
+        Arguments:
+            other {[type]} -- [description]
+
+        Returns:
+            [type] -- [description]
+        """
         if type(other) is type(self):
             return cross(self, other) == (0, 0, 0)
         return False
 
     def __ne__(self, other):
+        """[summary]
+
+        Arguments:
+            other {[type]} -- [description]
+
+        Returns:
+            [type] -- [description]
+        """
         return not self.__eq__(other)
 
     def dot(self, l):
+        """[summary]
+
+        Arguments:
+            l {[type]} -- [description]
+
+        Returns:
+            [type] -- [description]
+        """
         return dot_c(self, l)
 
     def incident(self, l):
+        """[summary]
+
+        Arguments:
+            l {[type]} -- [description]
+
+        Returns:
+            [type] -- [description]
+        """
         return not dot_c(self, l)
 
     def coincident(self, *lst):
+        """[summary]
+
+        Returns:
+            [type] -- [description]
+        """
         for l in lst:
             if not self.incident(l):
                 return False
         return True
 
     def __mul__(self, other):
+        """[summary]
+
+        Arguments:
+            other {[type]} -- [description]
+
+        Returns:
+            [type] -- [description]
+        """
         T = self.dual()
         return T(cross(self, other))
 
     def aux(self):
+        """[summary]
+
+        Returns:
+            [type] -- [description]
+        """
         T = self.dual()
         return T(self)
 
 
 class pg_point(pg_object):
     def __new__(cls, *args, **kwargs):
+        """[summary]
+
+        Arguments:
+            pg_object {[type]} -- [description]
+
+        Returns:
+            [type] -- [description]
+        """
         return pg_object.__new__(cls, *args, **kwargs)
 
     def dual(self):
+        """[summary]
+
+        Returns:
+            [type] -- [description]
+        """
         return pg_line
 
 
 class pg_line(pg_object):
     def __new__(cls, *args, **kwargs):
+        """[summary]
+
+        Arguments:
+            pg_object {[type]} -- [description]
+
+        Returns:
+            [type] -- [description]
+        """
         return pg_object.__new__(cls, *args, **kwargs)
 
     def dual(self):
+        """[summary]
+
+        Returns:
+            [type] -- [description]
+        """
         return pg_point
 
 
 def join(p, q):
+    """[summary]
+
+    Arguments:
+        p {[type]} -- [description]
+        q {[type]} -- [description]
+
+    Raises:
+        AssertionError -- [description]
+
+    Returns:
+        [type] -- [description]
+    """
     if not isinstance(p, pg_point):
         raise AssertionError()
     return p * q
 
 
 def meet(l, m):
+    """[summary]
+
+    Arguments:
+        l {[type]} -- [description]
+        m {[type]} -- [description]
+
+    Raises:
+        AssertionError -- [description]
+
+    Returns:
+        [type] -- [description]
+    """
     if not isinstance(l, pg_line):
         raise AssertionError()
     return l * m
 
 
 def coincident(p, q, r):
+    """[summary]
+
+    Arguments:
+        p {[type]} -- [description]
+        q {[type]} -- [description]
+        r {[type]} -- [description]
+
+    Returns:
+        [type] -- [description]
+    """
     return r.incident(p * q)
 
 
 def coI_core(l, Lst):
+    """[summary]
+
+    Arguments:
+        l {[type]} -- [description]
+        Lst {[type]} -- [description]
+
+    Returns:
+        [type] -- [description]
+    """
     for p in Lst:
         if not l.incident(p):
             return False
@@ -81,21 +210,58 @@ def coI_core(l, Lst):
 
 
 def coI(p, q, *rest):
+    """[summary]
+
+    Arguments:
+        p {[type]} -- [description]
+        q {[type]} -- [description]
+
+    Returns:
+        [type] -- [description]
+    """
     return coI_core(p*q, rest)
 
 
 # Note: `lambda` is a preserved keyword in python
 def plucker(lambda1, p, mu1, q):
+    """[summary]
+
+    Arguments:
+        lambda1 {[type]} -- [description]
+        p {[type]} -- [description]
+        mu1 {[type]} -- [description]
+        q {[type]} -- [description]
+
+    Returns:
+        [type] -- [description]
+    """
     T = type(p)
     return T(plucker_c(lambda1, p, mu1, q))
 
 
 def tri_dual(Tri):
+    """[summary]
+
+    Arguments:
+        Tri {[type]} -- [description]
+
+    Returns:
+        [type] -- [description]
+    """
     a1, a2, a3 = Tri
     return a2 * a3, a1 * a3, a1 * a2
 
 
 def tri_func(func, Tri):
+    """[summary]
+
+    Arguments:
+        func {[type]} -- [description]
+        Tri {[type]} -- [description]
+
+    Returns:
+        [type] -- [description]
+    """
     a1, a2, a3 = Tri
     m1 = func(a2, a3)
     m2 = func(a1, a3)
@@ -104,6 +270,15 @@ def tri_func(func, Tri):
 
 
 def quad_func(func, Quad):
+    """[summary]
+
+    Arguments:
+        func {[type]} -- [description]
+        Quad {[type]} -- [description]
+
+    Returns:
+        [type] -- [description]
+    """
     a1, a2, a3, a4 = Quad
     m12 = func(a1, a2)
     m23 = func(a2, a3)
@@ -115,6 +290,16 @@ def quad_func(func, Quad):
 
 
 def persp_core(O, L, M):
+    """[summary]
+
+    Arguments:
+        O {[type]} -- [description]
+        L {[type]} -- [description]
+        M {[type]} -- [description]
+
+    Returns:
+        [type] -- [description]
+    """
     for rL, rM in zip(L, M):
         if not O.incident(rL * rM):
             return False
@@ -122,6 +307,15 @@ def persp_core(O, L, M):
 
 
 def persp(L, M):
+    """[summary]
+
+    Arguments:
+        L {[type]} -- [description]
+        M {[type]} -- [description]
+
+    Returns:
+        [type] -- [description]
+    """
     if len(L) != len(M):
         return False
     if len(L) < 3:
@@ -135,6 +329,16 @@ def persp(L, M):
 
 
 def harm_conj(A, B, C):
+    """[summary]
+
+    Arguments:
+        A {[type]} -- [description]
+        B {[type]} -- [description]
+        C {[type]} -- [description]
+
+    Returns:
+        [type] -- [description]
+    """
     lC = C * (A * B).aux()
     return plucker(B.dot(lC), A, A.dot(lC), B)
 
@@ -143,15 +347,40 @@ class involution:
     """ Definition: $\tau(\tau(a)) == a$ """
 
     def __init__(self, m, o):
+        """[summary]
+
+        Arguments:
+            m {[type]} -- [description]
+            o {[type]} -- [description]
+        """
         self.m = m
         self.o = o
         self.c = m.dot(o)
 
     def __call__(self, p):
+        """[summary]
+
+        Arguments:
+            p {[type]} -- [description]
+
+        Returns:
+            [type] -- [description]
+        """
         return plucker(self.c, p, -2 * p.dot(self.m), self.o)
 
 
 def x_ratio(A, B, l, m):
+    """[summary]
+
+    Arguments:
+        A {[type]} -- [description]
+        B {[type]} -- [description]
+        l {[type]} -- [description]
+        m {[type]} -- [description]
+
+    Returns:
+        [type] -- [description]
+    """
     dAl = A.dot(l)
     dAm = A.dot(m)
     dBl = B.dot(l)
@@ -160,6 +389,17 @@ def x_ratio(A, B, l, m):
 
 
 def R(A, B, C, D):
+    """[summary]
+
+    Arguments:
+        A {[type]} -- [description]
+        B {[type]} -- [description]
+        C {[type]} -- [description]
+        D {[type]} -- [description]
+
+    Returns:
+        [type] -- [description]
+    """
     # not sure???
     if cross0(A, B) != 0:
         # Project points to yz-plane
@@ -176,10 +416,27 @@ def R(A, B, C, D):
 
 
 def is_harmonic(A, B, C, D):
+    """[summary]
+
+    Arguments:
+        A {[type]} -- [description]
+        B {[type]} -- [description]
+        C {[type]} -- [description]
+        D {[type]} -- [description]
+
+    Returns:
+        [type] -- [description]
+    """
     return R(A, B, C, D) == -1
 
 
 def check_pappus(co1, co2):
+    """[summary]
+
+    Arguments:
+        co1 {[type]} -- [description]
+        co2 {[type]} -- [description]
+    """
     A, B, C = co1
     D, E, F = co2
     G = (A*E) * (B*D)
@@ -189,6 +446,12 @@ def check_pappus(co1, co2):
 
 
 def check_desargue(tri1, tri2):
+    """[summary]
+
+    Arguments:
+        tri1 {[type]} -- [description]
+        tri2 {[type]} -- [description]
+    """
     trid1 = tri_dual(tri1)
     trid2 = tri_dual(tri2)
     b1 = persp(tri1, tri2)

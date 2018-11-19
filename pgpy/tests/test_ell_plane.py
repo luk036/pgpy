@@ -6,6 +6,16 @@ from pytest import approx
 
 
 def chk_tri_ell_hy(myck, K):
+    """[summary]
+
+    Arguments:
+        myck {[type]} -- [description]
+        K {[type]} -- [description]
+
+    Raises:
+        NotImplementedError -- [description]
+        NotImplementedError -- [description]
+    """
     if K == int:
         a1 = pg_point([3433, 12321, 5634])
         a2 = pg_point([3453, 65564, 344])
