@@ -15,3 +15,4 @@ from pgpy.proj_plane import *
 from pgpy.proj_line import *
 from pgpy.ck_plane import *
 from pgpy.persp_plane import *
+from pgpy.euclid_plane import *
