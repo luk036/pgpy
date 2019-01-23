@@ -17,9 +17,9 @@ def chk_tri_ell_hy(myck, K):
         NotImplementedError -- [description]
     """
     if K == int:
-        a1 = pg_point([3433, 12321, 5634])
-        a2 = pg_point([3453, 65564, 344])
-        a3 = pg_point([3454, 5764, -6862])
+        a1 = pg_point([33, 121, 54])
+        a2 = pg_point([33, 564, 34])
+        a3 = pg_point([34, 64, -62])
     elif K == float:
         a1 = pg_point([4., 1., 5.])
         a2 = pg_point([-5., 5., 3.])

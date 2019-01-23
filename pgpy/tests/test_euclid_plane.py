@@ -16,9 +16,9 @@ def chk_euclid(K):
         NotImplementedError -- [description]
     """
     if K == int:
-        a1 = pg_point([3451, -5673, 241])
-        a2 = pg_point([644, 2423, 2341])
-        a3 = pg_point([544, -4333, 341])
+        a1 = pg_point([31, -53, 1])
+        a2 = pg_point([6, 23, 21])
+        a3 = pg_point([5, -43, 31])
         ca1 = uc_point(1, 2)
         ca2 = uc_point(3, 4)
         ca3 = uc_point(-1, 2)
