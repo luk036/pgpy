@@ -1,4 +1,5 @@
 [
+  "test_debug.py::test_int",
   "pgpy/tests/test_ck_plane.py::test_ck",
   "pgpy/tests/test_ell_plane.py::test_ell_hy",
   "pgpy/tests/test_euclid_plane.py::test_euclid",

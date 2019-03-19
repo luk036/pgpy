@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import numpy as np
 from fractions import Fraction
-from .proj_plane import pg_point, tri_dual, involution, tri_func, quad_func, plucker
 from .pg_common import cross2, dot1
+from .proj_plane import pg_point, involution, tri_func, quad_func, plucker
 
 
 def fB(l):
@@ -14,8 +14,7 @@ def fB(l):
     Returns:
             [type] -- [description]
     """
-    [a, b] = l[:2]
-    return pg_point([a, b, 0])
+    return pg_point([l[0], l[1], 0])
 
 
 def is_perpendicular(l, m):
@@ -66,11 +65,11 @@ def tri_altitude(tri):
     Returns:
             [type] -- [description]
     """
-    l1, l2, l3 = tri_dual(tri)
+    # l1, l2, l3 = tri_dual(tri)
     a1, a2, a3 = tri
-    t1 = altitude(a1, l1)
-    t2 = altitude(a2, l2)
-    t3 = altitude(a3, l3)
+    t1 = altitude(a1, a2*a3)
+    t2 = altitude(a2, a3*a1)
+    t3 = altitude(a3, a1*a2)
     return t1, t2, t3
 
 
@@ -246,8 +245,10 @@ def uc_point(lambda1, mu1):
     Returns:
             [type] -- [description]
     """
-    return pg_point([lambda1**2 - mu1**2,
-                     2*lambda1*mu1, lambda1**2 + mu1**2])
+    lambda2 = lambda1**2
+    mu2 = mu1**2
+    return pg_point([lambda2 - mu2,
+                     2*lambda1*mu1, lambda2 + mu2])
 
 
 def Ar(a, b, c):
@@ -264,16 +265,16 @@ def Ar(a, b, c):
     return (4*a*b) - (a + b - c)**2
 
 
-# def cqq(a, b, c, d):
-#     ''' Cyclic quadrilateral quadrea theorem '''
-#     t1 = 4*a*b
-#     t2 = 4*c*d
-#     m = (t1 + t2) - (a + b - c - d)**2
-#     p = m*m - 4*t1*t2
-#     return m, p
+def cqq(a, b, c, d):
+    """Cyclic quadrilateral quadrea theorem """
+    t1 = 4*a*b
+    t2 = 4*c*d
+    m = (t1 + t2) - (a + b - c - d)**2
+    p = m*m - 4*t1*t2
+    return m, p
 
 
-def Ptolemy(Q):
+def Ptolemy(quad):
     """[summary]
 
     Arguments:
@@ -282,7 +283,7 @@ def Ptolemy(Q):
     Returns:
             [type] -- [description]
     """
-    Q12, Q23, Q34, Q14, Q13, Q24 = Q
+    Q12, Q23, Q34, Q14, Q13, Q24 = quad
     return Ar(Q12*Q34, Q23*Q14, Q13*Q24) == 0
 
 
