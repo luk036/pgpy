@@ -7,22 +7,22 @@ def chk_complex(pg_object):
     Arguments:
         pg_object {[type]} -- [description]
     """
-    p = pg_object([1-2j, 3-1j, 2+1j])  # complex number
-    q = pg_object([-2+1j, 1-3j, -1-1j])
-    l = p*q
-    assert l == q*p
+    p = pg_object([1 - 2j, 3 - 1j, 2 + 1j])  # complex number
+    q = pg_object([-2 + 1j, 1 - 3j, -1 - 1j])
+    l = p * q
+    assert l == q * p
     assert not l == q
     assert l.incident(p)
     assert l.incident(q)
 
-    r = plucker(2, p, 3, q)
-    assert l.incident(r)
+    pq = plucker(2 + 1j, p, 3 + 0j, q)
+    assert l.incident(pq)
 
-    s = harm_conj(p, q, r)
-    assert is_harmonic(p, q, r, s)
-    assert coI(p, q, r, s)
+    h = harm_conj(p, q, pq)
+    assert is_harmonic(p, q, pq, h)
+    assert coI(p, q, pq, h)
 
-    r = pg_object([2-1j, -2+1j, 1+1j])
+    r = pg_object([2 - 1j, -2 + 1j, 1 + 1j])
     s = pg_object([2j, 2-2j, 3])
     t = pg_object([2, -2j, 2])
 
@@ -46,6 +46,23 @@ def chk_complex(pg_object):
 def test_complex():
     chk_complex(pg_point)
     chk_complex(pg_line)
+
+
+def test_special_case():
+    p = pg_point([1, 3, 2])
+    l = pg_line([-2, 3, 1])
+    # l_inf = pg_line([0, 0, 1])
+    l_nan = pg_line([0, 0, 0])
+    p_nan = pg_point([0, 0, 0])
+
+    assert l_nan == l_nan
+    assert l_nan == p * p  # join two equal points
+    assert p_nan == l * l
+    assert l_nan == p_nan * p
+    assert p_nan == l_nan * l
+    assert p.incident(l_nan)
+    assert l.incident(p_nan)
+    assert p_nan.incident(l_nan)
 
 
 # def no_test_symbolic():
