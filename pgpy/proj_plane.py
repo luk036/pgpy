@@ -344,7 +344,7 @@ def harm_conj(A, B, C):
 
 
 class involution:
-    """ Definition: $\tau(\tau(a)) == a$ """
+    """ Definition: $tau(tau(a)) == a$ """
 
     def __init__(self, m, o):
         """[summary]

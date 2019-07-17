@@ -1,9 +1,9 @@
 from __future__ import print_function
+from pytest import approx
 
 from ..ck_plane import ck, ellck, hyck, check_sine_law
 from ..proj_plane import pg_point, pg_line, tri_dual, x_ratio, coincident
 from ..proj_plane import cross
-from pytest import approx
 
 
 def chk_ck(myck, K, pg_obj=pg_point):

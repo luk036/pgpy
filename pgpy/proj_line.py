@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from fractions import Fraction
-# import numpy as np
 from .pg_common import cross2
 
 

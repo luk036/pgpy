@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
 from .proj_plane import pg_point, pg_line, x_ratio, involution, tri_dual, tri_func
-from abc import ABCMeta, abstractmethod
+from abc import abstractmethod
 
 
 class ck():
-    __meta_class = ABCMeta
-
     @abstractmethod
     def perp(self, v):
         """perp (abstract method)
