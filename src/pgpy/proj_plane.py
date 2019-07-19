@@ -325,8 +325,8 @@ def persp(L, M):
     pM, qM = M[0:2]
     if pL == pM:
         return persp(L[1:], M[1:])
-    O1 = (pL * pM) * (qL * qM)  # Can't use O
-    return persp_core(O1, L[2:], M[2:])
+    o = (pL * pM) * (qL * qM)  # Can't use O
+    return persp_core(o, L[2:], M[2:])
 
 
 def harm_conj(A, B, C):
@@ -442,8 +442,8 @@ def check_pappus(co1, co2):
     D, E, F = co2
     G = (A*E) * (B*D)
     H = (A*F) * (C*D)
-    I1 = (B*F) * (C*E)  # Can't use I
-    assert coincident(G, H, I1)
+    J = (B*F) * (C*E)  # Can't use I
+    assert coincident(G, H, J)
 
 
 def check_desargue(tri1, tri2):

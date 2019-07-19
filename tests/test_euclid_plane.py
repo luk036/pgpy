@@ -2,8 +2,37 @@ from __future__ import print_function
 
 from pytest import approx
 
-from pgpy.euclid_plane import *
-from pgpy.proj_plane import R, coincident, cross, harm_conj, meet, plucker, tri_dual
+from pgpy.euclid_plane import (
+    Ar,
+    Ptolemy,
+    angle,
+    cross2,
+    cross_s,
+    distance,
+    dot1,
+    is_parallel,
+    is_perpendicular,
+    orthocenter,
+    quad_quadrance,
+    quadrance,
+    reflect,
+    spread,
+    tri_altitude,
+    tri_midpoint,
+    tri_quadrance,
+    tri_spread,
+    uc_point
+)
+from pgpy.proj_plane import (
+    R,
+    coincident,
+    cross,
+    harm_conj,
+    meet,
+    pg_point,
+    plucker,
+    tri_dual
+)
 
 
 def chk_euclid(K):
@@ -40,9 +69,10 @@ def chk_euclid(K):
     mt3 = a3 * m12
     q1, q2, q3 = tri_quadrance(triangle)
     s1, s2, s3 = tri_spread(trilateral)
-    tqf = ((q1 + q2 + q3)**2) - 2*(q1*q1 + q2*q2 + q3*q3)
-    tsf = (s1 + s2 + s3)**2 - 2*(s1*s1 + s2*s2 + s3*s3) - 4*s1*s2*s3
-    c3 = ((q1 + q2 - q3)**2) / (4*q1*q2)
+    tqf = ((q1 + q2 + q3)**2) - 2 * (q1 * q1 + q2 * q2 + q3 * q3)
+    tsf = (s1 + s2 +
+           s3)**2 - 2 * (s1 * s1 + s2 * s2 + s3 * s3) - 4 * s1 * s2 * s3
+    c3 = ((q1 + q2 - q3)**2) / (4 * q1 * q2)
     a4 = plucker(3, a1, 4, a2)
     qq1, qq2, qq3 = tri_quadrance([a1, a2, a4])
     tqf2 = Ar(qq1, qq2, qq3)  # get 0
@@ -116,10 +146,10 @@ def chk_circle(K):
     q12, q23, q34, q14, q24, q13 = quadr
 
     if K == int:
-        assert Ar(q12*q34, q23*q14, q13*q24) == 0
+        assert Ar(q12 * q34, q23 * q14, q13 * q24) == 0
         assert Ptolemy(quadr)
     elif K == float:
-        assert Ar(q12*q34, q23*q14, q13*q24) == approx(0)
+        assert Ar(q12 * q34, q23 * q14, q13 * q24) == approx(0)
     else:
         raise NotImplementedError()
 

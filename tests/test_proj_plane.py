@@ -1,4 +1,14 @@
-from pgpy.proj_plane import *
+from pgpy.proj_plane import (
+    check_desargue,
+    check_pappus,
+    coI,
+    harm_conj,
+    is_harmonic,
+    persp,
+    pg_line,
+    pg_point,
+    plucker
+)
 
 
 def chk_complex(pg_object):
@@ -9,14 +19,14 @@ def chk_complex(pg_object):
     """
     p = pg_object([1 - 2j, 3 - 1j, 2 + 1j])  # complex number
     q = pg_object([-2 + 1j, 1 - 3j, -1 - 1j])
-    l = p * q
-    assert l == q * p
-    assert not l == q
-    assert l.incident(p)
-    assert l.incident(q)
+    L = p * q
+    assert L == q * p
+    assert not L == q
+    assert L.incident(p)
+    assert L.incident(q)
 
     pq = plucker(2 + 1j, p, 3 + 0j, q)
-    assert l.incident(pq)
+    assert L.incident(pq)
 
     h = harm_conj(p, q, pq)
     assert is_harmonic(p, q, pq, h)
@@ -34,13 +44,13 @@ def chk_complex(pg_object):
     assert not persp(co1[:2], co2)
     assert persp(co1[:2], co2[:2])
 
-    O = (p * s) * (q * t)
+    o = (p * s) * (q * t)
     # r = join(p, q)
-    u = plucker(1, O, -1, r)  # ???
+    u = plucker(1, o, -1, r)  # ???
     check_desargue((p, q, r), (s, t, u))
-    check_desargue((p, q, O), (s, t, u))
+    check_desargue((p, q, o), (s, t, u))
 
-    check_pappus(co1, [u, O, r])
+    check_pappus(co1, [u, o, r])
 
 
 def test_complex():
@@ -50,19 +60,19 @@ def test_complex():
 
 def test_special_case():
     p = pg_point([1, 3, 2])
-    l = pg_line([-2, 3, 1])
-    # l_inf = pg_line([0, 0, 1])
-    l_nan = pg_line([0, 0, 0])
+    L = pg_line([-2, 3, 1])
+    # L_inf = pg_line([0, 0, 1])
+    L_nan = pg_line([0, 0, 0])
     p_nan = pg_point([0, 0, 0])
 
-    assert l_nan == l_nan
-    assert l_nan == p * p  # join two equal points
-    assert p_nan == l * l
-    assert l_nan == p_nan * p
-    assert p_nan == l_nan * l
-    assert p.incident(l_nan)
-    assert l.incident(p_nan)
-    assert p_nan.incident(l_nan)
+    assert L_nan == L_nan
+    assert L_nan == p * p  # join two equal points
+    assert p_nan == L * L
+    assert L_nan == p_nan * p
+    assert p_nan == L_nan * L
+    assert p.incident(L_nan)
+    assert L.incident(p_nan)
+    assert p_nan.incident(L_nan)
 
 
 # def no_test_symbolic():

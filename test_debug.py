@@ -1,7 +1,6 @@
 from __future__ import print_function
 
-from pgpy.euclid_plane import *
-from pgpy.proj_plane import coincident, harm_conj, join, meet, tri_dual
+from pgpy.euclid_plane import Ar, Ptolemy, quadrance, uc_point
 
 
 def test_int():
@@ -16,7 +15,7 @@ def test_int():
     q24 = quadrance(a2, a4)
     q13 = quadrance(a1, a3)
     print(q12, q23, q34, q14, q24, q13)
-    t = Ar(q12*q34, q23*q14, q13*q24)
+    t = Ar(q12 * q34, q23 * q14, q13 * q24)
     # t = sympy.simplify(t)
     assert t == 0
     t = Ptolemy([q12, q23, q34, q14, q24, q13])
