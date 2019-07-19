@@ -1,7 +1,0 @@
-{
-  "test_ck_geom.py": true, 
-  "test_ell_geom.py": true, 
-  "test_euclid_geom.py": true, 
-  "test_hyper_geom.py": true, 
-  "test_proj_geom.py": true
-}

@@ -1,0 +1,32 @@
+#! /usr/bin/env python
+
+from __future__ import print_function
+
+from pgpy.euclid_plane import orthocenter
+# from pgpy.ck_plane import ellck, hyck
+from pgpy.proj_plane import pg_point, cross
+
+
+def test_symbolic():
+    import sympy
+    sympy.init_printing()
+    pv = sympy.symbols("p:3", integer=True)
+    qv = sympy.symbols("q:3", integer=True)
+    rv = sympy.symbols("r:3", integer=True)
+    p = pg_point(pv)
+    q = pg_point(qv)
+    r = pg_point(rv)
+    triangle = [p, q, r]
+
+    # myck = ellck()
+
+    o = orthocenter(triangle)
+    triangle2 = [p, q, o]
+    o2 = orthocenter(triangle2)
+    ans = cross(r, o2)
+    ans = sympy.simplify(ans)
+    print(ans)  # get (0, 0, 0)
+
+
+if __name__ == "__main__":
+    test_symbolic()

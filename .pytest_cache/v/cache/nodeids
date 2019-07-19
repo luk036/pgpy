@@ -1,10 +1,10 @@
 [
-  "test_debug.py::test_int",
-  "pgpy/tests/test_ck_plane.py::test_ck",
-  "pgpy/tests/test_ell_plane.py::test_ell_hy",
-  "pgpy/tests/test_euclid_plane.py::test_euclid",
-  "pgpy/tests/test_persp_plane.py::test_persp",
-  "pgpy/tests/test_proj_line.py::test_complex_point",
-  "pgpy/tests/test_proj_plane.py::test_complex",
-  "pgpy/tests/test_proj_plane.py::test_special_case"
+  "tests/test_ck_plane.py::test_ck",
+  "tests/test_ell_plane.py::test_ell_hy",
+  "tests/test_euclid_plane.py::test_euclid",
+  "tests/test_persp_plane.py::test_persp",
+  "tests/test_proj_line.py::test_complex_point",
+  "tests/test_proj_plane.py::test_complex",
+  "tests/test_proj_plane.py::test_special_case",
+  "tests/test_skeleton.py::test_fib"
 ]
