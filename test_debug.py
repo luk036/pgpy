@@ -1,7 +1,7 @@
 from __future__ import print_function
 
 from pgpy.euclid_plane import *
-from pgpy.proj_plane import tri_dual, join, meet, coincident, harm_conj
+from pgpy.proj_plane import coincident, harm_conj, join, meet, tri_dual
 
 
 def test_int():
