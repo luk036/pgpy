@@ -23,14 +23,15 @@ before_script:
   - git config --global user.name "Wai-Shing Luk"
 script:
   - python setup.py develop
-  # - tox
-  # - |
-  #   if [[ "$COVERAGE" == "true" ]]; then
-  #     pre-commit install
-  #     pre-commit run --all-files
-  #   fi
+  - tox
+  - |
+    if [[ "$COVERAGE" == "true" ]]; then
+      pre-commit install
+      pre-commit run --all-files
+      python setup.py test --addopts --cov=./
+    fi
 after_success:
-  - if [[ "$COVERAGE" == "true" ]]; then coveralls || echo "failed"; fi
+  - if [[ "$COVERAGE" == "true" ]]; then codecov || echo "failed"; fi
 after_script:
   - travis-cleanup
 cache:
