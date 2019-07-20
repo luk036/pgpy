@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
-from fractions import Fraction
+"""
+Euclidean Geometry
+"""
 
-import numpy as np
+import math
+from fractions import Fraction
 
 from .pg_common import cross2, dot1
 from .proj_plane import involution, pg_point, plucker, quad_func, tri_func
@@ -299,7 +302,7 @@ def distance(a, b):
     Returns:
             [type]: [description]
     """
-    return np.sqrt(float(quadrance(a, b)))
+    return math.sqrt(float(quadrance(a, b)))
 
 
 def angle(l, m):
@@ -312,4 +315,4 @@ def angle(l, m):
     Returns:
             [type]: [description]
     """
-    return np.arcsin(np.sqrt(float(spread(l, m))))
+    return math.asin(math.sqrt(float(spread(l, m))))

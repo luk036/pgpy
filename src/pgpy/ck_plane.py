@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+"""
+Cayley-Klein Geometry
+"""
+
 from abc import abstractmethod
 
 from .proj_plane import involution, pg_line, pg_point, tri_dual, tri_func, x_ratio

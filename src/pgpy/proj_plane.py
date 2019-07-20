@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
-# import numpy as np
+"""
+Projective Plane
+"""
+
 from abc import abstractmethod
 
 from .pg_common import cross, cross0, dot_c, plucker_c

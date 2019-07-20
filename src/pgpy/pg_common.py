@@ -1,3 +1,9 @@
+# -*- coding: utf-8 -*-
+"""
+Common Functions for Projective Geometry
+"""
+
+
 def cross0(v, w):
     """[summary]
 
@@ -79,7 +85,7 @@ def plucker_c(ld, v, mu, w):
     """
     x1, y1, z1 = v
     x2, y2, z2 = w
-    return (ld*x1 + mu*x2, ld*y1 + mu*y2, ld*z1 + mu*z2)
+    return (ld * x1 + mu * x2, ld * y1 + mu * y2, ld * z1 + mu * z2)
 
 
 def dot1(v, w):

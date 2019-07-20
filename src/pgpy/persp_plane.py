@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+"""
+Perspective Euclidean Geometry
+"""
+
 from fractions import Fraction
 
 from .ck_plane import ck
@@ -10,7 +14,6 @@ class persp_euclid_plane(ck):
         """[summary]
 
         Arguments:
-            ck (type): [description]
             Ire (type): [description]
             Iim (type): [description]
             l_infty (type): [description]

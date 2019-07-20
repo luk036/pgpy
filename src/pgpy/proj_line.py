@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
+"""
+Projective Line
+"""
+
 from fractions import Fraction
 
 from .pg_common import cross2
 
 
 class pl_point(list):
-    """Projective point in Projective line"""
-
+    """Point in Projective line"""
     def __new__(cls, *args, **kwargs):
         """[summary]
 
