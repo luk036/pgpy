@@ -2,8 +2,8 @@
 
 from __future__ import print_function
 
-from pgpy.euclid_plane import orthocenter
-# from pgpy.ck_plane import ellck, hyck
+# from pgpy.euclid_plane import orthocenter
+from pgpy.ck_plane import ellck
 from pgpy.proj_plane import pg_point, cross
 
 
@@ -18,11 +18,14 @@ def test_symbolic():
     r = pg_point(rv)
     triangle = [p, q, r]
 
-    # myck = ellck()
+    myck = ellck()
 
-    o = orthocenter(triangle)
+    o = myck.orthocenter(triangle)
+    o = sympy.simplify(o)
+    print(o)
+
     triangle2 = [p, q, o]
-    o2 = orthocenter(triangle2)
+    o2 = myck.orthocenter(triangle2)
     ans = cross(r, o2)
     ans = sympy.simplify(ans)
     print(ans)  # get (0, 0, 0)
