@@ -36,7 +36,7 @@ class pg_object(list):
             [type]: [description]
         """
         if type(other) is type(self):
-            return cross(self, other) == (0, 0, 0)
+            return not any(cross(self, other))
         return False
 
     def __ne__(self, other):
@@ -49,6 +49,17 @@ class pg_object(list):
             [type]: [description]
         """
         return not self.__eq__(other)
+
+    def is_NaN(self):
+        """[summary]
+
+        Arguments:
+            other (type): [description]
+
+        Returns:
+            [type]: [description]
+        """
+        return not any(self)
 
     def dot(self, l):
         """[summary]

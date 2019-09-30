@@ -19,6 +19,11 @@ def chk_complex(pg_object):
     """
     p = pg_object([1 - 2j, 3 - 1j, 2 + 1j])  # complex number
     q = pg_object([-2 + 1j, 1 - 3j, -1 - 1j])
+
+    # l7 = p * p
+    # assert l7.is_NaN()
+    # assert l7.incident(q)
+
     L = p * q
     assert L == q * p
     assert not L == q
@@ -65,6 +70,7 @@ def test_special_case():
     L_nan = pg_line([0, 0, 0])
     p_nan = pg_point([0, 0, 0])
 
+    assert L_nan.is_NaN()
     assert L_nan == L_nan
     assert L_nan == p * p  # join two equal points
     assert p_nan == L * L
