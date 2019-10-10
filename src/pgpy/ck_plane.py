@@ -16,7 +16,6 @@ class ck():
         Arguments:
             v (type): [description]
         """
-        pass
 
     @abstractmethod
     def measure(self, a1, a2):
@@ -26,7 +25,6 @@ class ck():
             a1 (type): [description]
             a2 (type): [description]
         """
-        pass
 
     def is_perpendicular(self, l, m):
         """Check if two lines perpendicular
