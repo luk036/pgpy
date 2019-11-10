@@ -1,4 +1,5 @@
-# pgpy
+pgpy
+====
 
 [![Build Status](https://travis-ci.org/luk036/pgpy.svg?branch=master)](https://travis-ci.org/luk036/pgpy)
 [![Build status](https://ci.appveyor.com/api/projects/status/sci78yi73pcltmv5?svg=true)](https://ci.appveyor.com/project/luk036/pgpy)
@@ -11,3 +12,14 @@
 [![BCH compliance](https://bettercodehub.com/edge/badge/luk036/pgpy?branch=master)](https://bettercodehub.com/)
 
 Projective Geometry python code
+
+See also
+--------
+
+[pgcpp](https://github.com/luk036/pgcpp)
+
+Note
+----
+
+This project has been set up using PyScaffold 3.2.1. For details and usage
+information on PyScaffold see <https://pyscaffold.org/>.

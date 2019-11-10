@@ -21,9 +21,9 @@ def chk_ck(myck, K, pg_obj=pg_point):
         NotImplementedError -- [description]
     """
     if K == int:
-        a1 = pg_obj([21, 22, 3])
-        a2 = pg_obj([24, -20, 26])
-        a3 = pg_obj([-27, 21, 2])
+        a1 = pg_obj([2133, 2232, 3322])
+        a2 = pg_obj([2444, -2034, 2623])
+        a3 = pg_obj([-2723, 2123, 2232])
     elif K == float:
         a1 = pg_obj([3., 2., 7.])
         a2 = pg_obj([2., -2., 1.])
