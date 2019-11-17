@@ -143,9 +143,8 @@ def quad1(P):
             [type]: [description]
     """
     x1, z1, x2, z2 = P
-    for v in P:
-        if not isinstance(v, int):
-            return (x1 / z1 - x2 / z2)**2
+    if any([not isinstance(v, int) for v in P]):
+        return (x1 / z1 - x2 / z2)**2
     return (Fraction(x1, z1) - Fraction(x2, z2))**2
 
 
