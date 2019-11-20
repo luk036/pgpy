@@ -1,3 +1,6 @@
+from hypothesis import given
+from hypothesis.strategies import integers
+
 from pgpy.proj_plane import (
     check_desargue,
     check_pappus,
@@ -63,9 +66,10 @@ def test_complex():
     chk_complex(pg_line)
 
 
-def test_special_case():
-    p = pg_point([1, 3, 2])
-    L = pg_line([-2, 3, 1])
+@given(integers(), integers(), integers(), integers(), integers(), integers())
+def test_special_case(px, py, pz, Lx, Ly, Lz):
+    p = pg_point([px, py, pz])
+    L = pg_line([Lx, Ly, Lz])
     # L_inf = pg_line([0, 0, 1])
     L_nan = pg_line([0, 0, 0])
     p_nan = pg_point([0, 0, 0])
