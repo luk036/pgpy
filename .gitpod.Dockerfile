@@ -1,5 +1,10 @@
 FROM gitpod/workspace-full
 
+USER root
+
+RUN pip3 install --upgrade pip \
+    && pip3 install -r /workspace/pgpy/requirements.txt
+
 USER gitpod
 
 # Install custom tools, runtime, etc. using apt-get
