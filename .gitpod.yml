@@ -1,10 +1,6 @@
 tasks:
   - command: >
-      pre-commit install
-      python3 setup.py develop
+      pip3 install -r /workspace/pgpy/requirements.txt \
+      && python3 setup.py develop
 image:
   file: .gitpod.Dockerfile
-
-vscode:
-  extensions:
-    - ms-python.python@2020.1.58038:pjpQRQV8ZYUJkihlvnRPDQ==

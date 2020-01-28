@@ -3,7 +3,6 @@ FROM gitpod/workspace-full
 USER root
 
 RUN pip3 install --upgrade pip \
-    && pip3 install -r /workspace/pgpy/requirements.txt \
     && pip3 install pre-commit
 
 USER gitpod
