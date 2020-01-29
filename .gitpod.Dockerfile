@@ -3,7 +3,16 @@ FROM gitpod/workspace-full
 USER root
 
 RUN pip3 install --upgrade pip \
-    && pip3 install pre-commit
+    && pip3 install \
+	decorator \
+	sympy \
+	pre-commit \
+	codecov \
+	coverage \
+	hypothesis \
+	pytest \
+	pytest-cov \
+	pytest-benchmark
 
 USER gitpod
 
