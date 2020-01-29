@@ -15,6 +15,18 @@ pgpy
 
 Projective Geometry python code
 
+Installation and Run
+--------------------
+
+To setup develop environment:
+
+    pip3 install -r ./requirements.txt &&
+    python3 setup.py develop
+
+To run unit tests:
+
+    python3 setup.py test
+
 See also
 --------
 
@@ -25,3 +37,4 @@ Note
 
 This project has been set up using PyScaffold 3.2.1. For details and usage
 information on PyScaffold see <https://pyscaffold.org/>.
+
