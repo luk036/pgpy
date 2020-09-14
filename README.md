@@ -2,6 +2,7 @@ pgpy
 ====
 
 [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/luk036/pgpy)
+![Python application](https://github.com/luk036/pgpy/workflows/Python%20application/badge.svg)
 [![Build Status](https://travis-ci.org/luk036/pgpy.svg?branch=master)](https://travis-ci.org/luk036/pgpy)
 [![Build status](https://ci.appveyor.com/api/projects/status/sci78yi73pcltmv5?svg=true)](https://ci.appveyor.com/project/luk036/pgpy)
 [![Documentation Status](https://readthedocs.org/projects/projgeompy/badge/?version=latest)](https://projgeompy.readthedocs.io/en/latest/?badge=latest)
