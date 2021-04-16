@@ -1,14 +1,12 @@
 from __future__ import print_function
 
-from pytest import approx
-
 from pgpy.ck_plane import check_sine_law
 from pgpy.euclid_plane import Ar
 from pgpy.persp_plane import persp_euclid_plane
-from pgpy.proj_plane import coincident, cross, pg_line, pg_point, plucker, tri_dual
+from pgpy.proj_plane import coincident, pg_line, pg_point, plucker, tri_dual
 
 
-def chk_ck(myck, K, pg_obj=pg_point):
+def chk_ck(myck, pg_obj=pg_point):
     """[summary]
 
     Arguments:
@@ -22,16 +20,9 @@ def chk_ck(myck, K, pg_obj=pg_point):
         NotImplementedError -- [description]
         NotImplementedError -- [description]
     """
-    if K == int:
-        a1 = pg_obj([2, 22, 3])
-        a2 = pg_obj([4, -20, 26])
-        a3 = pg_obj([-27, 21, 2])
-    elif K == float:
-        a1 = pg_obj([3., 2., 7.])
-        a2 = pg_obj([2., -2., 1.])
-        a3 = pg_obj([-3., 4., 6.])
-    else:
-        raise NotImplementedError()
+    a1 = pg_obj([2, 22, 3])
+    a2 = pg_obj([4, -20, 26])
+    a3 = pg_obj([-27, 21, 2])
 
     triangle = [a1, a2, a3]
     trilateral = tri_dual(triangle)
@@ -42,32 +33,18 @@ def chk_ck(myck, K, pg_obj=pg_point):
     Q = myck.tri_measure(triangle)
     S = myck.tri_measure(trilateral)
 
-    if K == int:
-        assert l1.incident(a2)
-        assert myck.is_perpendicular(t1, l1)
-        assert coincident(t1, t2, t3)
-        assert o == t2 * t3
-        assert a1 == myck.orthocenter([o, a2, a3])
-        assert tau(tau(a1)) == a1
-        assert myck.measure(l1, l1) == 0
-        assert myck.measure(a1, a1) == 0
-        assert check_sine_law(Q, S)
-    elif K == float:
-        assert l1.dot(a2) == approx(0)
-        assert l1.dot(myck.perp(t1)) == approx(0)
-        assert t1.dot(t2 * t3) == approx(0)
-        assert cross(o, t2 * t3) == approx((0, 0, 0))
-        assert cross(a1, myck.orthocenter([o, a2, a3])) == approx((0, 0, 0))
-        assert cross(tau(tau(a1)), a1) == approx((0, 0, 0))
-        assert myck.measure(l1, l1) == approx(0)
-        assert myck.measure(a1, a1) == approx(0)
-        assert Q[0] * S[1] == approx(Q[1] * S[0])
-        assert Q[1] * S[2] == approx(Q[2] * S[1])
-    else:
-        raise NotImplementedError()
+    assert l1.incident(a2)
+    assert myck.is_perpendicular(t1, l1)
+    assert coincident(t1, t2, t3)
+    assert o == t2 * t3
+    assert a1 == myck.orthocenter([o, a2, a3])
+    assert tau(tau(a1)) == a1
+    assert myck.measure(l1, l1) == 0
+    assert myck.measure(a1, a1) == 0
+    assert check_sine_law(Q, S)
 
 
-def chk_degenerate(myck, K):
+def chk_degenerate(myck):
     """[summary]
 
     Arguments:
@@ -78,16 +55,9 @@ def chk_degenerate(myck, K):
         NotImplementedError -- [description]
         NotImplementedError -- [description]
     """
-    if K == int:
-        a1 = pg_point([-1, 2, 3])
-        a2 = pg_point([4, -1, 1])
-        a3 = pg_point([0, -1, 1])
-    elif K == float:
-        a1 = pg_point([-1., 2., 3.])
-        a2 = pg_point([4., -1., 1.])
-        a3 = pg_point([0., -1., 1.])
-    else:
-        raise NotImplementedError()
+    a1 = pg_point([-1, 2, 3])
+    a2 = pg_point([4, -1, 1])
+    a3 = pg_point([0, -1, 1])
 
     triangle = [a1, a2, a3]
     trilateral = tri_dual(triangle)
@@ -105,22 +75,12 @@ def chk_degenerate(myck, K):
     qq1, qq2, qq3 = myck.tri_quadrance([a1, a2, a4])
     tqf2 = Ar(qq1, qq2, qq3)  # get 0
 
-    if K == int:
-        assert not myck.is_parallel(l1, l2)
-        assert not myck.is_parallel(l2, l3)
-        assert coincident(t1, t2, t3)
-        assert tqf == Ar(q1, q2, q3)
-        assert tsf == 0
-        assert tqf2 == 0
-    elif K == float:
-        assert myck.l_infty.dot(l1 * l2) != approx(0)
-        assert myck.l_infty.dot(l2 * l3) != approx(0)
-        assert t1.dot(t2 * t3) == approx(0)
-        assert approx(tqf) == Ar(q1, q2, q3)
-        assert tsf == approx(0)
-        assert tqf2 == approx(0)
-    else:
-        raise NotImplementedError()
+    assert not myck.is_parallel(l1, l2)
+    assert not myck.is_parallel(l2, l3)
+    assert coincident(t1, t2, t3)
+    assert tqf == Ar(q1, q2, q3)
+    assert tsf == 0
+    assert tqf2 == 0
 
 
 def test_persp():
@@ -129,8 +89,5 @@ def test_persp():
     l_inf = pg_line([0, -1, 1])
     P = persp_euclid_plane(Ire, Iim, l_inf)
 
-    chk_ck(P, int, pg_point)
-    chk_ck(P, float, pg_point)
-
-    chk_degenerate(P, int)
-    chk_degenerate(P, float)
+    chk_ck(P, pg_point)
+    chk_degenerate(P)

@@ -26,29 +26,29 @@ class ck():
             a2 (type): [description]
         """
 
-    def is_perpendicular(self, l, m):
+    def is_perpendicular(self, m1, m2):
         """Check if two lines perpendicular
 
         Arguments:
-            l {pg_object}: line
-            m {pg_object}: line
+            m1 {pg_object}: line
+            m2 {pg_object}: line
 
         Returns:
-            bool -- True if l and m are perpendicular
+            bool -- True if m1 and m2 are perpendicular
         """
-        return m.incident(self.perp(l))
+        return m2.incident(self.perp(m1))
 
-    def altitude(self, p, l):
+    def altitude(self, p, m):
         """[summary]
 
         Arguments:
             p (type): [description]
-            l (type): [description]
+            m (type): [description]
 
         Returns:
             [type]: [description]
         """
-        return p * self.perp(l)
+        return p * self.perp(m)
 
     def tri_altitude(self, tri):
         """[summary]

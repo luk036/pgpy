@@ -10,7 +10,7 @@ from .pg_common import cross2, dot1
 from .proj_plane import involution, pg_point, plucker, quad_func, tri_func
 
 
-def fB(l):
+def fB(m):
     """[summary]
 
     Arguments:
@@ -19,36 +19,36 @@ def fB(l):
     Returns:
             [type]: [description]
     """
-    return pg_point([l[0], l[1], 0])
+    return pg_point([m[0], m[1], 0])
 
 
-def is_perpendicular(l, m):
+def is_perpendicular(m1, m2):
     """[summary]
 
     Arguments:
-            l (type): [description]
-            m (type): [description]
+            m1 (type): [description]
+            m2 (type): [description]
 
     Returns:
             [type]: [description]
     """
-    return dot1(l, m) == 0
+    return dot1(m1, m2) == 0
 
 
-def is_parallel(l, m):
+def is_parallel(m1, m2):
     """[summary]
 
     Arguments:
-            l (type): [description]
-            m (type): [description]
+            m1 (type): [description]
+            m2 (type): [description]
 
     Returns:
             [type]: [description]
     """
-    return cross2(l, m) == 0
+    return cross2(m1, m2) == 0
 
 
-def altitude(a, l):
+def altitude(a, m):
     """[summary]
 
     Arguments:
@@ -58,7 +58,7 @@ def altitude(a, l):
     Returns:
             [type]: [description]
     """
-    return a * fB(l)
+    return a * fB(m)
 
 
 def tri_altitude(tri):
@@ -143,8 +143,6 @@ def quad1(P):
             [type]: [description]
     """
     x1, z1, x2, z2 = P
-    if any([not isinstance(v, int) for v in P]):
-        return (x1 / z1 - x2 / z2)**2
     return (Fraction(x1, z1) - Fraction(x2, z2))**2
 
 
@@ -173,9 +171,7 @@ def sbase(l1, l2, d):
     Returns:
             [type]: [description]
     """
-    if isinstance(d, int):
-        return Fraction(d, dot1(l1, l1)) * Fraction(d, dot1(l2, l2))
-    return (d * d) / (dot1(l1, l1) * dot1(l2, l2))
+    return Fraction(d, dot1(l1, l1)) * Fraction(d, dot1(l2, l2))
 
 
 def spread(l1, l2):
@@ -304,14 +300,14 @@ def distance(a, b):
     return math.sqrt(float(quadrance(a, b)))
 
 
-def angle(l, m):
+def angle(m1, m2):
     """[summary]
 
     Arguments:
-            l (type): [description]
-            m (type): [description]
+            m1 (type): [description]
+            m2 (type): [description]
 
     Returns:
             [type]: [description]
     """
-    return math.asin(math.sqrt(float(spread(l, m))))
+    return math.asin(math.sqrt(float(spread(m1, m2))))

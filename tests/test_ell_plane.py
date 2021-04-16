@@ -1,12 +1,10 @@
 from __future__ import print_function
 
-from pytest import approx
-
 from pgpy.ck_plane import check_cross_law, check_cross_TQF, ellck, hyck
-from pgpy.proj_plane import cross, pg_point, plucker, tri_dual
+from pgpy.proj_plane import pg_point, plucker, tri_dual
 
 
-def chk_tri_ell_hy(myck, K):
+def chk_tri_ell_hy(myck):
     """[summary]
 
     Arguments:
@@ -17,16 +15,9 @@ def chk_tri_ell_hy(myck, K):
         NotImplementedError -- [description]
         NotImplementedError -- [description]
     """
-    if K == int:
-        a1 = pg_point([33, 121, 54])
-        a2 = pg_point([33, 564, 34])
-        a3 = pg_point([34, 64, -62])
-    elif K == float:
-        a1 = pg_point([4., 1., 5.])
-        a2 = pg_point([-5., 5., 3.])
-        a3 = pg_point([3., 7., -6.])
-    else:
-        raise NotImplementedError()
+    a1 = pg_point([33, 121, 54])
+    a2 = pg_point([33, 564, 34])
+    a3 = pg_point([34, 64, -62])
 
     temp = myck.perp(a1)
     triangle = [a1, a2, a3]
@@ -38,32 +29,21 @@ def chk_tri_ell_hy(myck, K):
     collin = [a1, a2, a4]
     Q2 = myck.tri_quadrance(collin)
 
-    if K == int:
-        assert myck.perp(temp) == a1
-        assert myck.perp(myck.perp(l1)) == l1
-        assert myck.quadrance(a1, a1) == 0
-        assert myck.spread(l1, l1) == 0
-        assert check_cross_law(S, Q[2]) == 0
-        assert check_cross_law(Q, S[2]) == 0
-        assert check_cross_TQF(Q2) == 0
-    elif K == float:
-        assert cross(myck.perp(temp), a1) == approx((0, 0, 0))
-        assert cross(myck.perp(myck.perp(l1)), l1) == approx((0, 0, 0))
-        assert myck.quadrance(a1, a1) == approx(0)
-        assert myck.spread(l1, l1) == approx(0)
-        assert check_cross_law(S, Q[2]) == approx(0)
-        assert check_cross_law(Q, S[2]) == approx(0)
-        assert check_cross_TQF(Q2) == approx(0)
-    else:
-        raise NotImplementedError()
+    assert myck.perp(temp) == a1
+    assert myck.perp(myck.perp(l1)) == l1
+    assert myck.quadrance(a1, a1) == 0
+    assert myck.spread(l1, l1) == 0
+    assert check_cross_law(S, Q[2]) == 0
+    assert check_cross_law(Q, S[2]) == 0
+    assert check_cross_TQF(Q2) == 0
 
 
 def test_ell_hy():
-    chk_tri_ell_hy(ellck(), int)
-    chk_tri_ell_hy(hyck(), int)
+    chk_tri_ell_hy(ellck())
+    chk_tri_ell_hy(hyck())
 
-    chk_tri_ell_hy(ellck(), float)
-    chk_tri_ell_hy(hyck(), float)
+    chk_tri_ell_hy(ellck())
+    chk_tri_ell_hy(hyck())
 
 
 # def no_test_symbolic(myck):

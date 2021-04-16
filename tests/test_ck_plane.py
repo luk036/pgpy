@@ -1,12 +1,10 @@
 from __future__ import print_function
 
-from pytest import approx
-
 from pgpy.ck_plane import check_sine_law, ck, ellck, hyck
-from pgpy.proj_plane import coincident, cross, pg_line, pg_point, tri_dual, x_ratio
+from pgpy.proj_plane import coincident, pg_line, pg_point, tri_dual, x_ratio
 
 
-def chk_ck(myck, K, pg_obj=pg_point):
+def chk_ck(myck, pg_obj=pg_point):
     """[summary]
 
     Arguments:
@@ -20,16 +18,9 @@ def chk_ck(myck, K, pg_obj=pg_point):
         NotImplementedError -- [description]
         NotImplementedError -- [description]
     """
-    if K == int:
-        a1 = pg_obj([2133, 2232, 3322])
-        a2 = pg_obj([2444, -2034, 2623])
-        a3 = pg_obj([-2723, 2123, 2232])
-    elif K == float:
-        a1 = pg_obj([3., 2., 7.])
-        a2 = pg_obj([2., -2., 1.])
-        a3 = pg_obj([-3., 4., 6.])
-    else:
-        raise NotImplementedError()
+    a1 = pg_obj([2133, 2232, 3322])
+    a2 = pg_obj([2444, -2034, 2623])
+    a3 = pg_obj([-2723, 2123, 2232])
 
     triangle = [a1, a2, a3]
     trilateral = tri_dual(triangle)
@@ -40,29 +31,15 @@ def chk_ck(myck, K, pg_obj=pg_point):
     Q = myck.tri_measure(triangle)
     S = myck.tri_measure(trilateral)
 
-    if K == int:
-        assert l1.incident(a2)
-        assert myck.is_perpendicular(t1, l1)
-        assert coincident(t1, t2, t3)
-        assert o == t2 * t3
-        assert a1 == myck.orthocenter([o, a2, a3])
-        assert tau(tau(a1)) == a1
-        assert myck.measure(l1, l1) == 0
-        assert myck.measure(a1, a1) == 0
-        assert check_sine_law(Q, S)
-    elif K == float:
-        assert l1.dot(a2) == approx(0)
-        assert l1.dot(myck.perp(t1)) == approx(0)
-        assert t1.dot(t2 * t3) == approx(0)
-        assert cross(o, t2 * t3) == approx((0, 0, 0))
-        assert cross(a1, myck.orthocenter([o, a2, a3])) == approx((0, 0, 0))
-        assert cross(tau(tau(a1)), a1) == approx((0, 0, 0))
-        assert myck.measure(l1, l1) == approx(0)
-        assert myck.measure(a1, a1) == approx(0)
-        assert Q[0] * S[1] == approx(Q[1] * S[0])
-        assert Q[1] * S[2] == approx(Q[2] * S[1])
-    else:
-        raise NotImplementedError()
+    assert l1.incident(a2)
+    assert myck.is_perpendicular(t1, l1)
+    assert coincident(t1, t2, t3)
+    assert o == t2 * t3
+    assert a1 == myck.orthocenter([o, a2, a3])
+    assert tau(tau(a1)) == a1
+    assert myck.measure(l1, l1) == 0
+    assert myck.measure(a1, a1) == 0
+    assert check_sine_law(Q, S)
 
 
 class myck(ck):
@@ -112,23 +89,14 @@ class myck(ck):
 
 
 def test_ck():
-    chk_ck(myck(), int, pg_point)
-    chk_ck(myck(), int, pg_line)
+    chk_ck(myck(), pg_point)
+    chk_ck(myck(), pg_line)
 
-    chk_ck(ellck(), int, pg_point)
-    chk_ck(ellck(), int, pg_line)
+    chk_ck(ellck(), pg_point)
+    chk_ck(ellck(), pg_line)
 
-    chk_ck(hyck(), int, pg_point)
-    chk_ck(hyck(), int, pg_line)
-
-    chk_ck(myck(), float, pg_point)
-    chk_ck(myck(), float, pg_line)
-
-    chk_ck(ellck(), float, pg_point)
-    chk_ck(ellck(), float, pg_line)
-
-    chk_ck(hyck(), float, pg_point)
-    chk_ck(hyck(), float, pg_line)
+    chk_ck(hyck(), pg_point)
+    chk_ck(hyck(), pg_line)
 
 
 # def no_test_symbolic():

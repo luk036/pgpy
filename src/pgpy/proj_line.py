@@ -55,9 +55,7 @@ def ratio_ratio(a, b, c, d):
     Returns:
         [type]: [description]
     """
-    if isinstance(a, int):
-        return Fraction(a, b) / Fraction(c, d)
-    return (a * d) / (b * c)
+    return Fraction(a, b) / Fraction(c, d)
 
 
 def R1(A, B, C, D):

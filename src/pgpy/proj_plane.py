@@ -61,27 +61,27 @@ class pg_object(list):
         """
         return not any(self)
 
-    def dot(self, l):
+    def dot(self, m):
         """[summary]
 
         Arguments:
-            l (type): [description]
+            m (type): [description]
 
         Returns:
             [type]: [description]
         """
-        return dot_c(self, l)
+        return dot_c(self, m)
 
-    def incident(self, l):
+    def incident(self, m):
         """[summary]
 
         Arguments:
-            l (type): [description]
+            m (type): [description]
 
         Returns:
             [type]: [description]
         """
-        return not dot_c(self, l)
+        return not dot_c(self, m)
 
     def coincident(self, *lst):
         """[summary]
@@ -89,8 +89,8 @@ class pg_object(list):
         Returns:
             [type]: [description]
         """
-        for l in lst:
-            if not self.incident(l):
+        for m in lst:
+            if not self.incident(m):
                 return False
         return True
 
@@ -176,12 +176,12 @@ def join(p, q):
     return p * q
 
 
-def meet(l, m):
+def meet(m1, m2):
     """[summary]
 
     Arguments:
-        l (type): [description]
-        m (type): [description]
+        m1 (type): [description]
+        m2 (type): [description]
 
     Raises:
         AssertionError -- [description]
@@ -189,9 +189,9 @@ def meet(l, m):
     Returns:
         [type]: [description]
     """
-    if not isinstance(l, pg_line):
+    if not isinstance(m1, pg_line):
         raise AssertionError()
-    return l * m
+    return m1 * m2
 
 
 def coincident(p, q, r):
@@ -208,18 +208,18 @@ def coincident(p, q, r):
     return r.incident(p * q)
 
 
-def coI_core(l, Lst):
+def coI_core(m, Lst):
     """[summary]
 
     Arguments:
-        l (type): [description]
+        m (type): [description]
         Lst (type): [description]
 
     Returns:
         [type]: [description]
     """
     for p in Lst:
-        if not l.incident(p):
+        if not m.incident(p):
             return False
     return True
 
@@ -304,11 +304,11 @@ def quad_func(func, Quad):
     return m12, m23, m34, m14, m24, m13
 
 
-def persp_core(O, L, M):
+def persp_core(C, L, M):
     """[summary]
 
     Arguments:
-        O (type): [description]
+        C (type): [description]
         L (type): [description]
         M (type): [description]
 
@@ -316,7 +316,7 @@ def persp_core(O, L, M):
         [type]: [description]
     """
     for rL, rM in zip(L, M):
-        if not O.incident(rL * rM):
+        if not C.incident(rL * rM):
             return False
     return True
 
@@ -339,7 +339,7 @@ def persp(L, M):
     pM, qM = M[0:2]
     if pL == pM:
         return persp(L[1:], M[1:])
-    o = (pL * pM) * (qL * qM)  # Can't use O
+    o = (pL * pM) * (qL * qM)  # Can't use
     return persp_core(o, L[2:], M[2:])
 
 
@@ -384,7 +384,7 @@ class involution:
         return plucker(self.c, p, -2 * p.dot(self.m), self.o)
 
 
-def x_ratio(A, B, l, m):
+def x_ratio(A, B, lg, m):
     """[summary]
 
     Arguments:
@@ -396,9 +396,9 @@ def x_ratio(A, B, l, m):
     Returns:
         [type]: [description]
     """
-    dAl = A.dot(l)
+    dAl = A.dot(lg)
     dAm = A.dot(m)
-    dBl = B.dot(l)
+    dBl = B.dot(lg)
     dBm = B.dot(m)
     return ratio_ratio(dAl, dAm, dBl, dBm)
 

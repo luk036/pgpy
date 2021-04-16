@@ -40,17 +40,17 @@ class persp_euclid_plane(ck):
             return plucker(alpha, self.Ire, beta, self.Iim)
         raise NotImplementedError()
 
-    def is_parallel(self, l, m):
+    def is_parallel(self, m1, m2):
         """[summary]
 
         Arguments:
-            l (type): [description]
-            m (type): [description]
+            m1 (type): [description]
+            m2 (type): [description]
 
         Returns:
             [type]: [description]
         """
-        return self.l_infty.incident(l * m)
+        return self.l_infty.incident(m1 * m2)
 
     def midpoint(self, a, b):
         """[summary]
@@ -107,7 +107,4 @@ class persp_euclid_plane(ck):
         """
         omg = self.omega(a1 * a2)
         den = self.omega(a1) * self.omega(a2)
-        if isinstance(omg, int) and \
-                isinstance(den, int):
-            return Fraction(omg, den)
-        return omg / den
+        return Fraction(omg, den)
