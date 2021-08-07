@@ -53,4 +53,4 @@ MANIFEST
 .conda*/
 
 # mypy
-.mypy_cache
+.mypy_cache/
