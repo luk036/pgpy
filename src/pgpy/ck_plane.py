@@ -8,7 +8,7 @@ from abc import abstractmethod
 from .proj_plane import involution, pg_line, pg_point, tri_dual, tri_func, x_ratio
 
 
-class ck():
+class ck:
     @abstractmethod
     def perp(self, v):
         """perp (abstract method)
@@ -245,7 +245,7 @@ def check_cross_TQF(Q):
         [type]: [description]
     """
     q1, q2, q3 = Q
-    return (q1 + q2 + q3)**2 - 2 * (q1**2 + q2**2 + q3**2) - 4 * q1 * q2 * q3
+    return (q1 + q2 + q3) ** 2 - 2 * (q1 ** 2 + q2 ** 2 + q3 ** 2) - 4 * q1 * q2 * q3
 
 
 def check_cross_law(S, q3):
@@ -259,5 +259,4 @@ def check_cross_law(S, q3):
         [type]: [description]
     """
     s1, s2, s3 = S
-    return (s1 * s2 * q3 -
-            (s1 + s2 + s3) + 2)**2 - 4 * (1 - s1) * (1 - s2) * (1 - s3)
+    return (s1 * s2 * q3 - (s1 + s2 + s3) + 2) ** 2 - 4 * (1 - s1) * (1 - s2) * (1 - s3)
