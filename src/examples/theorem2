@@ -4,11 +4,12 @@ from __future__ import print_function
 
 # from pgpy.euclid_plane import orthocenter
 from pgpy.ck_plane import ellck
-from pgpy.proj_plane import pg_point, cross
+from pgpy.proj_plane import cross, pg_point
 
 
 def test_symbolic():
     import sympy
+
     sympy.init_printing()
     pv = sympy.symbols("p:3", integer=True)
     qv = sympy.symbols("q:3", integer=True)

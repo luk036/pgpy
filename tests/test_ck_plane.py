@@ -54,6 +54,7 @@ class myck(ck):
     Returns:
         [type]: [description]
     """
+
     @classmethod
     def perp(cls, v):
         """[summary]

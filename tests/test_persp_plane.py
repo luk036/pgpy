@@ -68,9 +68,8 @@ def chk_degenerate(myck):
     t3 = a3 * m12
     q1, q2, q3 = myck.tri_quadrance(triangle)
     s1, s2, s3 = myck.tri_spread(trilateral)
-    tqf = ((q1 + q2 + q3)**2) - 2 * (q1 * q1 + q2 * q2 + q3 * q3)
-    tsf = (s1 + s2 +
-           s3)**2 - 2 * (s1 * s1 + s2 * s2 + s3 * s3) - 4 * s1 * s2 * s3
+    tqf = ((q1 + q2 + q3) ** 2) - 2 * (q1 * q1 + q2 * q2 + q3 * q3)
+    tsf = (s1 + s2 + s3) ** 2 - 2 * (s1 * s1 + s2 * s2 + s3 * s3) - 4 * s1 * s2 * s3
     a4 = plucker(3, a1, 4, a2)
     qq1, qq2, qq3 = myck.tri_quadrance([a1, a2, a4])
     tqf2 = Ar(qq1, qq2, qq3)  # get 0

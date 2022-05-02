@@ -143,7 +143,7 @@ def quad1(P):
             [type]: [description]
     """
     x1, z1, x2, z2 = P
-    return (Fraction(x1, z1) - Fraction(x2, z2))**2
+    return (Fraction(x1, z1) - Fraction(x2, z2)) ** 2
 
 
 def quadrance(a1, a2):
@@ -156,8 +156,7 @@ def quadrance(a1, a2):
     Returns:
             [type]: [description]
     """
-    return quad1((a1[0], a1[2], a2[0], a2[2])) + \
-        quad1((a1[1], a1[2], a2[1], a2[2]))
+    return quad1((a1[0], a1[2], a2[0], a2[2])) + quad1((a1[1], a1[2], a2[1], a2[2]))
 
 
 def sbase(l1, l2, d):
@@ -262,14 +261,14 @@ def Ar(a, b, c):
     Returns:
             [type]: [description]
     """
-    return (4 * a * b) - (a + b - c)**2
+    return (4 * a * b) - (a + b - c) ** 2
 
 
 def cqq(a, b, c, d):
-    """Cyclic quadrilateral quadrea theorem """
+    """Cyclic quadrilateral quadrea theorem"""
     t1 = 4 * a * b
     t2 = 4 * c * d
-    m = (t1 + t2) - (a + b - c - d)**2
+    m = (t1 + t2) - (a + b - c - d) ** 2
     p = m * m - 4 * t1 * t2
     return m, p
 

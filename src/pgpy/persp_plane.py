@@ -90,9 +90,9 @@ class persp_euclid_plane(ck):
             [type]: [description]
         """
         if isinstance(x, pg_point):
-            return x.dot(self.l_infty)**2
+            return x.dot(self.l_infty) ** 2
         elif isinstance(x, pg_line):
-            return x.dot(self.Ire)**2 + x.dot(self.Iim)**2
+            return x.dot(self.Ire) ** 2 + x.dot(self.Iim) ** 2
         raise NotImplementedError()
 
     def measure(self, a1, a2):

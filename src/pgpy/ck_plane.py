@@ -245,7 +245,7 @@ def check_cross_TQF(Q):
         [type]: [description]
     """
     q1, q2, q3 = Q
-    return (q1 + q2 + q3) ** 2 - 2 * (q1 ** 2 + q2 ** 2 + q3 ** 2) - 4 * q1 * q2 * q3
+    return (q1 + q2 + q3) ** 2 - 2 * (q1**2 + q2**2 + q3**2) - 4 * q1 * q2 * q3
 
 
 def check_cross_law(S, q3):

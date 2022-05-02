@@ -2,11 +2,9 @@
 
 Projective Geometry Python Code
 
-
 ## Description
 
 A longer description of your project goes here...
-
 
 <!-- pyscaffold-notes -->
 

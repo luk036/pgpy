@@ -12,7 +12,7 @@ from pgpy.proj_plane import (
     persp,
     pg_line,
     pg_point,
-    plucker
+    plucker,
 )
 
 
@@ -88,6 +88,7 @@ def test_special_case(px, py, pz, Lx, Ly, Lz):
 
 def no_test_symbolic():
     import sympy
+
     sympy.init_printing()
     pv = sympy.symbols("p:3", integer=True)
     qv = sympy.symbols("q:3", integer=True)

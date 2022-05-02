@@ -2,7 +2,8 @@
 
 from __future__ import print_function
 
-from pgpy.euclid_plane import uc_point, quadrance, Ar, Ptolemy
+from pgpy.euclid_plane import Ar, Ptolemy, quadrance, uc_point
+
 # from pgpy.proj_plane import tri_dual, join, meet, coincident, harm_conj, R
 
 

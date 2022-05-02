@@ -234,7 +234,7 @@ def coI(p, q, *rest):
     Returns:
         [type]: [description]
     """
-    return coI_core(p*q, rest)
+    return coI_core(p * q, rest)
 
 
 # Note: `lambda` is a preserved keyword in python
@@ -359,7 +359,7 @@ def harm_conj(A, B, C):
 
 
 class involution:
-    """ Definition: $tau(tau(a)) == a$ """
+    """Definition: $tau(tau(a)) == a$"""
 
     def __init__(self, m, o):
         """[summary]
@@ -454,9 +454,9 @@ def check_pappus(co1, co2):
     """
     A, B, C = co1
     D, E, F = co2
-    G = (A*E) * (B*D)
-    H = (A*F) * (C*D)
-    J = (B*F) * (C*E)  # Can't use I
+    G = (A * E) * (B * D)
+    H = (A * F) * (C * D)
+    J = (B * F) * (C * E)  # Can't use I
     assert coincident(G, H, J)
 
 
